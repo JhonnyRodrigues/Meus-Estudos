@@ -1,0 +1,116 @@
+algoritmo "Soma_Funcao"
+
+
+// Data : 10/06/2019
+
+var
+      V1, V2, S: Inteiro
+      
+Funcao Soma (X, Y: Inteiro): Inteiro   // seu retorno tbm sera do tipo inteiro
+inicio
+      Retorne X + Y
+FimFuncao
+inicio
+
+      Escreva ("Digite o primeiro valor: ")
+      Leia (V1)
+      Escreva ("Digite o segundo valor: ")
+      Leia (V2)
+      S <- Soma (V1, V2)
+      EscrevaL ("A soma entre ", V1, " e ", V2, " é igual a ", S)
+fimalgoritmo
+
+
+_____________________________________________________________________________________
+
+
+algoritmo "Par_Impar_com_ Funcao"
+
+// Data : 10/06/2019
+
+var
+      N: inteiro
+      R: caractere
+
+Funcao ParOuImpar (V: inteiro): Caractere // note que V recebe o valor de R
+inicio
+      Se (V%2=0) entao
+         Retorne "PAR"          // R assumirá esse valor do tipo caractere
+      Senao
+           Retorne "IMPAR"
+      FimSE
+FimFuncao
+inicio
+
+      Escreva ("Digite um número: ")
+      Leia (N)
+      R <- ParOuImpar (N) // atribuir na função o valor (N) pedido
+      Escreva ("O valor digitado é ",R)
+fimalgoritmo
+
+
+________________________________________________________________________________________
+
+
+algoritmo "Fatorial_por_Funcao"
+
+// Data : 10/06/2019
+
+var
+   N, F: inteiro
+   
+   
+Funcao Fatorial (V:inteiro):inteiro    // V vai entrar com tipo inteiro e sair com tipo inteiro
+Var
+       Contador, Resultado: Inteiro    // criadas 2 variaveis de ESCOPO LOCAL
+inicio
+      Resultado <- 1    // para não avacalhar a multiplicação
+      Para Contador <- 1 ate V faca   // até V - variável que dará valor à F
+           Resultado <- Resultado * Contador     //fórmula de fatoração
+      FimPara
+      Retorne Resultado      // para dentro de V da função
+FimFuncao
+
+
+inicio         // É AQUI QUE COMEÇA O PROGRAMA
+
+      Escreva ("Digite o número a fatorar: ")
+      Leia (N)
+      F <- Fatorial (N)  // F recebe a funcao chamada Fatorial, calculando N
+      EscrevaL ("O valor de ",N, "! é igual a ",F)
+      
+fimalgoritmo
+
+
+_________________________________________________________________________________________________
+
+
+algoritmo "Sequencia_Fibonacci_Funcao"
+
+// Autor :   Guanabara
+// Data : 10/06/2019
+
+var
+   C, T1, T2, T3: Inteiro
+
+Funcao ProximoFibonacci (var A, B: Inteiro): inteiro  // passagem de valor
+var C: inteiro                               // por referencia
+Inicio
+      C <- A + B
+      A <- B          // O ideal é não escrever nada na função (comando Escreva)
+      B <- C             // e sim no corpo principal do programa
+      Retorne C
+FimFuncao
+
+inicio
+      T1 <- 0
+      Escreva (T1)
+      T2 <- 1
+      Escreva (T2)
+      Para C <- 3 ate 13 faca      // começa do 3 pq dois termos ja foram escritos
+           T3 <- ProximoFibonacci (T1, T2)
+      Escreva (T3)
+      FimPara
+fimalgoritmo
+
+

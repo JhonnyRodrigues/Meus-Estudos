@@ -1,0 +1,40 @@
+﻿Build started 28/05/2014 07:30:51.
+     1>Project "E:\Downloads Facu\Informatica\Trabalho - programa n° 1\Trabalho - programa n° 1\Trabalho - programa n° 1.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Trabalho - programa n° 1.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       GenerateTargetFrameworkMonikerAttribute:
+       Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr:pure /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\Trabalho - programa n° 1.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt "Trabalho - programa n° 1.cpp" /clr:nostdlib 
+         Trabalho - programa n° 1.cpp
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(443): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(444): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(445): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(446): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(447): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(448): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>e:\downloads facu\informatica\trabalho - programa n° 1\trabalho - programa n° 1\Form1.h(442): warning C4101: 'RESULTADO' : unreferenced local variable
+         All outputs are up-to-date.
+       CoreResGen:
+         "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools\resgen.exe" /useSourcePath /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /compile Form1.resX,"Debug\Trabalhoprograman°1.Form1.resources"
+         Processing resource file "Form1.resX" into "Debug\Trabalhoprograman°1.Form1.resources".
+       ResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\Downloads Facu\Informatica\Trabalho - programa n° 1\Debug\Trabalho - programa n° 1.exe" /INCREMENTAL /NOLOGO /ASSEMBLYRESOURCE:"Debug\Trabalhoprograman°1.Form1.resources" /MANIFEST /ManifestFile:"Debug\Trabalho - programa n° 1.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Downloads Facu\Informatica\Trabalho - programa n° 1\Debug\Trabalho - programa n° 1.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:WINDOWS /TLBID:1 /ENTRY:"main" /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
+         Debug\AssemblyInfo.obj
+         Debug\stdafx.obj
+         "Debug\Trabalho - programa n° 1.obj"
+         "Debug\.NETFramework,Version=v4.0.AssemblyAttributes.obj"
+         Trabalho - programa n° 1.vcxproj -> E:\Downloads Facu\Informatica\Trabalho - programa n° 1\Debug\Trabalho - programa n° 1.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"E:\Downloads Facu\Informatica\Trabalho - programa n° 1\Debug\Trabalho - programa n° 1.exe;#1" /manifest "Debug\Trabalho - programa n° 1.exe.intermediate.manifest"
+       FinalizeBuildStatus:
+         Deleting file "Debug\Trabalho - programa n° 1.unsuccessfulbuild".
+         Touching "Debug\Trabalho - programa n° 1.lastbuildstate".
+     1>Done Building Project "E:\Downloads Facu\Informatica\Trabalho - programa n° 1\Trabalho - programa n° 1\Trabalho - programa n° 1.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.60

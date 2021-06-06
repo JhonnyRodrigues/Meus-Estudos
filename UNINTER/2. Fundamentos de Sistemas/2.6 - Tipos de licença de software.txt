@@ -1,0 +1,7 @@
+Freeware: é o mesmo que gratuito. Sua utilização não necessita de cobrança e todas as funções do programa podem ser acessadas pelo usuário, sem nenhum tipo de restrição. O tempo de uso pelo usuário nesse tipo de licença também não possui restrições.
+
+Shareware: no padrão shareware, o software possui algumas limitações de relação ao acesso de funcionalidades ou limite de tempo de utilização, geralmente contado em dias, a partir do momento que o software é instalado. Para ter acesso a essas ferramentas bloqueadas ou usar por tempo indeterminado, o usuário é obrigado a comprar o produto.
+
+Adware: o formato de comercialização adware consiste em inserir uma publicidade no programa, de forma que o usuário é obrigado a ter contato com aquele anúncio todas as vezes que utiliza o software. A propaganda só é retirada mediante a um pagamento por parte do cliente.
+
+Open source: os programas open source, além de serem totalmente gratuitos e sem nenhum tipo de restrição aos usuários, possuem o código fonte de programação acoplada a eles. Isso significa que qualquer pessoa pode modificar as funções do software sem a necessidade de nenhum tipo de pagamento aos desenvolvedores.

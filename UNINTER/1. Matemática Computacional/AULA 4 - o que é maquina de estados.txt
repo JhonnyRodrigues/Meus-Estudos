@@ -1,0 +1,8 @@
+Uma máquina de estados finita (FSM - do inglês Finite State Machine) ou autômato finito é 
+um modelo matemático usado para representar programas de computadores ou circuitos lógicos. 
+O conceito é concebido como uma máquina abstrata que deve estar em um de um número finito de estados.
+ A máquina está em apenas um estado por vez, este estado é chamado de estado atual. 
+Um estado armazena informações sobre o passado, isto é, ele reflete as mudanças desde a entrada num estado, 
+no início do sistema, até o momento presente. 
+Uma transição indica uma mudança de estado e é descrita por uma condição que precisa ser realizada 
+para que a transição ocorra. Uma ação é a descrição de uma atividade que deve ser realizada num determinado momento.

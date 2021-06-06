@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mídias</title>
+    <link rel="shortcut icon" href="favicon2.ico" type="image/x-icon">
+</head>
+
+<body>
+    <h1>Imagem dinâmica</h1>
+        <p>Tente abrir esse site em vários dispositivos diferentes ou simplesmente aumente e diminua o tamanho de seu navegador</p>
+        <picture>
+            <source media="(max-width: 750px)" srcset="imagens/foto-p.png" type="image/png">
+            <source media="(max-width: 1050px)" srcset="imagens/foto-m.png" type="image/png">
+            <img src="imagens/foto-g.png" alt="apresentando uma imagem flexível">
+        </picture>
+
+    <h1>Reproduzindo Áudio</h1>
+        <h2>Vamos reproduzir áudio em HTML5:</h2>
+            <h3>1ª maneira, mais simples:
+                <audio src="midias/happy-mistake.mp3" preload="metadata" autoplay loop controls></audio> <!--perceba os diferentes parâmetros. Os navegadores aceitam 3 tipos de formatos de áudio: MP3, WAV e OGG-->
+            <h3>2ª maneira, com redundância de várias tags <source> caso o navegador não consiga reproduzir algum formato:
+                <audio controls>
+                    <source src="midias/Trimmed & Taught - Dan Lebowitz.mp3" type="audio/mpeg"> <!--note o MPEG-->
+                    <source src="midias/Trimmed & Taught - Dan Lebowitz.wav" type="audio/wav">
+                    <source src="midias/Trimmed & Taught - Dan Lebowitz.ogg" type="audio/ogg">               
+                </audio>
+                <p>Caso o seu navegador não consiga reproduzir formatos de áudio. Clique <a href="midias/Trimmed & Taught - Dan Lebowitz.mp3" download="Trimmed & Taught - Dan Lebowitz.mp3" target="_blank" type="audio/mpeg">aqui</a> para fazer o download do arquivo MP3</p>
+            </h3>
+</body>
+</html>

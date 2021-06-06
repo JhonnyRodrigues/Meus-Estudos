@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="05.DeclaracaoEmJavaFX.jnlp">
+  <information>
+    <title>05.DeclaracaoEmJavaFX</title>
+    <vendor>Jhonny</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="05.DeclaracaoEmJavaFX.jar" size="2744" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="05.DeclaracaoEmJavaFX" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="cursoemvideo.HelloWorldFX"  name="05.DeclaracaoEmJavaFX" />
+  <update check="always"/>
+</jnlp>
