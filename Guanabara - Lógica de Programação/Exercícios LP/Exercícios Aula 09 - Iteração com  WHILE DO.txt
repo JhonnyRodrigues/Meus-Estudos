@@ -1,0 +1,142 @@
+algoritmo "Contar"
+// Função : Contando a Taboada do 10 até 500
+// Autor : Jonatas
+// Data : 03/05/2019
+var
+   contador : inteiro
+inicio
+	contador <- 0
+	Enquanto (CONTADOR <= 500) faca
+		EscrevaL(contador)
+		contador <- contador + 10
+	FimEnquanto
+	EscrevaL("Terminei de contar")
+fimalgoritmo
+
+-------------------------------------------------------------------
+
+algoritmo "Contagem_Regressiva"
+// Função : contagem regressiva a partir de 10 até 0.
+// Autor : Jonatas
+// Data : 03/05/2019
+var
+   contador : inteiro
+inicio
+contador <- 10
+	Enquanto (CONTADOR >= 0) faca
+		EscrevaL(contador)
+		contador <- contador - 1
+	FimEnquanto
+	EscrevaL("Terminei de contar")
+fimalgoritmo
+FimSe
+
+-------------------------------------------------------------------
+
+algoritmo "Conte_Ate_Onde_O_Usuario_Quiser"
+var
+	contador, LIMITE, salto, begin : inteiro
+inicio
+      Escreva ("Até onde voce deseja contar?: ")
+      Leia (LIMITE)
+      Escreva ("Saltando de quanto em quanto? ")
+      Leia (SALTO)
+      Escreva ("Iniciando a partir de: ")
+      Leia (begin)
+      contador <- begin
+      Enquanto (CONTADOR <= LIMITE) faca
+		EscrevaL(contador)
+		contador <- contador + SALTO
+      FimEnquanto
+      EscrevaL("Terminei de contar")
+fimalgoritmo
+-------------------------------------------------------------------
+
+
+algoritmo "Adição"
+// Função : Operação de somar quantidade pré-estabelecida de elementos
+// Autor : Jonatas
+// Data : 03/05/2019
+var
+   CONTADOR, NUMERO, QUANTOS,SOMA: INTEIRO
+inicio
+
+	CONTADOR <- 1
+	SOMA <- 0
+	Escreva ("Quantos números deseja contar? ")
+	Leia (QUANTOS)
+	Enquanto (CONTADOR <= QUANTOS) faca
+		Escreva ("Digite o ", CONTADOR, "º valor: ")
+		Leia (NUMERO)
+		CONTADOR <- CONTADOR + 1
+		SOMA <- SOMA + NUMERO		
+	FimEnquanto
+	EscrevaL ("A soma de todos os valores foi: ", SOMA)
+fimalgoritmo
+
+
+---------------------------------------------------------------------
+
+
+algoritmo "Somador_Descrição"
+// Função : Somador numérico e descrição do maior valor
+// Autor : Jonatas
+// Data : 03/05/2019
+var
+ORDINAL, NUMERO, LIMITE,SOMA, MAIORVALOR, MENORVALOR: INTEIRO
+inicio
+MAIORVALOR <- 0
+MENORVALOR <- 0
+ORDINAL <- 1
+SOMA <- 0
+Escreva ("Quantos números deseja contar? ")
+Leia (LIMITE)
+Enquanto (ORDINAL <= LIMITE) faca
+   Escreva ("Digite o ", ORDINAL, "º valor: ")
+   Leia (NUMERO)
+   Se (NUMERO > MAIORVALOR) Entao
+      MAIORVALOR <- NUMERO
+   FimSe
+   ORDINAL <- ORDINAL + 1
+   SOMA <- SOMA + NUMERO
+FimEnquanto
+
+EscrevaL ("A soma de todos os valores foi: ", SOMA)
+EscrevaL ("O maior valor digitado foi: ", MAIORVALOR)
+fimalgoritmo
+
+
+---------------------------------------------------------------------
+
+
+Algoritmo "Somador_Numérico_E_Descrição_do_maior_E_Menor_Valor"
+
+Var
+	ORDINAL, VALOR, QUANTOS, SOMA, MAIORVALOR, MENORVALOR: INTEIRO
+
+Inicio
+
+ORDINAL <- 1
+SOMA <- 0
+MENORVALOR <- 99999999
+
+      Escreva ("Quantos números deseja contar? ")
+      Leia (QUANTOS)
+
+      Enquanto (ORDINAL <= QUANTOS) faca
+               Escreva ("Digite o ", ORDINAL, "º valor: ")
+               Leia (VALOR)
+                    Se (VALOR > MAIORVALOR) Entao     //se `VALOR` digitado for o maior número de todos, entao `MAIORVALOR` recebe `VALOR`
+                    MAIORVALOR <- VALOR
+                    FimSe
+                    Se (MENORVALOR > VALOR ) ENTAO	//`MENORVALOR` é maior que `VALOR`
+                    MENORVALOR <- VALOR
+                    FimSe
+		SOMA <- SOMA + VALOR
+		ORDINAL <- ORDINAL + 1
+      FimEnquanto
+
+      EscrevaL ("A soma de todos os valores foi: ",SOMA)
+      EscrevaL ("O maior valor digitado foi: ",MAIORVALOR)
+      EscrevaL ("O menor valor digitado foi: ",MENORVALOR)
+FimAlgoritmo
