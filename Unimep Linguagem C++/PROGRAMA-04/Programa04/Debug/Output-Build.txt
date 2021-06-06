@@ -1,0 +1,5 @@
+﻿1>------ Build started: Project: Programa04, Configuration: Debug Win32 ------
+1>  stdafx.cpp
+1>stdafx.cpp(5): fatal error C1085: Cannot write precompiled header file: 'Debug\Programa04.pch': Espaço insuficiente no disco.
+1>  
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
