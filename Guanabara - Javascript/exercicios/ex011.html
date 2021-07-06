@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nacionalidade</title>
+    <link rel="shortcut icon" href="favicon-jigsaw.ico" type="image/x-icon">
+</head>
+<body>
+    <h1>Detectando a Nacionalidade</h1>
+    <p>Digite um país: <input type="text" name="txtpais" id="pais"></p>
+    <input type="button" value="Verificar" onclick="verificar()">
+    <div id='resultado'>
+    </div>
+    <script>
+        function verificar(){
+            var pais = window.document.getElementById('pais')
+            var resultado = window.document.querySelector('div#resultado')
+            resultado.innerHTML = `<p>Quem nasce no ${pais} é </p>`
+            if (pais == 'Brasil') {
+                resultado.innerHTML += '<p>Brasileiro</p>'
+            } else {
+                resultado.innerHTML += '<p><em>Estrangeiro</em></p>'
+            }
+        }
+    </script>
+</body>
+</html>
