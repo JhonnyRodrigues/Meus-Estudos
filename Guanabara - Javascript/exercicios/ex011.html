@@ -9,19 +9,19 @@
 </head>
 <body>
     <h1>Detectando a Nacionalidade</h1>
-    <p>Digite um país: <input type="text" name="txtpais" id="pais"></p>
+    <p>Digite um país: <input type="text" name="txtpais" id="txtpais"></p>
     <input type="button" value="Verificar" onclick="verificar()">
     <div id='resultado'>
     </div>
     <script>
+        var pais = window.document.getElementById('txtpais')
+        var resultado = window.document.querySelector('div#resultado')            
         function verificar(){
-            var pais = window.document.getElementById('pais')
-            var resultado = window.document.querySelector('div#resultado')
-            resultado.innerHTML = `<p>Quem nasce no ${pais} é </p>`
-            if (pais == 'Brasil') {
-                resultado.innerHTML += '<p>Brasileiro</p>'
+            resultado.innerHTML = `Quem nasce no ${pais} é `
+            if (pais == "Brasil") {
+                resultado.innerHTML += '<strong>Brasileiro</strong>'
             } else {
-                resultado.innerHTML += '<p><em>Estrangeiro</em></p>'
+                resultado.innerHTML += '<em>Estrangeiro</em>'
             }
         }
     </script>
