@@ -7,8 +7,8 @@ var hora = agora.getHours()
 msg.innerHTML = `Agora são ${hora} horas.`
 if (hora < 6) {
     //BOM DIA! 
-    img.src="manha.jpg"
-    document.body.style.background = '#e2cd9f'
+    img.src="manha.jpg" //muda a imagem da variável `img` para o arquivo `manha.jpg`
+    document.body.style.background = '#e2cd9f'  //também muda a cor de fundo
 } else if (hora >12 && hora <18){
     //BOA TARDE!
     img.src="tarde.jpg"
