@@ -1,0 +1,26 @@
+@charset "utf-8";
+body {
+    background-color:blueviolet;
+    font: normal 15pt Times;
+}
+
+header {
+    color: white;
+    text-align: center;
+}
+section {
+    color: black;
+    background-color: white;
+    border-radius: 15px;
+    margin: auto;
+    padding: 15px;
+    width: 500px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .7);
+}
+
+footer {
+    color:white;
+    text-align: center;
+    font-style: oblique;
+    font-weight: 500;
+}
