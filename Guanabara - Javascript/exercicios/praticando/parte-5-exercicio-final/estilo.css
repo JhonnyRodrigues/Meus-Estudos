@@ -19,11 +19,7 @@ section {
 }
 
 select#selnum {
-    width: 150px;
-}
-
-button#btnfim {
-    margin: auto;
+    width: 200px;
 }
 
 footer {
