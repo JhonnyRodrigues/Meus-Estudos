@@ -13,16 +13,18 @@
     <input type="button" value="Verificar" onclick="verificar()">
     <div id='resultado'>
     </div>
-    <script>
+    <script>        
+        var resultado = window.document.querySelector('div#resultado')
         var pais = window.document.getElementById('txtpais')
-        var resultado = window.document.querySelector('div#resultado')            
-        function verificar(){
-            resultado.innerHTML = `Quem nasce no ${pais} é `
-            if (pais == "Brasil") {
+        function verificar() {
+            resultado.innerHTML = `Quem nasce no ${pais.value} é `  //o atributo value é ???
+            if (pais == "Brasil" || pais == "brasil") {
                 resultado.innerHTML += '<strong>Brasileiro</strong>'
             } else {
                 resultado.innerHTML += '<em>Estrangeiro</em>'
             }
+            pais.value = ''
+            pais.focus()    //ativa o cursor no <input>
         }
     </script>
 </body>

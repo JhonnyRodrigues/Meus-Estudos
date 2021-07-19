@@ -3,7 +3,7 @@ let lista = document.querySelector('select#selnum')
 let res = document.querySelector('div#resultado')
 let valores = []
 
-function isNumero(n) {
+function isNumero(n) { //é um Nº válido?
     if (Number(n) >= 1 && Number(n) <= 100) {
         return true
     } else {
@@ -11,7 +11,7 @@ function isNumero(n) {
     }
 }
 
-function inLista(n, l) {
+function inLista(n, l) { //já está na lista?
     if (l.indexOf(Number(n)) != -1) {
         return true
     } else {
@@ -24,20 +24,20 @@ function adicionar() {
         res.innerHTML = '' //limpa o resultado ao adicionar novo elemento
         valores.push(Number(num.value))
         let item = document.createElement('option')
-        item.text = `O número ${num.value} adicionado`
+        item.text = `Número ${num.value} adicionado`
         selnum.appendChild(item)
     } else {
         alert('Valor inválido ou já encontrado na lista')
     }
     num.value = '' //limpa o campo de texto
-    num.focus()
+    num.focus() //ativa o cursor no <input>
 }
 
 function finalizar() {
-    if (valores.length < 1) {
+    let tot = valores.length
+    if (tot < 1) {
         alert('[ERRO] Adicione valores antes de finalizar!')
     } else {
-        let tot = valores.length
         let maior = valores[0]
         let menor = valores[0]
         let soma = 0

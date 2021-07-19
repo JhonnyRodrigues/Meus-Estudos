@@ -18,7 +18,7 @@ function soma(a,b) {
 var salario = soma(1,3) //passagem de parâmetro por valor
 console.log(`O salário é ${salario}`)    //4
 var adiantamento = soma(1)
-console.log(`O adiantamento é ${adiantamento}`) //retorna como NaN pq só foi passado um parâmetro para a função, então o JS entende o outro parâmetro com undefined
+console.log(`O adiantamento é ${adiantamento}`) //retorna como NaN pq só foi passado 1 único parâmetro para a função, então o JS entende o outro parâmetro com undefined
 
 function soma2(a=0, b=0) { //para resolver esse problema, atribua valor às variáveis
     return a+ b

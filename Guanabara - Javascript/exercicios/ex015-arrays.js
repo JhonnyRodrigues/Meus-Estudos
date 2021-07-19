@@ -27,10 +27,10 @@ if (pos == -1) {                             //esse método retorna -1 quando n�
 /*---------------------------------------------------------------------------------------------*/
 /*DIFERENÇA ENTRE FOR..IN E FOR..OF*/
 var arr = ["gato", "cachorro", "macaco"];
-for (var i in arr) { //itera sobre o nome das propriedades do objeto
+for (var i in arr) { //itera sobre o NOME das propriedades do objeto
     console.log(i); // Imprime "0", "1", "2"
 }
 
-for (var i of arr) { //itera sobre os valores dessas propriedades.
+for (var i of arr) { //itera sobre os VALORES dessas propriedades.
     console.log(i); // Imprime "gato", "cachorro", "macaco"
 }
