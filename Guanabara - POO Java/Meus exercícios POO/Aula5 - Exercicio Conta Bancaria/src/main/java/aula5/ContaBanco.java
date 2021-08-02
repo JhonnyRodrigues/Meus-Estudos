@@ -8,78 +8,85 @@ public class ContaBanco{
     private boolean status; //aberta ou fechada
 
 //método construtor
-    public ContaBanco(int numConta, String dono, float saldo) {        
-        this.status = false;
+    public ContaBanco(int numConta, String dono) {        
+        this.status = false; //atributos pré-valorados
         this.saldo = 0f;
         
-        this.numConta = numConta;
+        this.numConta = numConta; //atributos valorados pelos parâmetros passados na criação do objeto
         this.dono = dono;
-        this.saldo = saldo;
     }
     
 //métodos acessores
     public int getNumConta() {
-        return numConta;
+        return this.numConta;
     }
 
-    public void setNumConta(int numConta) {
-        this.numConta = numConta;
+    public void setNumConta(int nc) {
+        this.numConta = nc;
     }
 
     public String getTipo() {
-        return tipo;
+        return this.tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;       
+    public void setTipo(String t) { //essa variável `t` pertence apenas ao escopo LOCAL, por isso whatever seu nome
+        this.tipo = t;       
     }
 
     public String getDono() {
-        return dono;
+        return this.dono;
     }
 
-    public void setDono(String dono) {
-        this.dono = dono;
+    public void setDono(String d) {
+        this.dono = d;
     }
 
     public float getSaldo() {
-        return saldo;
+        return this.saldo;
     }
 
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
+    public void setSaldo(float s) {
+        this.saldo = s;
     }
 
     public boolean getStatus() {
-        return status;
+        return this.status;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setStatus(boolean s) {
+        this.status = s;
     }
     
-//métodos públicos da classe   
+//métodos públicos da classe    
+    public void informacoes() {
+        System.out.println("DADOS DO CLIENTE:");
+        System.out.println("Número da conta: " + this.getNumConta());
+        System.out.println("Tipo: " + this.getTipo());
+        System.out.println("Dono: " + this.getDono());
+        System.out.println("Status: " + this.getStatus());
+        System.out.println("Saldo: " + this.getSaldo());
+    }
     public void abrirConta(String t){     
         
-        if (this.getTipo().equals("cc") || this.getTipo() == "cp") {
+        if (t.equals("cc") || t.equals("cp")) {
             this.setTipo(t);
+            this.setStatus(true);
+            System.out.println("Conta aberta com sucesso!");
         } else {
-            System.out.println("[ERRO] Conta Inválida!");
+            System.out.println("[ERRO] Esse tipo de conta não existe!");
         }
-        
-        this.setStatus(true); //conta aberta
-        
-        if (this.getTipo().equals("cp")) {
-            this.setSaldo(saldo += 150f);            
-        } else {
-            this.setSaldo(saldo += 50f);
+        //Bônus para novos clientes
+        if (this.getTipo().equals("cc")) {
+            depositar(50f);
+        } else if (this.getTipo().equals("cp")) {
+            depositar(150f);
         }
     }
     
     public void fecharConta(){
         if (this.getSaldo() > 0) {
+                System.out.println("[ERRO] Conta com dinheiro! Sacando R$" + this.getSaldo());                
                 sacar(this.getSaldo());
-                System.out.println("[ERRO] Conta com dinheiro!\nSacando R$" + this.getSaldo());
         } else if (this.getSaldo() < 0) {
                 System.out.println("[ERRO] Conta em débito. Deposite R$" + Math.abs(this.getSaldo()));//Math.abs() gera valor absoluto, ou seja, positivo
         } else { //saldo zerado.
@@ -88,52 +95,40 @@ public class ContaBanco{
     }
     
     public void depositar(float v){
-        if (this.getStatus() == true) {
-            //saldo += d;
-            setSaldo(getSaldo() + v);
-            System.out.println("O depósito foi realizado!"); 
+        if (this.getStatus() == true) { //verifica se a conta está ativa
+            this.setSaldo(this.getSaldo() + v); //this.saldo = this.saldo += v (essa é uma maneira insegura)
+            System.out.println("O depósito de " + v + " foi realizado na conta de " + this.getDono()); 
         } else {
-            System.out.println("[ERRO] Conta fechada, impossível realizar a operação.");
+            System.out.println("[ERRO] Impossível realizar a operação porque a conta está fechada.");
         }
     }
     
     public void sacar(float v){
-        if (this.getStatus() == true) {
-            if (saldo > v ) {
-            //saldo -= v;
-            setSaldo(getSaldo() - v);  
-            System.out.println("O saque foi realizado!"); 
+        if (this.getStatus()) { //se tirar o trecho redundante: (== true), o programa entende mesmo assim como verdadeiro
+            if (this.getSaldo() >= v ) {
+                this.setSaldo(this.getSaldo() - v); //ou... saldo -= v; 
+                System.out.println("Saque de R$" + v + " realizado na conta de " + this.getDono()); 
             } else {
-                System.out.println("[ERRO] Saldo insuficiente!");
+                System.out.println("[ERRO] Saldo insuficiente para saque na conta de " + this.getDono());
             }            
         } else {
-            System.out.println("[ERRO] Conta está fechada! Impossível realizar a operação.");
+            System.out.println("[ERRO] Impossível sacar de uma conta fechada!");
         }
     }
     
     public void pagarMensal(){
         if (this.getStatus() == true) {
-            if (this.getTipo() == "cc" && this.getSaldo() > 12) {
+            if (this.getTipo().equals("cc") && this.getSaldo() > 12) {
                 sacar(12f);
-            } else {
-                System.out.println("Saldo insuficiente");
-            }
-            if (this.getTipo() == "cp" && this.getSaldo() > 20) {
+                System.out.println("Mensalidade paga com sucesso por " + this.getDono());
+            } else if (this.getTipo().equals("cp") && this.getSaldo() > 20) {
                 sacar(20f);
+                System.out.println("Mensalidade paga com sucesso por " + this.getDono());
             } else {
-                System.out.println("Saldo insuficiente");
-            }
+                System.out.println("Saldo insuficiente para pagar a mensalidade!");
+            }             
         } else {
             System.out.println("[ERRO] Conta está fechada! Impossível realizar a operação.");
         }
-    }
-    
-    public void dados() {
-        System.out.println("DADOS DO CLIENTE:");
-        System.out.println("Número da conta: " + this.numConta);
-        System.out.println("Tipo: " + tipo);
-        System.out.println("Dono: " + dono);
-        System.out.println("Status: " + status);
-        System.out.println("Saldo: " + saldo);
     }
 }
