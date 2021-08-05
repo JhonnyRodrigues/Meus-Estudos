@@ -10,5 +10,5 @@
         <maven.compiler.source>16</maven.compiler.source>
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
-    <name>Aula5 - Exercicio Conta Bancaria</name>
+    <name>Aula05 - Exercicio Conta Bancaria</name>
 </project>
