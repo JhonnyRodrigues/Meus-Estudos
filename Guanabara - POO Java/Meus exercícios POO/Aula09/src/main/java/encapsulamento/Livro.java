@@ -1,4 +1,4 @@
-package exercicio.aula09;
+package encapsulamento;
 public class Livro implements Publicacao { //a classe importará os métodos da interface
     //Declarando Atributos
     private String autor, titulo;

@@ -1,4 +1,4 @@
-package exercicio.aula09;
+package encapsulamento;
 public interface Publicacao { //criando uma interface
     public abstract void abrir();
     public abstract void fechar();

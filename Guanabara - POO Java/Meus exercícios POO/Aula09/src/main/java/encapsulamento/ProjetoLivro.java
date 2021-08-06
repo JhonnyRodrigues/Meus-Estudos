@@ -1,4 +1,4 @@
-package exercicio.aula09;
+package encapsulamento;
 public class ProjetoLivro {
     public static void main(String[] args) {
         Pessoa p[] = new Pessoa[2];
