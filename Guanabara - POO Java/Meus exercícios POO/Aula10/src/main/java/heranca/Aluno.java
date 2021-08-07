@@ -6,11 +6,11 @@ public class Aluno extends Pessoa{ //A classe `Aluno` herda os atributos e méto
     
     //Método Público
     public void cancelarMatr() {
-        System.out.println("Matrícula cancelada");
+        System.out.println("Matrícula cancelada de " + this.getNome());
     }
     
-    public void pagarMensalidade() { //esse método será sobrescrito na classe `Bolsista`
-        
+    public void pagarMensalidade() { //esse método será sobrescrito na classe `Bolsista`.
+        System.out.println("Pagando mensalidade de aluno " + this.nome); //como a visibilidade é `protected`, não foi preciso usar o método .getNome()
     }
     
     //Métodos Acessores

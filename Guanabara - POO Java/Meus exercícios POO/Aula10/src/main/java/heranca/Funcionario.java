@@ -4,8 +4,8 @@ public class Funcionario extends Pessoa {//herança
     private String setor;
     private boolean trabalhando;
     
-    //Métodos Abstratos
-    public void mudarTrabalho() {
+    //Método Público
+    public final void mudarTrabalho() {  //é um método final, ou seja, não pode ser sobrescrito
         this.trabalhando = ! this.trabalhando; //inverte a lógica
     }
     //Métodos Acessores
