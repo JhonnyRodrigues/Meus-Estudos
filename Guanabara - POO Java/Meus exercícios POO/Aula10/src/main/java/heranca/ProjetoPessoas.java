@@ -1,6 +1,6 @@
 package heranca;
 public class ProjetoPessoas {
-        //programa Principal
+    //Classe Principal
     public static void main(String[] args) {
         //criando objetos
         

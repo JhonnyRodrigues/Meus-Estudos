@@ -1,5 +1,6 @@
 package polimorfismo;
 public class Aula12 {
+    //Classe Principal
     public static void main(String[] args) {
         //Criando objetos, ou seja, instanciando classes:        
         //Animal a = new Animal(); é impossível instanciar uma classe abstrata!

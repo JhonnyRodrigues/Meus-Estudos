@@ -1,6 +1,6 @@
 package sobrecarga;
 public class Aula13 {
-    //Programa Principal
+    //Classe Principal
     public static void main(String[] args) {
       //Animal x = new Animal(); essa classe é abstrata então não é possível criar objetos a partir dela
         Mamifero m = new Mamifero();
