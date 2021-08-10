@@ -1,20 +1,22 @@
 package projeto_youtube;
 public class Video implements AcoesVideo { //a classe `Video` vai declarar os métodos abstratos da Interface `AcoesVideo`
-    //Atributos
+    //Atributos Privados
     private String titulo;
     private int avaliacao, views, curtidas;
     private boolean reproduzindo;
 
-    //Construtor é o método que é executado assim que criado/instanciado objeto
-    public Video(String titulo) {
+    //Construtor é o método que é executado assim que o objeto for criado/instanciado
+    public Video(String titulo) { //o construtor recebe o mesmo nome de sua classe
+        //Único aatributo que será parâmetro na criação do objeto
         this.titulo = titulo;
-        this.avaliacao = 1;
+        //Atributos que, por já serem pré-configurados, não serão parâmetros na criação do objeto
+        this.avaliacao = 0;
         this.views = 0;
         this.curtidas = 0;
         this.reproduzindo = false;        
     }
     
-    //Métodos Acessores
+    //Métodos Acessores (conceito do Polimorfismo)
     public String getTitulo() {
         return titulo;
     }
@@ -28,7 +30,9 @@ public class Video implements AcoesVideo { //a classe `Video` vai declarar os m�
     }
 
     public void setAvaliação(int avaliação) {
-        this.avaliacao = avaliação;
+        int nova;
+        nova = (this.avaliacao + avaliação) / this.views; //a avaliação do video será a média de avaliações
+        this.avaliacao = nova;
     }
 
     public int getViews() {
@@ -56,22 +60,22 @@ public class Video implements AcoesVideo { //a classe `Video` vai declarar os m�
     }
     
     //Implementações da classe `AcoesVideo`
-    @Override  //herança por sobreposição
+    @Override  //é a anotação para indicar herança por sobreposição
     public void play() {
-        
+        this.reproduzindo = true;
     }
 
     @Override
     public void pause() {
-        
+        this.reproduzindo = false;
     }
 
     @Override
     public void like() {
-        
+        this.curtidas ++;
     }
 
-    @Override //cria um Polimorfismo de Sobrescrição para o método `toString()`
+    @Override //cria um Polimorfismo de Sobreposição para o método-automático `toString()`
     public String toString() {
         return "Video{" + "titulo=" + titulo + ", avaliacao=" + avaliacao + ", views=" + views + ", curtidas=" + curtidas + ", reproduzindo=" + reproduzindo + '}';
     }
