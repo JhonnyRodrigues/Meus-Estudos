@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../_css/estilo.css"/>
+    <meta charset="UTF-8"/>
+    <title>Aula 08 Exercicio 02</title>
+</head>
+<body>
+<div>
+    <form action="02idade.php" method="get">
+    Nome: <input type="text" name="nome" id=""><br/>
+    Ano de Nascimento: <input type="number" name="ano" id=""><br/>
+    <fieldset><!--cria uma borda-->
+        <legend>Sexo</legend>
+        <input type="radio" name="sexo" id="masc" value="homem" checked> <!--o parâmetro 'value' retorna a string "homem" caso esse botão seja o escolhido-->
+        <label for="masc">Masculino</label><br/>
+        <input type="radio" name="sexo" id="fem" value="mulher"><!--o parâmetro 'name' tem que ser o mesmo do 'input radio' anterior-->
+        <label for="fem">Feminino</label>
+    </fieldset><br/>
+    <input type="submit" value="Enviar">
+</form>
+</div>
+</body>
+</html>
+ 
