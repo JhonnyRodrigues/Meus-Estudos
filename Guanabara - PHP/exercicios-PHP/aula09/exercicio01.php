@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Curso de PHP - CursoemVideo.com</title>
+  <title>Script condicionais</title>
   <link rel="stylesheet" href="../_css/estilo.css">
   <!--endereço do estilo editado pelo professor, atenção para o padrão Linux: "../"-->
 </head>
@@ -21,7 +21,7 @@
       //$v = "não pode votar";
       $d = "não pode dirigir";
     }
-    echo "<br>Com essa idade, você $d"/* e $v.*/;
+    echo "<br>Com essa idade você $d"/* e $v.*/;
 
     //condicionais aninhadas
     if ($idade < 16) {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <title>Funções Aritméticas em PHP</title>
-  <link rel="stylesheet" href="../_css/estilo.css"> <!--endereço do estilo editado pelo professor-->
+  <link rel="stylesheet" href="../_css/estilo.css"> <!--endereço do estilo criado pelo professor Guanabara-->
   <style>
     h2 {
       font: 15pt Arial;

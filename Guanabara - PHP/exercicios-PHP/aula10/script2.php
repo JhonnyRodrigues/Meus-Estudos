@@ -13,7 +13,7 @@
     <?php
     $d = isset($_GET["ds"]) ? $_GET["ds"] : 0;
     switch ($d) {
-      case 2: //perceba a estrutura para escolher com diversos valores
+      case 2: //perceba a estrutura para escolha com diversos valores
       case 3:
       case 4:
       case 5:

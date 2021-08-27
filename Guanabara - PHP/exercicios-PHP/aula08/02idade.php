@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8"/>
-  <title>Exercicio 02 da Aula 08</title>
+  <title>Script Exercicio 02 da Aula 08</title>
   <link rel="stylesheet" href="../_css/estilo.css"> <!--endereço do estilo editado pelo professor-->
 </head>
 <body>

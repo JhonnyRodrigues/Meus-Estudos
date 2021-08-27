@@ -8,7 +8,7 @@
 <body>
 <div>
     <?php
-        $valor = $_GET["v"]; //recebe o valor lá do input do doc html
+        $valor = $_GET["v"]; //recebe o valor lá do <input> do documento HTML
         $rq = sqrt($valor);
         echo "A raiz de $valor é igual a " . number_format($rq,2,",",".");
     ?>

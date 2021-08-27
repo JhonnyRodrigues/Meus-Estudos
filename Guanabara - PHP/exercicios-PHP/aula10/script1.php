@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Curso de PHP - CursoemVideo.com</title>
+  <title>Script Switch</title>
   <link rel="stylesheet" href="../_css/estilo.css">
   <!--endereço do estilo editado pelo professor, atenção para o padrão Linux: "../"-->
 </head>
@@ -15,10 +15,10 @@
     $o = isset($_GET["oper"]) ? $_GET["oper"] : 1; //verifica se foi escolhida alguma operação, caso contrário será escolhida a operação 1(dobro)
     switch ($o) {
       case 1:
-        $n = pow($n,2);
+        $n = pow($n, 2);
         break;
       case 2:
-        $n = pow($n,3);
+        $n = pow($n, 3);
         break;
       case 3:
         $n = sqrt($n);
@@ -28,7 +28,8 @@
     }
     echo "O resultado da operação é <span class='foco'>$n<span/>"; //utiliza css para destacar
     ?>
-    <br><a href="formulario1.html" class="botao">Voltar</a> <!--utiliza css para que o link tenha a aparencia de um botão-->
+    <br><a href="formulario1.html" class="botao">Voltar</a>
+    <!--utiliza css para que o link tenha a aparência de um botão-->
   </div>
 </body>
 

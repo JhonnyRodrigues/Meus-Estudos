@@ -11,10 +11,10 @@
 
 <body>
     <div>
-        <?php //PORQUEEE não funciona!?
-        $inicio = isset($_GET["i"]) ? $_GET : 0;
-        $fim = isset($_GET["f"]) ? $_GET : 0;
-        $passo = isset($_GET["p"]) ? $_GET : 0;
+        <?php
+        $inicio = isset($_GET["i"]) ? $_GET["i"] : 0;
+        $fim = isset($_GET["f"]) ? $_GET["f"] : 0;
+        $passo = isset($_GET["p"]) ? $_GET["p"] : 0;
         if ($inicio < $fim) {
             while ($inicio < $fim) {
                 echo "$inicio ";

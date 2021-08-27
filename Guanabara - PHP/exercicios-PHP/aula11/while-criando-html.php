@@ -10,8 +10,7 @@
 
 <body>
   <div>
-    <form action="while-recebendo-html.php" method="GET">
-      <!--cria um formulário-->
+    <form action="while-recebendo-html.php" method="GET"><!--cria um formulário-->
       <?php
       $c = 1; //No PHP, é preciso declarar a variável antes de construir o loop
       while ($c < 6) { //cria uma iteração para produzir 5 caixas numéricas usando HTML dentro do comando echo

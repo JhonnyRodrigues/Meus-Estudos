@@ -13,7 +13,7 @@
         $n2 = $_GET["b"];
         $tipo = $_GET["op"];
         echo"Os valores passados foram $n1 e $n2";
-        $r = ($tipo == "s") ? $n1+$n2 : $n1*$n2; //se a variável `op` receber o valor 's', a variável `r` recebe a soma, do contrário, a multiplicação
+        $r = ($tipo == "s") ? $n1+$n2 : $n1*$n2; //se a variável `op` receber o valor 's', a variável `r` recebe a soma, do contrário, recebe a multiplicação
         echo"<br>O resultado será $r";
     ?>
 </div>

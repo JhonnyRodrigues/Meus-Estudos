@@ -56,8 +56,10 @@
 
     //str_word_count()
     $frase = "Eu vou estudar PHP";
+    $contador = str_word_count($frase, 0);
+    echo "<hr>A frase '$frase' possui $contador palavras.";
     $contador = str_word_count($frase, 2); //O parâmetro '0' retorna só a contagem, '1' cria um vetor e '2' cria um vetor mantendo o posicionamento de cada palavra dentro da string.
-    echo "<hr> $frase<br>vetor string: ";
+    echo "<br>Parâmetro 2: ";
     print_r($contador); //a função print_r() mostra detalhes de uma variável, principalmente se ela for um vetor
 
     //explode()
