@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt=BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos DOM</title>
+    <link rel="shortcut icon" href="favicon-idea.ico" type="image/x-icon">
+    <style>
+        div#area {
+            font: normal 20pt Arial;
+            background: lime;
+            color: white;
+            width: 200px;
+            height: 200px;
+            line-height: 200px; /*alinha o texto*/
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--<div id="area" onclick="clicar()" onmouseenter='entrar()' onmouseout="sair()">
+    ***programando EVENTOS no <body>HTML***-->
+        <div id="area">
+        Interaja
+    </div>
+    <script>
+        var a = window.document.getElementById('area') //a variável `a` recebe a string `interaja`  (*não é a melhor coisa a se fazer por causa do problema do uso de memória*)
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', entrar)    //***programando EVENTOS diretamente no Javascript***
+        a.addEventListener('mouseout', sair)
+        function clicar() { 
+            a.innerText = 'Clicou!' //faz o método `innerText` aplicar o valor que está dentro da variável `a`
+            a.style.background='red'
+        }
+        function entrar() {
+            a.innerText='Entrou!'
+            a.style.background='green'
+        }
+        function sair() {
+            a.innerText='Saiu!'
+            a.style.background='blue'
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primeiros passos com DOM</title>
+    <link rel="shortcut icon" href="favicon-patriot.ico" type="image/x-icon">
+    <style>
+        body {
+            background: rgb(68,125,199);
+            color: white;
+            font: normal 18pt Arial;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Iniciando estudos com DOM</h1>
+    <p><strong>1º parágrafo,</strong> Aqui vai o resultado<br></p>
+    <p><strong>2º parágrafo,</strong> Aprendendo a usar o <strong>DOM</strong> em Javascript<br></p>
+    <div id='msg'>Clique em mim</div>   <!--identificando essa <div> como 'msg'-->
+<!--<div name='msg'>Clique em mim</div> note que também poderia ser identificado by name-->
+<!--<div class='msg'>Clique em mim</div> ou ser identificado by class-->
+    <script>
+
+        //***Veja 5 diferentes maneiras de acessar/selecionar elementos:***
+        var p1 = window.document.getElementsByTagName('p')[1]     //1º: usando TagName, os colchetes identificam qual dos parágrafos, o nº 1 escolhe o 2º parágrafo
+        var d = window.document.getElementById('msg')             //2º: usando ById
+      //var d = window.document.getElementByName('msg')             3º: usando ByName
+      //var d = window.document.getElementByClassName('msg')        4º: usando ByClassName
+      //var d = window.document.querySelector('div#msg')            5º: usando querySelector, (use a hash# quando identificar a <div> por id, e use ponto. quando identificar a <div> por class)
+
+        window.document.write('Está escrito assim: ' + p1.innerText + '<br>')  //concatenando...
+        p1.style.color = 'blue' //muda a cor do texto do 2º parágrafo
+
+        var corpo = window.document.body    //cria uma variável para receber parâmetros do body
+        corpo.style.background = 'gray'     //agora usa essa variável para alterar a cor de fundo
+
+        document.write(p1.innerHTML)    //Diferença: innerHTML acompanha as tags HTML, assim o texto já vem formatado
+        document.write(p1.innerText)    //já innerText retorna só o texto        
+        
+        d.style.background = 'green'    //muda a cor de fundo da <div>
+        //d.innerText = 'Estou aguardando...'   (maneira mais curta de escrever)
+        window.document.getElementById('msg').innerText = 'Estou aguardando...' //perceba que essa maneira é muito maior que o comando alternativo anterior 
+
+        d.style.color ='yellow'         //muda a cor da fonte da <div>
+
+    </script>
+</body>
+</html>
