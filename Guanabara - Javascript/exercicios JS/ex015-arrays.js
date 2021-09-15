@@ -7,7 +7,7 @@ console.log(`O primeiro valor do vetor é ${vetor[0]}`)
 vetor.sort()                                                          //método de ordenação
 console.log(`O vetor ordenado é [${vetor}]`)
 
-vetor.push(1)                                                         //método adicionar ao final
+vetor.push(-15)                                                         //método adicionar ao final
 console.log(`Adicionando um elemento ao final do vetor: [${vetor}]`)
 
 for (let posição = 0; posição < vetor.length; posição++) {
@@ -18,8 +18,8 @@ for (let posição in vetor) {                                            //perc
     console.log(`A posição ${posição} tem o valor ${vetor[posição]}`)
 }
 
-let pos = vetor.indexOf(5)                             //método buscar valores dentro de um vetor
-if (pos == -1) {                             //esse método retorna -1 quando não encontra o valor
+let pos = vetor.indexOf(4)   //método buscar valores dentro de um vetor
+if (pos == -1) {             //esse método retorna -1 quando não encontra o valor
     console.log('[ERRO] Valor não encontrado')
 } else {
     console.log(`O valor está na posição ${pos}`)
@@ -27,7 +27,7 @@ if (pos == -1) {                             //esse método retorna -1 quando n�
 /*---------------------------------------------------------------------------------------------*/
 /*DIFERENÇA ENTRE FOR..IN E FOR..OF*/
 var arr = ["gato", "cachorro", "macaco"];
-for (var i in arr) { //itera sobre o NOME das propriedades do objeto
+for (var i in arr) { //itera sobre o ÍNDICE das propriedades do objeto
     console.log(i); // Imprime "0", "1", "2"
 }
 

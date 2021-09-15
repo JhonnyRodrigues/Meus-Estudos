@@ -18,17 +18,17 @@ function soma(a,b) {
 var salario = soma(1,3) //passagem de parâmetro por valor
 console.log(`O salário é ${salario}`)    //4
 var adiantamento = soma(1)
-console.log(`O adiantamento é ${adiantamento}`) //retorna como NaN pq só foi passado 1 único parâmetro para a função, então o JS entende o outro parâmetro com undefined
+console.log(`O adiantamento é ${adiantamento}`) //retorna como NaN pq só foi passado 1 único parâmetro para a função, então o JS entende o outro parâmetro com undefined (Number + undefined = NaN)
 
 function soma2(a=0, b=0) { //para resolver esse problema, atribua valor às variáveis
-    return a+ b
+    return a + b
 }
 var adiantamento = soma2(1)
 console.log(`O adiantamento é ${adiantamento}`)
 
 /*******************************************************************
 por ser uma Linguagem funcional. o JS permite armazenar função dentro de variável*/
-let v = function(x) {return x*2}
+let v = function(x) {return x*2} //a palavra reservada `function` declara uma função
 console.log(`O dobro da variável v é ${v(5)}`) //perceba que foi passado um parâmetro na variável
 
 /*Função TIPO FLECHA*/
@@ -58,7 +58,7 @@ function fatorialRecursiva(y){
     if(y == 1) {
         return y
     } else {
-        return y * fatorialRecursiva(y-1)
+        return y * fatorialRecursiva(--y)
     }
 }
 console.log(fatorialRecursiva(6))
