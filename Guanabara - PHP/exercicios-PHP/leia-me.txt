@@ -18,3 +18,6 @@ Crie cópias dessa pasta para usá-la em outros exercícios que serão criados d
 
 
 BONS ESTUDOS!
+
+
+Jonatas: Copie essa pasta para dentro da pasta C:\xampp\htdocs
