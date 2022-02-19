@@ -42,7 +42,7 @@ class ControleRemoto implements Controlador { //implementando a interface
         echo "Está Ligado? " . ($this->getLigado()?"SIM":"NÃO"); //operador ternário
         echo "<br>Está Tocando? " . ($this->getTocando()?"SIM":"NÃO");
         echo "<br>Volume: " . $this->getVolume() . "    ";  //formatando com concatenação
-        for ($i=0; $i <= $this->getVolume(); $i+=10) {
+        for ($i=0; $i < $this->getVolume(); $i+=10) {
             echo "|";
         } echo "<br>";
     }

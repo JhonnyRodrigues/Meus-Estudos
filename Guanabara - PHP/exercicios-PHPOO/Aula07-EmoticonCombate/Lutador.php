@@ -15,8 +15,7 @@ class Lutador
     //Métodos Implementados
     public function apresentar()
     {
-        echo "<p>------------------------------------------------------------------------</p>";
-        echo "<p>CHEGOU A HORA! O lutador " . $this->getNome();
+        echo "<p><hr>CHEGOU A HORA! O lutador " . $this->getNome();
         echo " veio diretamente de " . $this->getNacionalidade();
         echo ", tem " . $this->getIdade() . " anos e pesa " . $this->getPeso() . " Kg.";
         echo "<br>Ele tem " . $this->getVitorias() . " vitórias, ";
@@ -24,8 +23,7 @@ class Lutador
     }
     public function status()
     {
-        echo "<P>------------------------------------------------------------------------</p>";
-        echo "<p>" . $this->getNome() . " é um peso " . $this->getCategoria() .
+        echo "<p><hr>" . $this->getNome() . " é um peso " . $this->getCategoria() .
             ", já ganhou " . $this->getVitorias() . " vezes, perdeu " . $this->getDerrotas() .
             " vezes e empatou " . $this->getEmpates() . " lutas.</p>";
     }
@@ -53,7 +51,7 @@ class Lutador
         $this->derrotas = $de;
         $this->empates = $em;
     }
-    private function getNome()
+    function getNome()//é preciso usar esse método na classe Luta, portanto, ele é publico!
     {
         return $this->nome;
     }
@@ -73,7 +71,7 @@ class Lutador
     {
         return $this->peso;
     }
-    private function getCategoria()
+    function getCategoria() //é preciso usar esse método na classe Luta, portanto, ele é publico!
     {
         return $this->categoria;
     }
