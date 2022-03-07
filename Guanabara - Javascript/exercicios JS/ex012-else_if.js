@@ -1,4 +1,4 @@
-var agora = new Date()  //função para pegar a hora do sistema
+var agora = new Date()  //a variável `agora` é uma instância da classe Date() e recebe todas as suas propriedades
 var hora = agora.getHours()
 console.log(`Agora são exatamente ${hora} horas`)
 if (hora < 6) {

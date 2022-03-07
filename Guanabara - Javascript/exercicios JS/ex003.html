@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,25 +9,30 @@
     <link rel="shortcut icon" href="favicon-patriot.ico" type="image/x-icon">
     <style>
         body {
-            background-color: blue; color: white; font: normal 20pt Arial;
+            background-color: blue;
+            color: white;
+            font: normal 20pt Arial;
         }
+
         h1 {
             color: yellow;
         }
     </style>
 </head>
+
 <body>
     <h1>Olá, Mundo!</h1>
     <p>Já me livrei da maldição</p>
     <script>
         //var n1 = window.prompt('digite o 1º número: ') recebe o valor como string
-        var n1 = Number.parseInt(window.prompt('digite o 1º número: ')) //converte para inteiro
+        var n1 = Number.parseInt(window.prompt('digite o 1º número: ')) //converte para inteiro o retorno do método prompt()
         //var n2 = window.prompt('Digite o 2º número: ') //recebe o valor como string
-        var n2 = Number(window.prompt('Digite o 2º número: ')) //deixa o JS converter automaticamente
+        var n2 = Number(window.prompt('Digite o 2º número: ')) //deixa o JS converter AUTOMATICAMENTE
         var soma = n1 + n2
         //window.alert('A soma dos valores é '+ soma) //faz concatenação porque o JS reconhece como 2 strings
         //window.alert('A soma dos valores é '+ soma.toString) //converte `soma` para string
         window.alert(`A soma dos valores ${n1} e ${n2} é ${soma}`)  //concatenação usando Template Strings
     </script>
 </body>
+
 </html>

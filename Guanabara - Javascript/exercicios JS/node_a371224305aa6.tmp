@@ -1,4 +1,0 @@
-var passo = 0
-while (passo < 5) {
-    console.log(`Passo ${passo}`)
-}

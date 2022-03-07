@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,20 +11,24 @@
         body {
             font-size: 12pt Arial;
         }
+
         button {
-            font-size: 12pt; padding: 30 px;
+            font-size: 12pt;
+            padding: 30 px;
         }
     </style>
 </head>
+
 <body>
     <h1>Interagindo com um botão</h1>
     <button onclick="clicou()">clica em mim!</button>
     <script>
-        var nome = window.prompt('Qual é o seu nome?')  //pergunta o nome
-        window.alert('É um prazer te conhecer, ' + nome + '!')    //concatenação
-        function clicou() {
+        var nome = window.prompt('Qual é o seu nome?')  //a variável de escopo global recebe a chamada do método .prompt()
+        window.alert('É um prazer te conhecer, ' + nome + '!')    //chama o método .alert().    Note a concatenação
+        function clicou() { //implementando o método
             window.alert('Você clicou no botão!')
         }
     </script>
 </body>
+
 </html>

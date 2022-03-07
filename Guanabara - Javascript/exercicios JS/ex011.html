@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,25 +8,25 @@
     <title>Nacionalidade</title>
     <link rel="shortcut icon" href="favicon-jigsaw.ico" type="image/x-icon">
 </head>
+
 <body>
     <h1>Detectando a Nacionalidade</h1>
-    <p>Digite um país: <input type="text" name="txtpais" id="txtpais"></p>
+    <p>Digite um país: 
+    <input type="text" name="txtpatria" id="txtpais"></p>
     <input type="button" value="Verificar" onclick="verificar()">
-    <div id='resultado'>
-    </div>
-    <script>        
+    <div id='resultado'></div>
+    <script>
         var resultado = window.document.querySelector('div#resultado')
-        var pais = window.document.getElementById('txtpais')
+        var pais = window.document.getElementById('txtpais')//.focus()
         function verificar() {
-            resultado.innerHTML = `Quem nasce no ${pais.value} é `  //o atributo value é ???
+            resultado.innerHTML = `Quem nasce no ${pais.value} é `  //HELP! a variável pais vale???
             if (pais == "Brasil" || pais == "brasil") {
                 resultado.innerHTML += '<strong>Brasileiro</strong>'
             } else {
                 resultado.innerHTML += '<em>Estrangeiro</em>'
             }
-            pais.value = ''
-            pais.focus()    //ativa o cursor no <input>
         }
     </script>
 </body>
+
 </html>

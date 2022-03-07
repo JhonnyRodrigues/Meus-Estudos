@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,24 +8,37 @@
     <title>DETRAN</title>
     <link rel="shortcut icon" href="favicon-patriot.ico" type="image/x-icon">
 </head>
+
 <body>
     <h1>Sistema de Multas</h1>
-    Velocidade do carro: <input type="number" name="txtvel" id="vel"> Km/h   <!--cria textbox-->
-    <input type="button" value="Verificar" onclick="calcular()"> <!--cria botão `verificar` e, ao ser clicado, executa a função `calcular()`-->
-    <div id='res'>
+    Insira a velocidade do carro: <input type="number" name="txtvel" id="vel"> Km/h
+    <!--cria textbox-->
+    <input type="button" value="Verificar" onclick="calcular()">
+    <!--cria botão `verificar` que, ao ser clicado, executa a função `calcular()`-->
+    <div id='res'></div>
 
-    </div>
-    <script>
-        function calcular(){
-        var txtvel = window.document.getElementById('vel')
-        var res = window.document.querySelector('div#res')
-        var vel = Number(txtvel.value)  //converte a string para number
-        res.innerHTML = `<p>Sua velocidade atual é de ${vel} Km/h</p>`
-        if (vel > 60) {
-            res.innerHTML += `<p>Você está <strong>MULTADO</strong> por excesso de velocidade.<p/>` //com operador de incremento(+=) para continuar exibindo a velocidade
+    <style>
+        input#vel {
+            color: blue;
         }
-        res.innerHTML += '<p>Dirija sempre com cinto de segurança!<p/>'
+
+        div#res {
+            color: rgb(161, 79, 1);
+        }
+    </style>
+
+    <script>
+        function calcular() {
+            var txtvel = window.document.getElementById('vel')
+            var vel = Number(txtvel.value)  //converte a string para number
+            var res = window.document.querySelector('div#res')
+            res.innerHTML = `<p>Sua velocidade atual é de ${vel} Km/h</p>`
+            if (vel > 40) {
+                res.innerHTML += `<p>Você está <strong>MULTADO</strong> por excesso de velocidade.<p/>` //com operador de incremento(+=) para continuar exibindo a velocidade
+            }
+            res.innerHTML += '<p>Dirija sempre com cinto de segurança!<p/>'
         }
     </script>
 </body>
+
 </html>

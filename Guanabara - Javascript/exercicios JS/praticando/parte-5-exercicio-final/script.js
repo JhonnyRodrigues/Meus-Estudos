@@ -50,7 +50,7 @@ function finalizar() {
         alert('[ERRO] Adicione valores antes de finalizar!')
     } else {
         resultado.innerHTML += `<p>Ao todo, temos ${tamanho} números cadastrados</p>`
-        resultado.innerHTML += `<p>O maior valor informado foi ${maior}</p>`
+        resultado.innerHTML += `<p>O maior valor informado foi ${Number(maior)}</p>`
         resultado.innerHTML += `<p>O menor valor informado foi ${menor}</p>`
         resultado.innerHTML += `<p>Somando todos os valores, temos ${soma}</p>`
         resultado.innerHTML += `<p>A média dos valores digitados é ${media}</p>`

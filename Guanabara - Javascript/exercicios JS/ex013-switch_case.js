@@ -1,4 +1,4 @@
-var agora = new Date()  //cria uma variável para receber a função Date
+var agora = new Date()  //cria uma variável para ser uma instância da função Date
 var diaSemana = agora.getDay() /*Nessa função, os dias são armazenados em um vetor, iniciando em zero. Exemplo:  0 = Domingo
                 1 = Segunda-feira
                 2 = Terça-feira
