@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Indie+Flower&display=swap');
+
+h1 {
+    font-family: 'Indie Flower', cursive;
+    font-size: 46px;
+    color: brown;
+    text-shadow: 2px 2px 20px black;
+}
+
+button {
+    font-size: 12;
+    padding: 20px;
+    font-weight: bold;
+    color: blue;
+}
+
+input {
+    padding: 20px;
+    font-weight: bold;
+    color: blue;
+}
