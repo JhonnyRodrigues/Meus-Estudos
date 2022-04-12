@@ -1,0 +1,229 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap');
+@font-face { /*importando novas fontes de caracteres*/
+    font-family: 'FonteLogo'; /*um nome qualquer*/
+    src: url(../_fonts/bubblegum-sans-regular.otf); /*o próprio navegador vai buscar esse arquivono diretório, instalá-lo e apresentar na página*/
+}
+
+body {
+background-color: #dddddd;
+font-family: Arial, Helvetica, sans-serif;
+}
+
+/*Formatando o contêiner que abriga o todo o conteúdo*/
+div#interface {
+    width: 900px;
+    background-color: #ffffff;
+    margin: -20px auto 0px auto; /*reposiciona a div. A sequência dos parâmetros correspondem a: cima, direita, baixo, esquerda. O parâmetro AUTO centraliza a div*/
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);/*cria uma sombra em volta do objeto div. A sequência de parâmetros correspondem a: deslocamento horizontal, deslocamento vertical, espalhamento da sombra cor da sombra*/
+    padding: 10px 10px 10px 10px; /*configura a margem interna do objeto (para que o texto não fique colado na borda)*/
+}
+
+/*Formatando todos os Parágrafos*/
+p { 
+    text-align: justify;
+    text-indent: 50px;
+}
+
+/*Formatando todos os Links*/
+a {
+    color: #606060;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/*Formatando Cabeçalho*/
+header#cabecalho {
+    border-bottom: 1px #606060 solid; /*coloca uma borda fina abaixo do cabeçalho para separará-lo do conteúdo*/
+    height: 150px; /*define a altura*/
+    background: url("../_imagens/glass-logo-peq.jpg") no-repeat 0px 80px; /*insere uma imagem usando CSS (assim não aparecerá a OPÇÃO SALVAR_IMAGEM), com o parâmetros:não replicar a imagem, deslocamento horizontal e vertical*/
+}
+header#cabecalho h1 { /*formata o 1º nível de título do cabecalho*/
+    font-family: 'FonteLogo', sans-serif; /*fonte importada*/
+    font-size: 30pt;
+    color: #606060;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .6) ;
+    padding: 0px;   /*diminui o tamanho da margem interna do objeto*/
+    margin-bottom: 0px; /*reposiciona o título*/
+}
+header#cabecalho h2 { /*formata o 2º nível de título do cabecalho*/
+    font-family: 'Titillium Web', sans-serif;    font-size: 15pt;
+    color: #888888;
+    padding: 0px;
+    margin-top: 0px; /*reposiciona o sub-título para aproximar do título*/
+}
+header#cabecalho img#icone { /*configura a imagem (óculos) que está dentro do cabecalho*/
+    position: absolute; /*é necessário que a posição da imagem seja configurada para absoluta para poder alterar o left e top*/
+    left: 950px;
+    top: 70px;
+}
+
+/* Formatação de Imagens com legendas*/
+figure.foto-legenda {
+    border: 8px solid white;
+    box-shadow: 1px 1px 4px black;
+    position: relative; /*posiciona a imagem (mulher e menino usando óculos) no lugar relativo ao código HTML (para tornar possível a mudança de posição da legenda dessa imagem)*/
+}
+figure.foto-legenda img { /*ajusta a IMG pois não permite que o tamanho da foto ultrapasse a borda*/
+    width: 100%;
+    height: 100%;
+}
+figure.foto-legenda figcaption { /*muda a posição da legenda*/
+    position: absolute;
+    top: 0px;
+    background-color: rgba(0, 0, 0, .4);
+    color: white; /*muda a cor da letra*/
+    width: 100%; /*ajusta a legenda para ocupar toda a imagem*/
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box; /*cria uma box dentro da borda (para corrigir o padding que estava extravasando o espaço)*/
+    opacity: 0; /*esconde a legenda que estava sobre a imagem*/
+    transition: opacity 1s; /*ELEGANTE! aqui controla o tempo para o surgimento da legenda*/
+}
+figure.foto-legenda:hover figcaption { /*o HOVER é um evento que vai disparar uma classe (contendo uma formatação específica) para quando passar o mouse por cima*/
+    opacity: 1; /*opacidade 100%*/
+}
+
+/*Formatação do Menu*/
+nav#menu {
+    display: block; /*um bloco pode flutuar pela tela e, assim, possibilitar a mudança da posição do menu*/
+}
+nav#menu ul {/*sempre que for ID use HASH, sempre que for CLASSE use PONTO*/
+    list-style: none; /*retira os marcadores da unordered list*/
+    text-transform: uppercase; /*todas as letras ficam maiúsculas*/
+    position: absolute; /*ao alterar para posição absoluta, a lista pode flutuar pela tela do site (e não ficar presa dentro do seu contêiner). Conclusão:
+    -posição relativa: fica presa dentro do seu contêiner;
+    -posição absoluta: fica livre por todo o site*/
+    top: -20px;
+    left: 485px;
+}
+nav#menu li { /*cada li é um list item que se apresentará como um botão*/
+    display: inline-block; /*faz com que um bloco seja exibido na mesma linha, ou seja, mostra o menu na horizontal*/
+    background-color: #dddddd;
+    padding: 10px; /*aumenta o espaço preenchido DENTRO do objeto, para se parecer mais com um botão*/
+    margin: 2px; /*aumenta o espaço FORA do objeto, ou seja, o espaço entre os botões*/
+}
+nav#menu li:hover { /*HOVER é o efeito que será aplicado no list-item-botão quando passar o mouse por cima*/
+    background-color: #606060;
+    transition: background-color 1s;
+}
+nav#menu h1 {
+    display: none; /*esconde o menu principal, porém ele continua visível para os mecanismos de busca, dentro do código HTML*/
+}
+nav#menu a { 
+    text-decoration: none;
+    color: black;/*muda a cor do link do menu*/
+}
+nav#menu a:hover {
+    text-decoration: underline;
+    color: white;/*muda a cor do link quando o mouse passar em cima*/
+}
+
+section#corpo {
+    display: block;/*um bloco pode flutuar pela tela, tornando possível sua mudança de posição*/
+    width: 490px; /*se aumentar o padding do aside#lateral, será preciso diminuir essa largura*/
+    float: left; /*flutuar para esquerda*/
+    border-right: 1px solid #606060; /*cria uma fina borda do lado direito*/
+    padding-right: 20px ; /*para descolar a borda do conteúdo, centralizando-a*/
+}
+
+aside#lateral {
+    display: block;
+    width: 360px;
+    float: right; /*para flutuar é preciso que o objeto esteja configurado para ser mostrado em bloco*/
+    background-color: #dddddd;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+aside#lateral h1 {
+    font-family: 'FonteLogo', sans-serif;
+    font-size: 20pt;
+    color: #606060;
+    margin-top: 0px;
+}
+aside#lateral h2 {
+    color: white;
+    background-color: #606060;
+    font-size: 13pt;
+    padding: 5px;
+}
+
+footer#rodape {
+    clear: both; /*limpa a configuração dos dois lados (left-right da section-aside), assim o conteúdo do footer será mostrado fora dessa divisão*/
+    border-top: 1px solid #606060;
+}
+footer#rodape p {
+    text-align: center; /*centraliza o conteúdo do rodapé*/
+}
+footer#rodape a {
+    color: black;
+}
+footer#rodape a:hover {
+    color: blue;
+}
+
+/*Formatando a Tabela*/
+table#tabelaspec {
+    border: 1px solid #606060; /*borda externa*/
+    border-spacing: 0px; /*elimina o espaço entre as bordas das células*/
+    margin-left: auto; /*centraliza a tabela*/
+    margin-right: auto;
+}
+table#tabelaspec td {
+    border: 1px solid #606060; /*borda nas células*/
+    padding: 10px;/*aumenta o espaço dentro de cada célula (padding é o espaço interno de cada objeto)*/
+    text-align: center;
+    vertical-align: middle;
+}
+table#tabelaspec td.coluna-esquerda {
+    color: #ffffff;
+    background-color: #606060;
+    vertical-align: middle;
+    font-weight: bold;
+}
+table#tabelaspec td.coluna-direita {
+    background-color: #cecece;
+}
+table#tabelaspec caption {
+    color: #888888;
+    font-size: 15pt;
+    font-weight:bolder;
+}
+table#tabelaspec caption span {
+    display: block;
+    float: right;
+    color: black;
+    font-size: 8pt;
+    margin-top: 10px; /*rebaixa, descentralizando a data*/
+}
+
+/*Formatando tag semântica Artigo*/
+article#noticia-principal h2 { /*formatando os sub-títulos*/
+    font-size: 13pt;
+    color: #606060;
+    background-color: #dddddd;
+    padding: 5px 0pc 0px 10px;
+    margin: 10px 0px 10px 0px;
+}
+header#cabecalho-artigo h1 {
+    font-family: 'FonteLogo', sans-serif;
+    font-size: 20pt;
+    color: #606060;
+    margin: 0px;
+}
+header#cabecalho-artigo h2 {
+    font-size: 13pt;
+    color: #cecece;
+    background-color: #ffffff;
+    margin: 0px;
+}
+header#cabecalho-artigo h3 {
+    font-size: 12pt;
+    color: #606060;
+}
+.direita { /*tudo o que tiver a class="direita"*/
+    text-align: right;
+}
