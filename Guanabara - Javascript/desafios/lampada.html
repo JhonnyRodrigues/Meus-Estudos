@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interação com imagens usando Javascript</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <h1>Acenda a lâmpada.</h1>
+    <script>
+        /************ nesse algoritmo a lâmpada acende mesmo após ser quebrada******************/
+        /*function acendeLampada() {
+            document.getElementById("lampada").src = "lampada-acesa.jpg";
+        }
+        function apagaLampada() {
+            document.getElementById("lampada").src = "lampada-apagada.jpg";
+        }
+        function quebraLampada() {
+            document.getElementById("lampada").src = "lampada-quebrada.jpg";
+        }*/
+
+        /**********nesse algoritmo a lâmpada permanece apagada após ser quebrada*****************/
+        var quebrada = false; //essa variável funciona como uma máquina de estados
+        function mudaLampada(nome) { //recebe como parâmetro o nome do arquivo de imagem
+            if (!quebrada) {
+                document.getElementById("lampada").src = "" + nome + ".jpg"; /*concatenando aspas e a extensão do arquivo ao parâmetro*/
+                if (nome == 'lampada-quebrada') {
+                    quebrada = true;
+                    alert("A lâmpada quebrou!")
+                }
+            }
+        }
+    </script>
+
+    <img src="lampada-apagada.jpg" id="lampada" alt="Lampada apagada" onmousemove="mudaLampada('lampada-acesa')"
+        onmouseout="mudaLampada('lampada-apagada')" onclick="mudaLampada('lampada-quebrada')" />
+</body>
+
+</html>
