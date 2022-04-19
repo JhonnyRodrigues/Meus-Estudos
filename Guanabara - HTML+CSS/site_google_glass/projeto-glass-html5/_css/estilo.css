@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap');
 @font-face { /*importando novas fontes de caracteres*/
     font-family: 'FonteLogo'; /*um nome qualquer*/
-    src: url(../_fonts/bubblegum-sans-regular.otf); /*o próprio navegador vai buscar esse arquivono diretório, instalá-lo e apresentar na página*/
+    src: url(../_fonts/bubblegum-sans-regular.otf); /*o próprio navegador vai buscar esse arquivo no diretório, instalá-lo e apresentar na página*/
 }
 
 body {
@@ -34,6 +34,9 @@ a:hover {
     text-decoration: underline;
 }
 
+
+
+
 /*Formatando Cabeçalho*/
 header#cabecalho {
     border-bottom: 1px #606060 solid; /*coloca uma borda fina abaixo do cabeçalho para separará-lo do conteúdo*/
@@ -59,6 +62,9 @@ header#cabecalho img#icone { /*configura a imagem (óculos) que está dentro do 
     left: 950px;
     top: 70px;
 }
+
+
+
 
 /* Formatação de Imagens com legendas*/
 figure.foto-legenda {
@@ -86,6 +92,9 @@ figure.foto-legenda:hover figcaption { /*o HOVER é um evento que vai disparar u
     opacity: 1; /*opacidade 100%*/
 }
 
+
+
+
 /*Formatação do Menu*/
 nav#menu {
     display: block; /*um bloco pode flutuar pela tela e, assim, possibilitar a mudança da posição do menu*/
@@ -95,7 +104,7 @@ nav#menu ul {/*sempre que for ID use HASH, sempre que for CLASSE use PONTO*/
     text-transform: uppercase; /*todas as letras ficam maiúsculas*/
     position: absolute; /*ao alterar para posição absoluta, a lista pode flutuar pela tela do site (e não ficar presa dentro do seu contêiner). Conclusão:
     -posição relativa: fica presa dentro do seu contêiner;
-    -posição absoluta: fica livre por todo o site*/
+    -posição absoluta: fica livre por toda a página*/
     top: -20px;
     left: 485px;
 }
@@ -121,13 +130,19 @@ nav#menu a:hover {
     color: white;/*muda a cor do link quando o mouse passar em cima*/
 }
 
+
+
+
 section#corpo {
     display: block;/*um bloco pode flutuar pela tela, tornando possível sua mudança de posição*/
-    width: 490px; /*se aumentar o padding do aside#lateral, será preciso diminuir essa largura*/
+    width: 490px; /*se aumentar o width ou padding do aside#lateral, será preciso diminuir essa largura*/
     float: left; /*flutuar para esquerda*/
     border-right: 1px solid #606060; /*cria uma fina borda do lado direito*/
     padding-right: 20px ; /*para descolar a borda do conteúdo, centralizando-a*/
 }
+
+
+
 
 aside#lateral {
     display: block;
@@ -151,6 +166,9 @@ aside#lateral h2 {
     padding: 5px;
 }
 
+
+
+
 footer#rodape {
     clear: both; /*limpa a configuração dos dois lados (left-right da section-aside), assim o conteúdo do footer será mostrado fora dessa divisão*/
     border-top: 1px solid #606060;
@@ -164,6 +182,8 @@ footer#rodape a {
 footer#rodape a:hover {
     color: blue;
 }
+
+
 
 /*Formatando a Tabela*/
 table#tabelaspec {
@@ -200,6 +220,8 @@ table#tabelaspec caption span {
     margin-top: 10px; /*rebaixa, descentralizando a data*/
 }
 
+
+
 /*Formatando tag semântica Artigo*/
 article#noticia-principal h2 { /*formatando os sub-títulos*/
     font-size: 13pt;
@@ -226,4 +248,14 @@ header#cabecalho-artigo h3 {
 }
 .direita { /*tudo o que tiver a class="direita"*/
     text-align: right;
+}
+
+
+
+
+video#demo {
+    width: 490px; /*mesmo comprimento da section#corpo (linha 124)*/
+}
+video#mais-recente {
+    width: 360px; /*configurado para ter o mesmo comprimento do aside#lateral (linha 134)*/
 }

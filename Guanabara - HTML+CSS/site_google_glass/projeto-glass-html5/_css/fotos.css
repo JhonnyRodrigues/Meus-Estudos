@@ -2,44 +2,119 @@
 
 ul#album-fotos {
     width: 700px;
-    margin: 0 auto;
-    /*0 na esquerda e automática para todas as outras margens*/
+    margin: 0 auto;/*0 na esquerda e automática para todas as outras margens*/
     padding: 50px;
     overflow: hidden;
-    list-style: none;
-    /*esconde os marcadores*/
+    list-style: none;/*esconde os marcadores*/
 }
 
 ul#album-fotos li {
-    float: left;
-    /*os list itens agora ficam um ao lado do outro (e não mais em cima)*/
+    float: left;/*os list itens agora ficam um do lado do outro (e não mais um em cima do outro)*/
     width: 200px;
-    height: 200px;
+    height: 200px;/*cria uma caixa quadrada com a metade do tamanho das fotos originais*/
     margin: 10px;
     border: 5px solid white;
     background-color: #ffffff;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    /*-webkit-transition:
+    all   /*monitora todos os efeitos 
+    .5s   /*meio segundo
+    ease-out    /*é a maneira do efeito, que amplia de jeito suave*/
+    transition: all 0.35s ease-out;
 }
+ul#album-fotos li:hover {/*HOVER*/
+    /*-webkit-transform: scale(1.5);*/
+    transform: scale(1.5);/*Zoom que aumenta a escala foto*/
+}
+
+
+
+/*formatando as legendas*/
+ul#album-fotos li span {
+    opacity: 0;/*esconde as legendas das fotos*/
+    color: #ffffff;
+    text-shadow: 1px 1px 1px black;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 9pt;
+    line-height: 370px;
+    padding: 5px;
+}
+ul#album-fotos li:hover span {
+    /*o HOVER dispara um evento que revela as legendas (span) ao passar o mouse sobre as fotos*/
+    opacity: 1;
+}
+
+
+
 
 ul#album-fotos li#foto01 {
     background: url('../_imagens/galeria-01.jpg') no-repeat;
-}
-ul#album-fotos li#foto02 {
-    background: url('../_imagens/galeria-02.jpg') no-repeat;
-}
-ul#album-fotos li#foto03 {
-    background: url('../_imagens/galeria-03.jpg') no-repeat;
-}
-ul#album-fotos li#foto04 {
-    background: url('../_imagens/galeria-04.jpg') no-repeat;
-}
-ul#album-fotos li#foto05 {
-    background: url('../_imagens/galeria-05.jpg') no-repeat;
-}
-ul#album-fotos li#foto06 {
-    background: url('../_imagens/galeria-06.jpg') no-repeat;
+    background-position: 50% 50%;/*configura o posicionamento da imagem, começando agora a partir do centro (e não mais pelo canto superior esquerdo). Assim, o zoom-out da imagem começará pelo meio dela*/
+    background-size: 400px 400px;/*a caixa list-item mede 200px mas o tamanho original das imagens são 400px (então só mostrará a região central das imagens)*/
+    background-color: white;
 }
 
-ul#album-fotos li span {
-    opacity: 0; /*esconde as legendas das fotos*/
+ul#album-fotos li#foto01:hover {/*evento HOVER*/
+    background-position: 0px 0px;/*volta a posicionar a imagem a partir do canto superior esquerdo*/
+    background-size: 200px 200px;/*vai revelar a imagem inteira pois agora ela cabe dentro da "box de list-item"*/
+}
+
+ul#album-fotos li#foto02 {
+    background: url('../_imagens/galeria-02.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+}
+
+ul#album-fotos li#foto02:hover {/*evento HOVER*/
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto03 {
+    background: url('../_imagens/galeria-03.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+}
+
+ul#album-fotos li#foto03:hover {/*evento HOVER*/
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto04 {
+    background: url('../_imagens/galeria-04.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+}
+
+ul#album-fotos li#foto04:hover {/*evento HOVER*/
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto05 {
+    background: url('../_imagens/galeria-05.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+}
+
+ul#album-fotos li#foto05:hover {/*evento HOVER*/
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto06 {
+    background: url('../_imagens/galeria-06.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+}
+
+ul#album-fotos li#foto06:hover {/*evento HOVER*/
+    background-position: 0px 0px;
+    background-size: 200px 200px;
 }

@@ -45,11 +45,21 @@
             </hgroup>
         </header>
         
-        
-        Áudio e Vídeo
-        
-        [AQUI ENTRA UM VÍDEO]
-        [AQUI ENTRA UM ÁUDIO]
+        <div id="tv-radio">
+            <audio id="musica" controls="controls">
+                <source src="_media/2009-lovers-carvings-bibio.mp3" type="audio/mpeg"/>
+                <source src="_media/2009-lovers-carvings-bibio.m4a" type="audio/x-aac"/>
+                <source src="_media/2009-lovers-carvings-bibio.ogg" type="audio/ogg"/>
+                Desculpe, mas não foi possível carregar o áudio.<!--essa mensagem só aparece caso nenhum dos <source> seja compatíveis com o navegador-->
+            </audio>
+            <video id="filme" controls="controls" poster="_imagens/video-mini03.jpg"><!--o parâmetro 'poster' carrega uma thumbnail para o video-->
+                <source src="_media/getting-started.mp4" type="video/mp4"/>
+                <source src="_media/getting-started.webm" type="video/webm"/>
+                <source src="_media/getting-started.ogv" type="video/ogg"/>
+                Desculpe, mas não foi possível carregar o vídeo.
+            </video>
+        <iframe id="filme" width="560" height="315" src="https://www.youtube.com/embed/4EvNxWhskf8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><!--incorporando video para não gastar tráfego-->
+        </div>
     </article>
 </section>
 
