@@ -51,7 +51,7 @@
                     </hgroup>
                 </header>
 
-                <form>
+                <form method="post" id="fContato" action="mailto:contato@provedor.com">
                     <!--início do formulário-->
                     <fieldset id="usuario">
                         <!--indica um conjunto de campos (cria uma borda)-->
@@ -76,24 +76,43 @@
 
                     <fieldset id="endereco">
                         <legend>Endereço do Usuário</legend>
-                        <p><label for="">Logradouro:</label><input type="text" name="tRua" id="cRua" size="19" maxlength="40" placeholder="Rua, Travessa, Avenida..."></p>
-                        <p><label for="">Número:</label><input type="number" name="tNum" id="cNum" min="0" max="99999"></p>
-                        <p><label for="">Estado:</label></p>
-                        <p><label for="">Cidade:</label></p>
+                        <p><label for="cRua">Logradouro:</label><input type="text" name="tRua" id="cRua" size="19" maxlength="40" placeholder="Rua, Travessa, Avenida..."></p>
+                        <p><label for="cNum">Número:</label><input type="number" name="tNum" id="cNum" min="0" max="99999"></p>
+                        <p><label for="cEst">Estado:</label><select name="tEst" id="cEst">
+                            <optgroup label="Região Sudeste">
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="SP" selected>São Paulo</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="ES">Espírito Santo</option>
+                            </optgroup>
+                            <optgroup label="Região Sul">
+                                <option value="PR">Paraná</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                            </optgroup>
+                        </select></p>
+                        <p><label for="cCid">Cidade:</label><input type="text" list="cidades" name="tCid" id="cCid" size="20" maxlength="40" placeholder="Sua Cidade"></p>
+                        <!--o parâmetro 'list' se liga à tag <datalist> (pois ambos tem o mesmo id) e oferece opções de AUTOFILL ao usuário enquanto ele digita a cidade-->
+                        <datalist id="cidades">
+                            <option value="Campinas"></option>
+                            <option value="Piracicaba"></option>
+                            <option value="Sorocaba"></option>
+                            <option value="Indaiatuba"></option>
+                        </datalist>
                     </fieldset>
 
                     <fieldset id="mensagem">
                         <legend>Mensagem do Usuário</legend>
-                        Grau de Urgência:
-                        Mensagem:
+                        <p><label for="cUrg">Grau de Urgência:  Min</label><input type="range" name="tUrg" id="cUrg" min="0" max="10" step="2">Máx</p>
+                        <p><label for="cMsg">Mensagem:</label><textarea name="tMsg" id="cMsg" cols="45" rows="5" placeholder="Deixe aqui sua mensagem" ></textarea></p>
                     </fieldset>
 
                     <fieldset>
                         <legend id="pedido">Quero um Google Glass</legend>
-                        Gostaria de adquirir um Google Glass quando disponível
-                        Cor:
-                        Quantidade:
-                        Preço Total: R$
+                        <label for="cPed">Gostaria de adquirir um Google Glass quando disponível</label>
+                        <label for="cCor">Cor:</label>
+                        <label for="cQtd">Quantidade:</label>
+                        <label for="cTot">Preço Total: R$</label>
                     </fieldset>
 
 
