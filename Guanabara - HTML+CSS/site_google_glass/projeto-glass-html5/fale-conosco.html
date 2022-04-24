@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="_css/estilo.css">
     <!--importa o arquivo CSS-->
     <link rel="stylesheet" href="_css/form.css">
+    <script src="_javascript/funcoes.js"></script>
+<!--importa o arquivo de scripts-->
+    <script>
+        function calc_total() {
+            var qtd = parseInt(document.getElementById('cQtd').value)
+            tot = qtd * 1500
+            document.getElementById('cTot').value = tot
+        }
+    </script><!--script local para calcular o preço do óculos em relação à quantidade-->
 </head>
 
 <body>
@@ -51,8 +60,10 @@
                     </hgroup>
                 </header>
 
-                <form method="post" id="fContato" action="mailto:contato@provedor.com">
-                    <!--início do formulário-->
+
+
+                <!--início do formulário-->
+                <form method="post" id="fContato" action="mailto:contato@provedor.com" oninput="calc_total()"><!--quando clicar na imagem-botão 'tEnviar',enviará todos os dados para o email. E também quando o usuário digitar qualquer coisa no formulário, disparará um evento com a função 'calc_total()', alterando no mesmo instante o preço total dos óculos quando o usuário escolher a quantidade-->                    
                     <fieldset id="usuario">
                         <!--indica um conjunto de campos (cria uma borda)-->
                         <legend>Identificação do Usuário</legend>
@@ -104,19 +115,21 @@
                     <fieldset id="mensagem">
                         <legend>Mensagem do Usuário</legend>
                         <p><label for="cUrg">Grau de Urgência:  Min</label><input type="range" name="tUrg" id="cUrg" min="0" max="10" step="2">Máx</p>
-                        <p><label for="cMsg">Mensagem:</label><textarea name="tMsg" id="cMsg" cols="45" rows="5" placeholder="Deixe aqui sua mensagem" ></textarea></p>
+                        <p><label for="cMsg">Mensagem:</label><textarea name="tMsg" id="cMsg" cols="24" rows="3" placeholder="Deixe aqui sua mensagem" ></textarea></p>
                     </fieldset>
 
                     <fieldset>
                         <legend id="pedido">Quero um Google Glass</legend>
-                        <label for="cPed">Gostaria de adquirir um Google Glass quando disponível</label>
-                        <label for="cCor">Cor:</label>
-                        <label for="cQtd">Quantidade:</label>
-                        <label for="cTot">Preço Total: R$</label>
+                        <p><input type="checkbox" name="tPed" id="cPed" checked><label for="cPed">Gostaria de adquirir um Google Glass quando disponível</label></p>
+                        <p><label for="cCor">Cor:</label><input type="color" name="tCor" id="cCor" value="#0000FF"></p><!--o parâmetro 'value' define a cor azul como padrão-->
+                        <p><label for="cQtd">Quantidade:</label><input type="number" name="tQtd" id="cQtd" min="0" max="5" value="0"></p>
+                        <p><label for="cTot">Preço Total: R$</label><input type="text" name="tTot" id="cTot" placeholder="Total a pagar" readonly></p><!--o parâmetro 'readonly' impede de digitar valor na caixa de texto-->
                     </fieldset>
-
-
-                    [BOTÃO ENVIAR]
+                    <!-- Existem 2 maneiras de fazer o botão ENVIAR:
+                    - A mais simples é criando um BOTÃO SUNMIT, exemplo:
+                    <input type="submit" name="" id="" value="Enviar">
+                    - A outra forma é através de uma IMAGEM:-->
+                    <input type="image" name="tEnviar" id="" src="_imagens/botao-enviar.png">
                 </form>
             </article>
         </section>
@@ -131,8 +144,5 @@
         </footer>
     </div>
 </body>
-
-<script src="_javascript/funcoes.js"></script>
-<!--importa o arquivo de scripts-->
 
 </html>
