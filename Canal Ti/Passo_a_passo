@@ -1,0 +1,15 @@
+1- criar arquivo `conexão.php`, declarar 4 variáveis (HOST, USUARIO, SENHA, NOME_BASE_DADOS)
+
+2- criar variável `$conexao` para receber as constantes
+
+3-Criar banco+tabelas+colunas para cadastrar usuários. Código:
+CREATE TABLE `meubanco`.`usuario` (
+  `ID_USUARIO` INT NOT NULL AUTO_INCREMENT,
+  `USUARIO` VARCHAR(200) NOT NULL,
+  `SENHA` VARCHAR(32) NOT NULL,
+  PRIMARY KEY (`ID_USUARIO`));
+
+4-Criar um novo usuário. Codigo:
+insert into usuario (USUARIO,SENHA) values ('Jhonny', md5('hakunamatata'))
+
+5- Para realizar as validações, criar arquivo `login.php`, fazer include do arquivo `conexao.php`, criar formulário `index.php` e apontar (com o parâmetro `action`) para o arquivo `login.php`
