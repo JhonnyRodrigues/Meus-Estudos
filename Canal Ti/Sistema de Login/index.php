@@ -1,3 +1,6 @@
+<?php
+    session_start(); //toda a vez que trabalhar com sessões, lembre-se de usar essa função
+?>
 <!DOCTYPE html>
 <html>
     
@@ -5,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Login - PHP + MySQL - Canal TI</title>
+    <title>Sistema de Login - PHP + MySQL</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="css/login.css">
@@ -16,11 +19,15 @@
         <div class="hero-body">
             <div class="container has-text-centered">       <!--DIV pro corpo-->
                 <div class="column is-4 is-offset-4">       <!--DIV pros títulos-->
-                    <h3 class="title has-text-grey">Sistema de Login</h3>
-                    <h3 class="title has-text-grey"><a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a></h3>
-                    <div class="notification is-danger">    <!--DIV pro warning-->
+                    <h1 class="title has-text-grey">Sistema de Login JONATAS®</h1>
+                    <h2 class="title has-text-grey"><a href="https://youtube.com/canaltioficial" target="_blank">by Canal TI</a></h2>
+                    <?php if (isset($_SESSION['nao_autenticado'])) { ?> <!--se a variável de sessão `nao_autenticado` existir, então mostra a DIV de ERRO-->
+                    <div class="notification is-danger">
                       <p>ERRO: Usuário ou senha inválidos.</p>
                     </div>
+                    <?php } // perceba que aqui é FECHADA a condicional aberta pra função isset()
+                        unset($_SESSION['nao_autenticado']); //destrói essa sessão caso o usuário acesse a aplicação pela 1ª vez.
+                    ?>  
                     <div class="box">                       <!--DIV pro formulário-->
                         <form action="login.php" method="POST">
                             <div class="field">             <!--DIV pro campo usuário-->
