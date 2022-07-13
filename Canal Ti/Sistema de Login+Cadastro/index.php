@@ -27,7 +27,7 @@
                     </div>
                     <?php } // perceba que aqui é FECHADA a condicional aberta pra função isset()
                         unset($_SESSION['nao_autenticado']); //destrói essa sessão caso o usuário acesse a aplicação pela 1ª vez.
-                    ?>  
+                    ?>
                     <div class="box">                       <!--DIV pro formulário-->
                         <form action="login.php" method="POST">
                             <div class="field">             <!--DIV pro campo usuário-->
@@ -40,13 +40,11 @@
                                 <div class="control">
                                     <input name="senha" class="input is-large" type="password" placeholder="Sua senha">
                                 </div>
-                            </div>
-
-                            <div class="field">
-                                <a href="cadastro.php">Cadastrar</a>
-                            </div>
-                            <button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
+                            </div><button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
                         </form>
+                    </div>
+                    <div>
+                        <a class="button is-block is-link is-large is-fullwidth" href="cadastro.php">Cadastrar</a>
                     </div>
                 </div>
             </div>
