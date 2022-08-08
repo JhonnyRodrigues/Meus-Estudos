@@ -23,7 +23,7 @@
     <h1>Interagindo com um botão</h1>
     <button onclick="clicou()">clica em mim!</button>
     <script>
-        var nome = window.prompt('Qual é o seu nome?')  //a variável de escopo global recebe a chamada do método .prompt()
+        var nome = window.prompt('Qual é o seu nome?')  //a variável de escopo global recebe o retorno do método .prompt()
         window.alert('É um prazer te conhecer, ' + nome + '!')    //chama o método .alert().    Note a concatenação
         function clicou() { //implementando o método
             window.alert('Você clicou no botão!')

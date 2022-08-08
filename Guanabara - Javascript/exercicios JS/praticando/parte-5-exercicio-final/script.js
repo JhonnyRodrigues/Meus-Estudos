@@ -1,6 +1,6 @@
 //declarando as variáveis fora de bloco de funções
-var num = document.querySelector('input#num')
-var select = window.document.getElementById('selnum')
+var num = document.querySelector('input#num');
+var select = window.document.getElementById('selnum');
 var resultado = document.querySelector('div#resultado')
 var vetor = []
 var maior = maiorValor(maior)
