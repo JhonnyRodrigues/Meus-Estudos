@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+section#conteudo {
+    width: 1000px;
+    margin: auto; /*centraliza o conteúdo*/
+}
+
+iframe#frame-spec {
+    width: 400px; /*coloque uma largura igual ou maior a imagem (que tem largura de 400px)*/
+    height: 280px;
+    border: none;
+}
+iframe#frame-spec::-webkit-scrollbar {
+    display: none; /*esconde as barras de rolagem (não funciona em todos navegadores)*/
+    scrollbar-width: none;
+}

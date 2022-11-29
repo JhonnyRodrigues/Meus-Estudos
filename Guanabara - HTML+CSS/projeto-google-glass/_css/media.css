@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+div#tv-radio {
+    width: 900px; /*são as dimensões da imagem de fundo*/
+    height: 580px;
+    margin: auto; /*para ficar centralizado dentro da div*/
+    background: url(../_imagens/radio-tv.png) no-repeat; /*importa a imagem*/
+}
+
+audio#musica {
+    display: block;
+    position: relative;
+    left: 568px; /*valores AJUSTADOS por tentativa_e_erro*/
+    top: 490px;
+    width: 312px; /*comprimento da janela do player*/
+}
+
+video#filme {
+    display: block;
+    position: relative;
+    left: 78px;
+    top: 65px; /*valores ajustados por tentativa_e_erro*/
+    width: 456px;
+}
+
+iframe#filme {
+    display: block;
+    position: relative;
+    left: 78px;
+    top: -230px; /*aqui o video incorporado do youtube está sobrepondo o video carregado da url interna*/
+    width: 456px;
+}
