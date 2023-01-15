@@ -1,0 +1,34 @@
+@charset "UTF-8";
+
+* {
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-image: linear-gradient(to right, gold, goldenrod);
+    color: black;
+}
+
+main {
+    background-color: white;
+    width: 500px;
+    padding: 2em;
+    margin: auto; /*ajusta automaticamente*/
+    border-radius: 15px;
+    box-shadow: 5px 5px 15px rgb(148, 112, 21);
+
+}
+
+p {
+    text-align: justify;
+}
+
+h1 {
+    color: goldenrod;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgb(131, 99, 18);
+}
+
+h2 {
+    color: gold;
+}
