@@ -7,6 +7,7 @@
 body {
     background-image: linear-gradient(to right, gold, goldenrod);
     color: black;
+    font: italic bold 1em georgia, helvetica, sans-serif;
 }
 
 main {
