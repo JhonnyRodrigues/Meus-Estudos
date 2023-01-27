@@ -33,3 +33,20 @@ h1 {
 h2 {
     color: gold;
 }
+
+div > p {
+    display: none;
+}
+div:hover > p {
+    display: block;
+    background-color: aqua;
+}
+
+.exemplo::before {
+    content: '>>';
+    font-weight: lighter;
+}
+.exemplo::after {
+    content: '<<';
+    font-weight: lighter;
+}
