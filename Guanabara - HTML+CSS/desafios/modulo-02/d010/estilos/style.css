@@ -50,6 +50,14 @@ nav {
 
 main {
     background-color: white;
+    padding: 20px;
+    min-width: 280px; /*considera a menor largura de tela de celular*/
+    max-width: 1000px; /*não permite expandir demais o conteúdo em telas muito grandes*/
+    margin: auto; /*melhora a responsividade, sempre centralizando o conteúdo*/
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    margin-bottom: 30px;
 }
 main h1 {
     color: var(--cor5);
@@ -57,6 +65,14 @@ main h1 {
 }
 main h2 {
     font-family: var(--fonte-android);
+}
+main img {
+    width: 100%; /*melhora a responsividade, eliminando a barra de rolagem lateral, pois a imagem se ajusta de acordo com a largura*/
+}
+main img.pequena {
+    width: 50%; /*não recomendável, pois o melhor seria diminuir o tamanho da imagem, economizando tráfego de dados*/
+    display: block;/*essa propriedade é necessária antes de 'margin:auto' porque uma imagem, por padrão, não é um bloco*/
+    margin: auto;
 }
 
 footer {
