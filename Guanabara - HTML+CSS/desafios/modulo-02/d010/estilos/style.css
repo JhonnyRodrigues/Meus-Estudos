@@ -44,6 +44,7 @@ header > h1 {
     color: white;
     font-family: var(--fonte-destaque);
     font-size: 3em;
+    font-weight: normal;
 }
 header > p {
     color: white;
@@ -86,6 +87,8 @@ main {
 main h1 {
     color: var(--cor5);
     font-family: var(--fonte-android);
+    font-weight: normal;
+    font-size: 1.8em;
 }
 main h2 {
     font-family: var(--fonte-android);
@@ -93,6 +96,7 @@ main h2 {
     font-size: 1.3em;
     background-image: linear-gradient(to right, var(--cor1), transparent);
     text-indent: 2em;
+    font-weight: normal;
 }
 main img {
     width: 100%; /*melhora a responsividade, eliminando a barra de rolagem lateral, pois a imagem se ajusta de acordo com a largura*/
@@ -127,6 +131,22 @@ main a:hover {
     color: var(--cor3);
 }
 
+div.video {
+    position: relative;
+    background-color: var(--cor4);
+    margin: 0px -20px 30px -20px;
+    padding: 20px;
+    padding-bottom: 56.25%; /*para vídeos com formato 16:9, vídeos 4:3 seria 75%, É só dividir a altura pela largura e multiplicar por 100*/
+}
+div.video > iframe {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+}
+
 aside {
     background-color: var(--cor1);
     padding: 10px;
@@ -144,6 +164,9 @@ aside h3 {
     padding: 10px;
     margin: -10px -10px 0px -10px;
     border-radius: 10px 10px 0px 0px;
+    font-family: var(--fonte-especial);
+    font-weight: normal;
+    font-size: 1.5em;
 }
 
 footer {
