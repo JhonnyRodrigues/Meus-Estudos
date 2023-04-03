@@ -25,6 +25,7 @@ header {
     color: white;
     text-align: center;
     font-family: var(--fonte2);
+    font-size: 10vw; /*ajusta de acordo com a largura da tela*/
 }
 header>h1 {
     padding-top: 50px;
@@ -46,7 +47,7 @@ header a:hover, footer a:hover{
 section {
     padding-top: 10vh; /*para atribuir o efeito paralaxe, com tamanho totalmente adaptável à janela*/
     padding-bottom: 10vh;
-    line-height: 2em; /*espaçamento duplo entre linhas*/
+    line-height: 5vw; /*espaçamento duplo entre linhas*/
     padding-left: 30px;
 }
 section.normal {
@@ -58,7 +59,8 @@ section.imagem {
     color: white;
 }
 section.imagem>p {
-    width: 400px;
+    display: inline-block;
+    padding: 10px;
     background-color: rgba(0, 0, 0, 0.133);
 }
 
