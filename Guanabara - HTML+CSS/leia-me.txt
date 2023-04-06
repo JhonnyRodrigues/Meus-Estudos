@@ -1,0 +1,3 @@
+o projeto-cordel é um repositorio, porem como está dentro de outro repositorio(meus-estudos), foi adicionado à ele no gitIgnore
+
+o projeto-google-glass tbm é um repositorio porém não consegui publicá-lo no gitPages, pq?
