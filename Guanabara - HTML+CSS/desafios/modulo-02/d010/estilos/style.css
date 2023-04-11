@@ -53,6 +53,7 @@ header > p {
     max-width: 500px; /*ao configurar a largura, o parágrafo automaticamente vira um bloco*/
     margin: auto;
     padding: 0px 10px;
+    padding-bottom: 50px;
 }
 
 nav {

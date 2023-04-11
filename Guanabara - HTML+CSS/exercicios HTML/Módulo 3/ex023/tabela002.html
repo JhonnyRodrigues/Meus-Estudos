@@ -13,7 +13,7 @@
         table {
             width: 500px;
             border-collapse: collapse;
-            position: relative;
+            position: relative; /*necessário depois para fixar depois o <th>*/
         }
 
         td, th {
@@ -34,9 +34,9 @@
         }
 
         thead > tr > th {
-            position: sticky;
-            top: -1px;
-            background-color: #383838;
+            position: sticky; /*é preciso que a <table> esteja configurada com position: absolute*/
+            top: -1px; /*é preciso referenciar aonde ficará fixada a <th>*/
+            background-color: lightgray; /*é importante colorir a <th>*/
         }
 
         tbody > tr:nth-child(odd) { /* 2n-1 */

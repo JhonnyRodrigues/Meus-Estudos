@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colgroup</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        caption {
+            width: 500px;
+            border-collapse: collapse;
+        }
+
+        table {
+            font-size: 1.3em;
+            font-weight: bold;
+            padding: 8px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+        }
+
+        col.destaque {
+            background-color: chartreuse;
+        }
+        col.c_sexo, col.c_idade, col.c_profissao {
+            background-color: yellow;
+        }
+        col.c_grupo {
+            background-color: lightcoral;
+        }
+
+        div#container {
+            overflow: auto;
+        /*habilita a barra de rolagem horizontal apenas na tabela*/
+        }
+    </style>
+</head>
+<body>
+    <h1>Aprendendo a Utilizar a tag &lt;colgroup&gt;</h1>
+    <div id="containder">
+        <table>
+            <colgroup> <!--aplicar estilo nas colunas da tabela-->
+                <col class="c_nome destaque">
+                <col class="c_sexo c_grupo" span="2"> <!--com o atributo <span>, o estilo é aplicado nas colunas seguintes também-->
+                <col class="c_idade">
+                <col class="c_profissao">
+            </colgroup>
+            <caption><strong>Cadastro</strong></caption>
+            <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Idade</th>
+                <th scope="col">Profissão</th>
+            </tr>
+            <tr>
+                <td>Adamastor</td>
+                <td>M</td>
+                <td>55</td>
+                <td>Coordenador Pedagógico</td>
+            </tr>
+            <tr>
+                <td>Bernardete</td>
+                <td>F</td>
+                <td>47</td>
+                <td>Diretora de Escola</td>
+            </tr>
+            <tr>
+                <td>Claudemir</td>
+                <td>M</td>
+                <td>48</td>
+                <td>Professor</td>
+            </tr>
+            <tr>
+                <td>Diana</td>
+                <td>F</td>
+                <td>30</td>
+                <td>Inspetora de Alunos</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
