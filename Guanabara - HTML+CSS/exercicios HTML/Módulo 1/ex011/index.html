@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,26 +8,34 @@
     <title>Vídeos com HTML5</title>
     <link rel="shortcut icon" href="favicon2.ico" type="image/x-icon">
 </head>
+
 <body>
     <h1>Inserindo vídeos hospedados localmente</h1>
-        <p>Este vídeo está hospedado no meu próprio servidor</p>
-        <h2>
-            <p>Forma simples:</p>
-            <video src="midias/Beach Waves And Sunset.mp4" width="500" controls autoplay loop poster="imagens/tumblr por do sol.jpg"></video>
-        </h2>
-        <h2>
-            <p>Forma com a redundância de várias tags &lt;source&gt;:</p>
-            <video controls width="600">
-                <!--ordene por tamanho do arquivo!-->
-                <source src="midias/Beach Waves And Sunset.mp4" type="video/mp4">
-                <source src="midias/Beach Waves And Sunset.ogv" type="video/ogg"> <!--mediatype OGG!-->
-                <source src="midias/Beach Waves And Sunset.webm" type="video/webm">
-                <p>Seu navegador não tem compatibilidade com reprodução de videos</p>   <!--só aparece esse parágrafo se o navegador não conseguir executar nenhum dos formatos acima-->
-            </video>
-        </h2>
+    <p>Este vídeo está hospedado no meu próprio servidor</p>
+    <h2>
+        <p>Forma simples:</p>
+        <video src="midias/Beach Waves And Sunset.mp4" width="500" controls autoplay loop
+            poster="imagens/tumblr por do sol.jpg"></video>
+    </h2>
+    <h2>
+        <p>Forma com a redundância de várias tags &lt;source&gt;:</p>
+        <video controls width="600">
+            <!--ordene por tamanho do arquivo!-->
+            <source src="midias/Beach Waves And Sunset.mp4" type="video/mp4">
+            <source src="midias/Beach Waves And Sunset.ogv" type="video/ogg"> <!--mediatype OGG!-->
+            <source src="midias/Beach Waves And Sunset.webm" type="video/webm">
+            <p>Seu navegador não tem compatibilidade com reprodução de videos</p>
+            <!--só aparece esse parágrafo se o navegador não conseguir executar nenhum dos formatos acima-->
+        </video>
+    </h2>
+
     <h1>Inserindo(incorporando) vídeos do Youtube</h1>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/aR-KAldshAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aR-KAldshAE" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
     <h1>Inserindo(incorporando) vídeos do Vimeo</h1>
-    <iframe src="https://player.vimeo.com/video/197093965?autoplay=1&loop=1&color=ff0179&portrait=0" width="560" height="315" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/197093965?autoplay=1&loop=1&color=ff0179&portrait=0" width="560"
+        height="315" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
 </body>
+
 </html>
