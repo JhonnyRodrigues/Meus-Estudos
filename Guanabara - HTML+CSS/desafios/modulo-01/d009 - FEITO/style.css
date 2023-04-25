@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html,body {
+    background-color: dimgrey;
+    color: aliceblue;
+    text-align: center; /*essa propriedade muda todas as tags inlines!*/
+    width: 95vw;
+    height: 95vh;
+}
+
+main {
+    /* height: 50vw; */
+    position: relative;
+    /* background-color: rgb(1, 54, 11); */
+}
+
+div#container {
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background-color: blue; */
+}
+
+h1 {
+    margin: 20px 10px;
+    text-align: center;
+}
