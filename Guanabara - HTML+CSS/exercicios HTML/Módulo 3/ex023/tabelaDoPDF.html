@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela do Material PDF</title>
+    <style>
+        div {
+            overflow-x: scroll;
+        }
+        table {
+            border-collapse:separate; /*junta as bordas*/
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            
+        }
+        caption {
+            color: darkgreen;
+            font-weight: bolder;
+            font-size: 1.25em;
+        }
+        th, td {
+            border: 2px solid black;
+        }
+        th {
+            color: darkred;
+        }
+        td {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exercício sugerido pelo material PDF</h1>
+    <div>
+        <table>
+            <caption>
+                Título da tabela
+            </caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th scope="col">coluna 1</th>
+                    <th scope="col">coluna 2</th>
+                    <th scope="col">coluna 3</th>
+                    <th scope="col">coluna 4</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <tr>
+                        <th scope="row">linha 1</th>
+                        <td>1</td>
+                        <td>2</td>
+                        <td rowspan="2">3</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">linha 2</th>
+                        <td>5</td>
+                        <td>6</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">linha 3</th>
+                        <td colspan="3">8</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">linha 4</th>
+                        <td rowspan="2">10</td>
+                        <td colspan="2">11</td>
+                        <td>12</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">linha 5</th>
+                        <td>13</td>
+                        <td>14</td>
+                        <td>15</td>
+                    </tr>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th scope="row">Rodapé</th>
+                    <td colspan="4">valor total</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+</html>
