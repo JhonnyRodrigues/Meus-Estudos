@@ -22,7 +22,7 @@ if ($linha['total'] == 1) {
     $conexao->query($sql) === true; //valida se a query foi executada com sucesso
     $_SESSION['status_cadastro'] = true;
 }
-//*Explicando: Enquanto que, no Java, o padrão para referenciar atributos e métodos é o ponto (this.),	no PHP não é uma flecha -> que referencia os objetos. Exemplo: $p1→pagarMensalidade();    Na condicional acima, o objeto $conexao tem como um de seus métodos a função query() que, por sua vez, tem o papel de executar um query e retornar true o false (0 ou 1)
+//*Explicando: Enquanto que, no Java, o padrão para referenciar atributos e métodos é o ponto (this.),	no PHP é uma flecha -> que referencia os objetos. Exemplo: $p1→pagarMensalidade();    Na condicional acima, o objeto $conexao tem como um de seus métodos a função query() que, por sua vez, tem o papel de executar um query e retornar true o false (0 ou 1)
 
 $conexao->close(); //encerra a conexão
 
