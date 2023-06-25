@@ -4,5 +4,10 @@ define('USUARIO', 'root');  //armazena o usuario do Banco de Dados
 define('SENHA', 'hakunamatata');
 define('DB','MeuBanco'); //essa constante vai armazenar o nome da Base de Dados
 
-$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die ('ERRO: Não foi possível conectar'); //a variável armazena as constantes através da função e, caso haja erro, apresenta uma string de ERRO
+$conexao = mysqli_connect(HOST, USUARIO, SENHA, DB) or die('ERRO: Não foi possível conectar'); //a variável armazena as constantes através da função e, caso haja erro, apresenta uma string de ERRO
+
+// if ($conexao->connect_error) {
+//     /* Use your preferred error logging method here */
+//     error_log('Connection error: ' . $mysqli->connect_error);
+// }
 ?>

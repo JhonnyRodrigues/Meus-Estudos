@@ -29,7 +29,7 @@ session_start(); //indica ao PHP para trabalhar com sessões
                         com a tutoria do <a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a>
                     </h3>
 
-                    <?php if ($_SESSION['status_cadastro']) { ?> <!--note que a condicional fica aberta-->
+                    <?php if (@$_SESSION['status_cadastro']) { ?> <!--note que a condicional fica aberta-->
                         <div class="notification is-success">
                             <p>Cadastro efetuado!</p>
                             <p>Faça login informando o seu usuário e senha <a href="login.php">AQUI</a></p>
@@ -38,7 +38,7 @@ session_start(); //indica ao PHP para trabalhar com sessões
                     unset($_SESSION['status_cadastro']); //agora fecha a condicional e destrói a sessão para não ficar sempre exibindo a mensagem
                     ?>
 
-                    <?php if ($_SESSION['usuario_existe']) {
+                    <?php if (@$_SESSION['usuario_existe']) { //o arroba silencia o erro PHP ("Warning: Undefined array")
                     ?>
                         <div class="notification is-info">
                             <p>O usuário escolhido já existe. Informe outro e tente novamente.</p>
