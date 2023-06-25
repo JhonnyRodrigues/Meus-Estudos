@@ -1,9 +1,9 @@
 <?php
-    session_start(); //toda a vez que trabalhar com sessões, lembre-se de usar essa função
+session_start(); //toda a vez que trabalhar com sessões, lembre-se de usar essa função
 ?>
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,26 +17,33 @@
 <body>
     <section class="hero is-success is-fullheight">
         <div class="hero-body">
-            <div class="container has-text-centered">       <!--DIV pro corpo-->
-                <div class="column is-4 is-offset-4">       <!--DIV pros títulos-->
-                    <h1 class="title has-text-grey">Sistema de Login JONATAS®</h1>
-                    <h2 class="title has-text-grey"><a href="https://youtube.com/canaltioficial" target="_blank">by Canal TI</a></h2>
+            <div class="container has-text-centered"> <!--DIV pro corpo-->
+                <div class="column is-4 is-offset-4"> <!--DIV pros títulos-->
+                    <h1 class="title has-text-grey">
+                        Sistema de Login
+                    </h1>
+                    <h2 class="subtitle has-text-grey">
+                        Construído por <a href="https://github.com/JhonnyRodrigues" target="_blank" class="is-link">Jhonny Rodrigues</a>
+                    </h2>
+                    <h3 class="subtitle has-text-grey">
+                        com a tutoria do <a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a>
+                    </h3>
                     <?php if (isset($_SESSION['nao_autenticado'])) { ?> <!--se a variável de sessão `nao_autenticado` existir, então mostra a DIV de ERRO-->
-                    <div class="notification is-danger">
-                      <p>ERRO: Usuário ou senha inválidos.</p>
-                    </div>
+                        <div class="notification is-danger">
+                            <p>ERRO: Usuário ou senha inválidos.</p>
+                        </div>
                     <?php } // perceba que aqui é FECHADA a condicional aberta pra função isset()
-                        unset($_SESSION['nao_autenticado']); //destrói essa sessão caso o usuário acesse a aplicação pela 1ª vez.
+                    unset($_SESSION['nao_autenticado']); //destrói essa sessão caso o usuário acesse a aplicação pela 1ª vez.
                     ?>
-                    <div class="box">                       <!--DIV pro formulário-->
+                    <div class="box"> <!--DIV pro formulário-->
                         <form action="login.php" method="POST">
-                            <div class="field">             <!--DIV pro campo usuário-->
+                            <div class="field"> <!--DIV pro campo usuário-->
                                 <div class="control">
                                     <input name="usuario" name="text" class="input is-large" placeholder="Seu usuário" autofocus="">
                                 </div>
                             </div>
 
-                            <div class="field">             <!--DIV pro campo senha-->
+                            <div class="field"> <!--DIV pro campo senha-->
                                 <div class="control">
                                     <input name="senha" class="input is-large" type="password" placeholder="Sua senha">
                                 </div>

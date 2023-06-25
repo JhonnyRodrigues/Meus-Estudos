@@ -3,7 +3,7 @@ session_start(); //indica ao PHP para trabalhar com sessões
 ?>
 <!DOCTYPE html>
 <html>
-    
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,32 +13,40 @@ session_start(); //indica ao PHP para trabalhar com sessões
     <link rel="stylesheet" href="css/bulma.min.css" />
     <link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
- 
+
 <body>
     <section class="hero is-success is-fullheight">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-grey">Sistema de Cadastro Jonatas®</h3>
-                    <h3 class="title has-text-grey"><a href="https://youtube.com/canaltioficial" target="_blank"> by Canal TI</a></h3>
+                    <h1 class="title has-text-grey">
+                        Sistema de Cadastro
+                    </h1>
+                    <h2 class="subtitle has-text-grey">
+                        Construído por <a href="https://github.com/JhonnyRodrigues" target="_blank" class="is-link">Jhonny Rodrigues</a>
+                    </h2>
+                    <h3 class="subtitle has-text-grey">
+                        com a tutoria do <a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a>
+                    </h3>
 
-                <?php if ($_SESSION['status_cadastro']) {
-                ?> <!--note que a condicional fica aberta-->
-                    <div class="notification is-success">
-                      <p>Cadastro efetuado!</p>
-                      <p>Faça login informando o seu usuário e senha <a href="login.php">AQUI</a></p>
-                    </div>
-                <?php } unset($_SESSION['status_cadastro']); //agora fecha a condicional e destrói a sessão para não ficar sempre exibindo a mensagem
-                ?>
+                    <?php if ($_SESSION['status_cadastro']) { ?> <!--note que a condicional fica aberta-->
+                        <div class="notification is-success">
+                            <p>Cadastro efetuado!</p>
+                            <p>Faça login informando o seu usuário e senha <a href="login.php">AQUI</a></p>
+                        </div>
+                    <?php }
+                    unset($_SESSION['status_cadastro']); //agora fecha a condicional e destrói a sessão para não ficar sempre exibindo a mensagem
+                    ?>
 
-                <?php if ($_SESSION['usuario_existe']) {
-                ?>
-                    <div class="notification is-info">
-                        <p>O usuário escolhido já existe. Informe outro e tente novamente.</p>
-                    </div>
-                <?php } unset($_SESSION['usuario_existe']);
-                ?>
-                    
+                    <?php if ($_SESSION['usuario_existe']) {
+                    ?>
+                        <div class="notification is-info">
+                            <p>O usuário escolhido já existe. Informe outro e tente novamente.</p>
+                        </div>
+                    <?php }
+                    unset($_SESSION['usuario_existe']);
+                    ?>
+
                     <div class="box">
                         <form action="cadastrar.php" method="POST">
                             <div class="field">
@@ -64,5 +72,5 @@ session_start(); //indica ao PHP para trabalhar com sessões
         </div>
     </section>
 </body>
- 
+
 </html>

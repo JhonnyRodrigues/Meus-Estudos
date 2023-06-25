@@ -16,7 +16,9 @@ input {
 p {
   font-weight: 700;
 }
-h2.title has-text-link-blue {
-  font-size: 8px;
-  color: blue;
+a {
+  font-weight: bold !important;
+}
+a:hover {
+  text-decoration: underline;
 }
