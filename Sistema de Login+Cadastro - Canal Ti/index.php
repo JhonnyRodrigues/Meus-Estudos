@@ -36,16 +36,16 @@ session_start(); //toda a vez que trabalhar com sessões, lembre-se de usar essa
                     unset($_SESSION['nao_autenticado']); //destrói essa sessão caso o usuário acesse a aplicação pela 1ª vez.
                     ?>
                     <div class="box"> <!--DIV pro formulário-->
-                        <form action="login.php" method="POST">
+                        <form id="formLogin" action="login.php" method="POST">
                             <div class="field"> <!--DIV pro campo usuário-->
                                 <div class="control">
-                                    <input name="usuario" name="text" class="input is-large" placeholder="Seu usuário" autofocus="">
+                                    <input name="usuario" name="text" class="input is-large" placeholder="Seu usuário" autofocus="" autocomplete="on">
                                 </div>
                             </div>
 
                             <div class="field"> <!--DIV pro campo senha-->
                                 <div class="control">
-                                    <input name="senha" class="input is-large" type="password" placeholder="Sua senha">
+                                    <input name="senha" class="input is-large" type="password" placeholder="Sua senha" autocomplete="on">
                                 </div>
                             </div><button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
                         </form>

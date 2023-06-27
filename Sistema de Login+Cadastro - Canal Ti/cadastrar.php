@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('conexao.php');
+include_once './conexao.php'; //para usar esse arquivo, alterar conexão para mysqli
 
 //pegar todos os campos do formulário usando a função de segurança contra SQLInjection
 $nome = mysqli_real_escape_string($conexao, trim($_POST['nome']));//lembrar que são passados 2 parâmetros
@@ -28,4 +28,5 @@ $conexao->close(); //encerra a conexão
 
 header('Location: cadastro.php'); //redireciona
 exit;
+
 ?>

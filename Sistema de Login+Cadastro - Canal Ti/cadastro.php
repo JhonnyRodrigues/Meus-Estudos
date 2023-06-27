@@ -48,7 +48,8 @@ session_start(); //indica ao PHP para trabalhar com sessões
                     ?>
 
                     <div class="box">
-                        <form action="cadastrar.php" method="POST">
+                        <!-- <form action="cadastrar.php" method="POST"> -->
+                        <form id="formCad">
                             <div class="field">
                                 <div class="control">
                                     <input name="nome" type="text" class="input is-large" placeholder="Nome" autofocus>
@@ -72,5 +73,8 @@ session_start(); //indica ao PHP para trabalhar com sessões
         </div>
     </section>
 </body>
+
+<script src="js/sweetalert2.js"></script>
+<script src="js/alerta.js"></script> <!-- só funcionou depois que eu coloquei o script abaixo do <body> -->
 
 </html>
