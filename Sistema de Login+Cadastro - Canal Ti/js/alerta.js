@@ -14,7 +14,7 @@ console.log("chamou a função alerta()");
             body: dadosForm
         });
 
-        const resposta = await dadosRequest.json();
+        const resposta = await dadosRequest.json(); //tranforma a string JSON em objeto JSON
 console.log(resposta);
 console.log(resposta['msg']);
 
