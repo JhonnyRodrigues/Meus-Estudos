@@ -8,7 +8,7 @@
     <!--importa o arquivo CSS-->
     <link rel="stylesheet" href="_css/form.css">
     <script src="_javascript/funcoes.js"></script>
-<!--importa o arquivo de scripts-->
+    <!--importa o arquivo de scripts-->
     <script>
         function calc_total() {
             var qtd = parseInt(document.getElementById('cQtd').value)
@@ -34,19 +34,23 @@
                 <ul>
                     <!--se o link é interno, ou seja, leva para dentro do seu próprio site, não use target_blank (para não encher de abas o navegador do usuário)-->
                     <!--implementando eventos que disparam ao mover o mouse sobre o objeto-->
-                    <li onmouseover="mudaFoto('_imagens/home.png')" onmouseout="mudaFoto('_imagens/contato.png')"><a
-                            href="index.html">Home</a></li>
-                    <li onmouseover="mudaFoto('_imagens/especificacoes.png')"
-                        onmouseout="mudaFoto('_imagens/contato.png')"><a href="specs.html">Especificações</a></li>
-                    <li onmouseover="mudaFoto('_imagens/fotos.png')" onmouseout="mudaFoto('_imagens/contato.png')"><a
-                            href="fotos.html">Fotos</a></li>
+                    <li onmouseover="mudaFoto('_imagens/home.png')" onmouseout="mudaFoto('_imagens/contato.png')">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/especificacoes.png')" onmouseout="mudaFoto('_imagens/contato.png')">
+                        <a href="specs.html">Especificações</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/fotos.png')" onmouseout="mudaFoto('_imagens/contato.png')">
+                        <a href="fotos.html">Fotos</a>
+                    </li>
                     <li onmouseover="mudaFoto('_imagens/multimidia.png')" onmouseout="mudaFoto('_imagens/contato.png')">
-                        <a href="multimidia.html">Multimídia</a></li>
-                    <li onmouseover="mudaFoto('_imagens/contato.png')" onmouseout="mudaFoto('_imagens/contato.png')"><a
-                            href="fale-conosco.html">Fale conosco</a></li>
+                        <a href="multimidia.html">Multimídia</a>
+                    </li>
+                    <li onmouseover="mudaFoto('_imagens/contato.png')" onmouseout="mudaFoto('_imagens/contato.png')">
+                        <a href="fale-conosco.html">Fale conosco</a>
+                    </li>
                 </ul>
             </nav>
-
         </header>
 
         <section id="corpo-full">
@@ -60,10 +64,9 @@
                     </hgroup>
                 </header>
 
-
-
                 <!--início do formulário-->
-                <form method="post" id="fContato" action="mailto:contato@provedor.com" oninput="calc_total()"><!--quando clicar na imagem-botão 'tEnviar',enviará todos os dados para o email. E também quando o usuário digitar qualquer coisa no formulário, disparará um evento com a função 'calc_total()', alterando no mesmo instante o preço total dos óculos quando o usuário escolher a quantidade-->                    
+                <form method="post" id="fContato" action="mailto:contato@provedor.com" oninput="calc_total()">
+                    <!--quando clicar na imagem-botão 'tEnviar',enviará todos os dados para o email. E também quando o usuário digitar qualquer coisa no formulário, disparará um evento com a função 'calc_total()', alterando no mesmo instante o preço total dos óculos quando o usuário escolher a quantidade-->
                     <fieldset id="usuario">
                         <!--indica um conjunto de campos (cria uma borda)-->
                         <legend>Identificação do Usuário</legend>
@@ -76,7 +79,8 @@
                                 maxlength="8" placeholder="8 dígitos"></p>
                         <fieldset id="sexo">
                             <legend>Sexo:</legend>
-                            <input type="radio" name="tSexo" id="cMasc" checked> <label for="cMasc">Masculino</label><br>
+                            <input type="radio" name="tSexo" id="cMasc" checked> <label
+                                for="cMasc">Masculino</label><br>
                             <!--dentro de um mesmo grupo de objetos <radio>, os elementos devem ter o mesmo parâmetro 'name'-->
                             <!--o parâmetro 'checked' já deixa selecionado a opção 'Masculino' quando carregar o formulário-->
                             <input type="radio" name="tSexo" id="cFem"> <label for="cFem">Feminino</label>
@@ -87,22 +91,27 @@
 
                     <fieldset id="endereco">
                         <legend>Endereço do Usuário</legend>
-                        <p><label for="cRua">Logradouro:</label><input type="text" name="tRua" id="cRua" size="19" maxlength="40" placeholder="Rua, Travessa, Avenida..."></p>
-                        <p><label for="cNum">Número:</label><input type="number" name="tNum" id="cNum" min="0" max="99999"></p>
-                        <p><label for="cEst">Estado:</label><select name="tEst" id="cEst">
-                            <optgroup label="Região Sudeste">
-                                <option value="RJ">Rio de Janeiro</option>
-                                <option value="SP" selected>São Paulo</option>
-                                <option value="MG">Minas Gerais</option>
-                                <option value="ES">Espírito Santo</option>
-                            </optgroup>
-                            <optgroup label="Região Sul">
-                                <option value="PR">Paraná</option>
-                                <option value="SC">Santa Catarina</option>
-                                <option value="RS">Rio Grande do Sul</option>
-                            </optgroup>
-                        </select></p>
-                        <p><label for="cCid">Cidade:</label><input type="text" list="cidades" name="tCid" id="cCid" size="20" maxlength="40" placeholder="Sua Cidade"></p>
+                        <p><label for="cRua">Logradouro:</label><input type="text" name="tRua" id="cRua" size="19"
+                                maxlength="40" placeholder="Rua, Travessa, Avenida..."></p>
+                        <p><label for="cNum">Número:</label><input type="number" name="tNum" id="cNum" min="0"
+                                max="99999"></p>
+                        <p><label for="cEst">Estado:</label>
+                            <select name="tEst" id="cEst">
+                                <optgroup label="Região Sudeste">
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="SP" selected>São Paulo</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="ES">Espírito Santo</option>
+                                </optgroup>
+                                <optgroup label="Região Sul">
+                                    <option value="PR">Paraná</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                </optgroup>
+                            </select>
+                        </p>
+                        <p><label for="cCid">Cidade:</label><input type="text" list="cidades" name="tCid" id="cCid"
+                                size="20" maxlength="40" placeholder="Sua Cidade"></p>
                         <!--o parâmetro 'list' se liga à tag <datalist> (pois ambos tem o mesmo id) e oferece opções de AUTOFILL ao usuário enquanto ele digita a cidade-->
                         <datalist id="cidades">
                             <option value="Campinas"></option>
@@ -114,19 +123,26 @@
 
                     <fieldset id="mensagem">
                         <legend>Mensagem do Usuário</legend>
-                        <p><label for="cUrg">Grau de Urgência:  Min</label><input type="range" name="tUrg" id="cUrg" min="0" max="10" step="2">Máx</p>
-                        <p><label for="cMsg">Mensagem:</label><textarea name="tMsg" id="cMsg" cols="24" rows="3" placeholder="Deixe aqui sua mensagem" ></textarea></p>
+                        <p><label for="cUrg">Grau de Urgência: Min</label><input type="range" name="tUrg" id="cUrg"
+                                min="0" max="10" step="2">Máx</p>
+                        <p><label for="cMsg">Mensagem:</label><textarea name="tMsg" id="cMsg" cols="24" rows="3"
+                                placeholder="Deixe aqui sua mensagem"></textarea></p>
                     </fieldset>
 
                     <fieldset>
                         <legend id="pedido">Quero um Google Glass</legend>
-                        <p><input type="checkbox" name="tPed" id="cPed" checked><label for="cPed">Gostaria de adquirir um Google Glass quando disponível</label></p>
-                        <p><label for="cCor">Cor:</label><input type="color" name="tCor" id="cCor" value="#0000FF"></p><!--o parâmetro 'value' define a cor azul como padrão-->
-                        <p><label for="cQtd">Quantidade:</label><input type="number" name="tQtd" id="cQtd" min="0" max="5" value="0"></p>
-                        <p><label for="cTot">Preço Total: R$</label><input type="text" name="tTot" id="cTot" placeholder="Total a pagar" readonly></p><!--o parâmetro 'readonly' impede de digitar valor na caixa de texto-->
+                        <p><input type="checkbox" name="tPed" id="cPed" checked><label for="cPed">Gostaria de adquirir
+                                um Google Glass quando disponível</label></p>
+                        <p><label for="cCor">Cor:</label><input type="color" name="tCor" id="cCor" value="#0000FF"></p>
+                        <!--o parâmetro 'value' define a cor azul como padrão-->
+                        <p><label for="cQtd">Quantidade:</label><input type="number" name="tQtd" id="cQtd" min="0"
+                                max="5" value="0"></p>
+                        <p><label for="cTot">Preço Total: R$</label><input type="text" name="tTot" id="cTot"
+                                placeholder="Total a pagar" readonly></p>
+                        <!--o parâmetro 'readonly' impede de digitar valor na caixa de texto-->
                     </fieldset>
                     <!-- Existem 2 maneiras de fazer o botão ENVIAR:
-                    - A mais simples é criando um BOTÃO SUNMIT, exemplo:
+                    - A mais simples é criando um BOTÃO SUBMIT, exemplo:
                     <input type="submit" name="" id="" value="Enviar">
                     - A outra forma é através de uma IMAGEM:-->
                     <input type="image" name="tEnviar" id="" src="_imagens/botao-enviar.png">
