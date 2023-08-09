@@ -2,11 +2,14 @@
 
 ## VSCode
 ### Abrir
-* **última aba**: `control + shift + T`
 * **paleta de comandos**: `control + shift + P`
 * **diretório do arquivo**: `control + o`
 * **markdown**: `control + shift + V`
 * **Regex Previewer**: `Ctrl + Alt + M`
+### Fechar
+* **aba atual**: `control + W`
+### Reabrir
+* **última aba**: `control + shift + T`
 ### Formatação
 * **indentação automática**: `alt + shift + F`
 * **comentar linha**: `control + ;`
@@ -18,9 +21,9 @@
 * **Adicionar cursor na linha acima ou abaixo**: `Ctrl + Alt + Seta Cima/Baixo`
 ### Seleção
 * **multicursor**: `alt + click`
-* **Seleciona até o Início ou fim da linha**: `Shift + Home`,`Shift + End`
+* **Seleciona até o Início ou fim da linha**: `Shift + Home` ou `Shift + End`
 * **seleciona a palavra ou a próxima ocorrência**: `control + D`
-* **seleciona todas as ocorrências**: `control + F2`
+* **seleciona todas as ocorrências**: `control + F2` ou `control + shift L`
 * **multicursores no final da linha**: `selecione várias linhas e depois aperte alt + shift + i`
 ### Leitura
 * **fecha escopo**: `control + shift + crase`
@@ -33,6 +36,9 @@
 * XML Tools
 * SQL Formatter
 * Draw.io Integration (unofficial)
+### Emmet Abbreviations
+* div.card.sm>(span>table)*2+div.big-div
+* ul>li*5
 
 ## Dbeaver
 ### Templates (acionados com control+alt+space)
