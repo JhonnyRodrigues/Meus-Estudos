@@ -30,12 +30,12 @@
 * **abre escopo**: `control + shift + [`
 * **localiza inicio e fim do escopo**: `control + shift + ]`
 ### Extensões
-* PHP Intelephense
-* Live Server (Ritwick Dey)
-* Regex Previewer
-* XML Tools
-* SQL Formatter
-* Draw.io Integration (unofficial)
+* **PHP Intelephense**
+* **Live Server (Ritwick Dey)**
+* **Regex Previewer**
+* **XML Tools**
+* **SQL Formatter**
+* **Draw.io Integration (unofficial)**
 ### Emmet Abbreviations
 * div.card.sm>(span>table)*2+div.big-div
 * ul>li*5
@@ -49,6 +49,7 @@
 * **scount** - `select row count`
 ### Formatação
 * **indentação automática**: `control + shift + F`
+* **apaga a linha**: `control + D`
 * **uppercase**: `control + shift + X`
 * **lowercase**: `control + shift + Y`
 ### Facilidades
