@@ -1,0 +1,111 @@
+Help:
+- git config --list -> listar todas configurações do seu git
+- git config --system --edit -> abrir o arquivo de configurações do sistema
+- git config --global --edit -> abrir o arquivo de configuração do seu usuário para edição
+- git config --global core.editor code -> faz abrir os arquivos do git pelo vscode
+- git config --local --edit -> abrir o arquivo de configuração do repositorio local
+
+Inicializar:
+- git init -> irá iniciar o git para seu local repository
+- git remote add "apelido" "link" -> irá mapear nosso local repository com um repositorio remoto, caso esteja apenas no local
+- git clone "link" -> para clonarmos um repositorio remoto, caso seja um projeto em andamento
+
+Status:
+- git status -> mostra todos os status
+- git status -s  -> mostrar os status de forma mais simples
+
+Log:
+- git log-> mostrar as logs do repositorio
+
+Commits:
+- git commit --amend --no-edit -> Comitto esse arquivo com o meu último commit e também mesmo nome
+- git add .  e depois git stash -> Você guarda um código que está incompleto
+- git stash list -> lista todos stashs que criamos
+- git stash aply -> Volta o arquivo que estava em stash para poder ser commitado mas o arquivo continua na listagem de stash
+- git stash pop -> Volta o arquivo que estava em stash para poder ser commitado e remove o arquivo da listagem em stash (mais recomendável, ñ guarda lixo)
+- git stash clear -> limpa tudo que está na listagem de stash
+
+Tags: 
+- git tag -a "name" -m "comentário" -> Para marcar acontecimentos importantes na aplicação
+- git push origin master --tags -> Envia todas as tags para o repositorio remoto
+- git push origin master --follow-tags -> Envia para o repositorio remoto apenas as tags anotadas
+
+Resets:
+- git reset "filename" -> Você remove um arquivo do local repository após um git add, fazendo ele voltar a precisar ser adicionado
+-  git reset "hash commit" --soft -> Você irá voltar para o commite pedido, sua head irá para ele. Lê todos arquivos do commit removido e volta para os status anteriores ao commit (Usado para arrumar o texto do seu commit por exemplo)
+-  git reset HEAD~ --mixed -> Faz ele voltar um commit na minha árvore, ele irá remover os commits solicitados mas não volta para o último estado mas sim para o status anterior ao git add
+- git reset "hash commit" --hard -> Também remove o commit acima do nó solicitado mas ele desfaz todas alterações que tu fez
+- git reset -> o default aponta para o commit atual, e a flag padrão é o --mixed
+- git reset --hard HEAD~1 vai apenas desfazer todas as alterações do ultimo commit merda q tu fez sem querer ;)
+
+Após fazer um merge errado, podemos desfazer esta mudança com o comando git reset
+Vamos utilizar a flag –hard para isso
+O comando completo é:
+git reset --hard HEAD~1
+Isso faz o branch atual resetar para a mudança anterior, ou seja, se a última foi o merge ele será desfeito
+
+
+
+
+Revert:
+- git revert "hash commit" -> git revert, mantém todos os nós acima e cria outro commit com as alterações contrárias a que estão na hash. (Tipo se você adicionou um console.log("Hello world") e rodar o git revert ele irá gerar um novo commit sem esse console.log(""))
+- git revert HEAD~ --no-edit -> Ele mostra as mensagens do commit gerada pra gente, porém ainda gera ela
+- git revert HEAD~ --no-commit -> Não gera o commit automático, apenas reverte a alteração e deixa ele para você commitar com sua própria mensagem
+
+Checkout:
+- git checkout "filename" -> remove a alteração no arquivo informado
+- git checkout "hash commit" -> Volta para o estado que seu código estava no commit solicitado, ele cria uma branch fake para poder investigar esse código que morre caso tu troque de branch, mas caso você queria fazer alguma modificação ali você precisa criar uma nova branch a partir dela
+- git checkout "branch name" -> troca de branch
+- git checkout -b "branch name" -> cria uma nova branch
+- git checkout -b "branch name" "branch that you wanna copy" -> cria uma nova branch com o conteudo de outra branch
+
+Clean:
+- git clean -n  -> Lista todos arquivos que não foram adicionados (Porém não remove arquivos que estão dentro de pastas)
+- git clean -f -> Força a remoção de todos arquivos que ainda não fora adicionados  
+- git clean -nd -> Lista todos arquivos que não foram adicionados, até os que estão dentro de pastas
+- git clean  -f -d -> Força a remoção de todos os arquivos até os que estão dentro de pastas
+
+Remoção:
+- git rm "filename" -> remove o arquivo solicitado, mesmo que ele já esteja  pronto para commit, mas você pode reverter isso até commitar as alterações
+- gir rm "foldername" -r -> remove a pasta solicitada
+- git rm "filename" --cached -> O git para de mandar para adição arquivos que estão no .gitignore mas já tinham sido commitados 
+
+Merge:
+- git merge "branch name" -> Você vai até a branch "principal" e chama a branch que você quer mergear para ela
+
+Branch:
+- git branch -> verifica todas branchs que você tem 
+
+Rebase:
+- git rebase -i HEAD~n -> Mostra a quantidade N de commits passados, exemplo:
+		pick 98655 add npm
+		pick 96556 add .gitignore
+	você pode trocar esse pick de um commit por reword por exemplo, e você pode renomar o commit, isso refaz o commit
+- git rebase -i HEAD~n -> Juntar vários commits iguais em apenas um com alteração de comentário
+                pick 9655546 add index.js
+	      pick 987556 add index.js
+	      pick 9658756 add index.js
+	você pode trocar dois picks por squash por exemplo e isso irá juntar esses dois commits para o primeiro, ficando apenas um commit e você pode alterar a mensagem de commit
+- git rebase -i HEAD~n -> Juntar vários commits iguais em apenas um sem alteração de comentário
+                pick 9655546 add index.js
+	      pick 987556 add index.js
+	      pick 9658756 add index.js
+	você pode trocar dois picks por fixup por exemplo e isso irá juntar esses dois commits para o primeiro, porém você não escolhe a mensagem do commit, mantém apenas o texto do commit de cima
+- git rebase -i HEAD~n -> Editar um commit para poder separar em dois por exemplo
+                pick 9655546 add index.js
+	você pode trocar o pick por um edit,  após voltar ao terminal pode rodar o git reset HEAD^ e os arquivos voltam para antes de serem adicionados, podem adicionalos novamente e commita-los separadamente. Após isso rodar o git rebase --continue
+
+Reflog:
+- git reflog -> mostra tudo que a gente já fez no projeto
+
+Show:
+- git show "hash commit" -> mostra as modificações do commit solicitado
+
+// excluir um branch no local
+git branch -d nomeDoBranchLocal
+
+// excluir um branch remoto
+git push origin --delete nomeDoBranchRemoto
+
+//encerrar feature
+git flow feature finish my-fancy-feature

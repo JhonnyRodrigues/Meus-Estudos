@@ -1,0 +1,21 @@
+--####################################################
+--### PROCURA CONTRAINSTS EM TODO O BANCO DE DADOS ###
+--####################################################
+
+SELECT    ACC.TABLE_NAME,
+          ACC.COLUMN_NAME,
+          ACC.CONSTRAINT_NAME,
+          AC.OWNER,
+          -- REFERENCED PK
+          AC.R_OWNER,
+          C_PK.TABLE_NAME AS R_TABLE_NAME,
+          C_PK.CONSTRAINT_NAME  AS R_PK
+FROM      ALL_CONS_COLUMNS ACC
+JOIN      ALL_CONSTRAINTS AC
+ON        ACC.OWNER = AC.OWNER
+AND       ACC.CONSTRAINT_NAME = AC.CONSTRAINT_NAME
+JOIN      ALL_CONSTRAINTS C_PK
+ON        AC.R_OWNER = C_PK.OWNER
+AND       AC.R_CONSTRAINT_NAME = C_PK.CONSTRAINT_NAME
+WHERE     AC.CONSTRAINT_TYPE = 'R'
+AND       ACC.CONSTRAINT_NAME = 'FK_USR_REL_USR'

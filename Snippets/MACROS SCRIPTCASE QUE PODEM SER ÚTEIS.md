@@ -1,0 +1,59 @@
+# MACROS SCRIPTCASE QUE PODEM SER ÚTEIS
+- **sc_lookup**(dataset, $query): O comando SQL também pode ser composto de campos da aplicação (variáveis locais) ou de variáveis globais:
+
+- **sc_select_field**({Campo}): É possível alterar dinamicamente os campos de uma consulta, através da alteração dinâmica do select original.
+
+- **sc_select_where**(add): É possível, em tempo de execução da aplicação de **consulta**, adicionar um campo/condição à cláusula WHERE da somente consulta.
+
+- **sc_select_order**("Campo"): É possível, em tempo de execução da aplicação de consulta, alterar a cláusula ORDER BY do select principal da consulta.
+
+- **sc_sql_injection**({Meu_Campo}) ou ($Minha_Variável): Todos os acessos a base de dados, gerados pelo Scriptcase, têm proteção contra "sql injection". Mas nos comandos gerados pelo usuário (macros: sc_lookup, sc_select ou sc_exec_sql), caso seja necessário, deverá ser utilizada esta macro para proteção.
+
+- **sc_apl_conf**("minha_consulta", "exit", "outra_consulta"); permite alterar as propriedades de execução das aplicações. Exemplo: `sc_apl_conf("meu_formulario", "start", "new");`
+
+- **sc_apl_default**("aplicacao", "tipo"); permite que o desenvolvedor defina o que ocorrerá quando a aplicação perder a sessão.
+
+- **sc_changed**({Nome_Campo}): para verificar se houve alteração em determinado campo do formulário. (implementação para eventos onBeforeUpdate onValidate)
+
+- **sc_confirm**("Deseja realmente executar a ação ??"); (só funciona na Aplicação de Formulário no evento onClick)
+
+- **sc_error_message**('Mensagem de erro') + **sc_error_exit**(minha_aplicacao, "_blank"); //combinar ambas quando trabalhar com eventos **onAfterUpdate**(pois trata-se de uma AJAX Request)
+
+- **sc_get_wizard_step()**: Exclusiva para evento onValidate no formulário em etapas, essa macro identifica a etapa atual da aplicação, possibilitando a realização de validações durante a navegação entre as etapas. Exemplo: `if (sc_get_wizard_step() == 1) {...}`
+
+- **sc_log_add**("Ação", "Mensagem"): adiciona um registro na tabela de logs
+- **sc_log_split**({descricao}): possibilita o acesso às informações gravadas no campo descrição da tabela de log, possibilitando a manipulação dos dados anteriores e posteriores dos registros envolvidos em forma de array.
+
+- **sc_url_library()**:retorna o caminho de um arquivo, dentro de uma biblioteca. Exemplo: `<*link rel="stylesheet" type="text/css" href="<*?php echo sc_url_library('prj', 'bootstrap-3.3.2-dist', 'css/style1.css'); ?>" />`. Os 2 valores do parâmetro escopo são: `sys` ou `prj`
+
+- **sc_include_library("prj", "phpqrcode", "qrlib.php", true, true);**: inclui um arquivo **PHP** de uma biblioteca criada no scriptcase. Os dois últimos parâmetros são: include_once e require
+
+- **sc_btn_insert()**, **sc_btn_update()**, **sc_btn_delete()**:Quando o botão é clicado, esta macro é disponibilizada, permitindo a tomada de decisões em tempo real de execução somente no evento onValidate. Exemplo: `if (sc_btn_insert) { sc_error_message("Registro incluido com sucesso"); }`
+
+- **sc_reset_global()**:  apaga variáveis globais armazenadas na sessão do PHP. Exemplo: `sc_reset_global([Login], [Senha]);`
+
+- **sc_master_value**({campo_a_atualizar},{campo_atualizado}): ao trabalhar com aplicação mestre-detalhe, atualiza os valores da aplicação mestre
+
+- **sc_label**("nome_do_campo"): alterar dinamicamente o label dos campos 
+
+# VARIÁVEIS
+
+- **_numOfRows**: retorna a quantidade de linhas da consulta utilizando a macro **sc_select()**.Exemplo: `if ({dataset}->_numOfRows < 1) { ... }`
+
+- **{sc_seq_register}**: disponibiliza o **número sequencial** do registro que está sendo processado no evento onRecord
+
+- **{count_ger}**: disponibiliza a **quantidade** geral de registros.
+
+- **{sc_where_current}** ou **{sc_where_filter}**: Esta variável deixa disponível o conteúdo gerado pelo "filtro", de acordo com as seleções efetuadas no formulário de filtro
+
+- **{sc_where_orig}**: armazena o conteúdo da cláusula where do select original da aplicação.
+
+- **{sc_where_filter}**: deixa disponível o conteúdo gerado pelo "filtro", de acordo com as seleções efetuadas no formulário de filtro. Esta informação é a que será adicionada à cláusula where do select original da aplicação.
+
+- **sc_warning = 'off'**: desativa o controle de mensagens de advertencia, geradas quando é feita uma referência a uma variável inexistente, um item de um array inexistente, etc.
+
+- **sc_form_show = 'off'**; desabilita o conteúdo do formulário. //TESTAR
+
+#MACETES
+
+- Transformar um campo (grid) em botão: `{imprimir} = '<input type="button" value="IMPRIMIR ASO" class="scButton_default"/>';`
