@@ -1,5 +1,5 @@
 --####################################################
---### PROCURA CONTRAINSTS EM TODO O BANCO DE DADOS ###
+--### PROCURA CONSTRAINTS EM TODO O BANCO DE DADOS ###
 --####################################################
 
 SELECT    ACC.TABLE_NAME,

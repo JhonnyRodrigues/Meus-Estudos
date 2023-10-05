@@ -84,10 +84,13 @@ function centraliza_botao(conteiner) {
         }
     });
 }
-// window.onLoad = function() { //só aplica JS depois do DOM totalmente carregado
-centraliza_botao();
-// }
+window.onLoad = function() { //só aplica JS depois do DOM totalmente carregado
+    centraliza_botao();
+}
 
 //manipulando conteúdo
 elemento.innerText = 'R$4.235.159,53';
 const valor = parseFloat(elemento.innerText.replace('R$', '').split(',')[0].replaceAll('.',''));
+
+//ADICIONANDO CLASSE CSS
+elemento.classList.add('btn-outline-primary');
