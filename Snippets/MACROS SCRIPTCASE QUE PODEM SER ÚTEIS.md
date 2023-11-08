@@ -40,6 +40,8 @@
 
 - **_numOfRows**: retorna a quantidade de linhas da consulta utilizando a macro **sc_select()**.Exemplo: `if ({dataset}->_numOfRows < 1) { ... }`
 
+- **sc_btn_insert** ou **sc_btn_update** ou **sc_btn_delete** ou **sc_btn_new**: retorna `true` quando o botão é selecionado.
+
 - **{sc_seq_register}**: disponibiliza o **número sequencial** do registro que está sendo processado no evento onRecord
 
 - **{count_ger}**: disponibiliza a **quantidade** geral de registros.
