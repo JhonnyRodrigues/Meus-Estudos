@@ -223,7 +223,7 @@ ul#album-fotos {
     padding: 50px;
     overflow: hidden;
     list-style: none;
-    display: table-footer-group;
+    /* display: table-footer-group; */
 }
 
 ul#album-fotos li {
@@ -236,7 +236,6 @@ ul#album-fotos li {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     transition: all 0.35s ease-out;
 }
-
 ul#album-fotos li:hover {
     transform: scale(1.5);
 }
@@ -250,7 +249,6 @@ ul#album-fotos li span {
     line-height: 370px;
     padding: 5px;
 }
-
 ul#album-fotos li:hover span {
     opacity: 1;
 }
