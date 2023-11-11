@@ -30,18 +30,29 @@ footer {
     width: 100%;
 }
 
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color: var(--dashGreen);
+}
+a:visited {
+    color: rgb(199, 255, 241)
+}
+
 nav {
     position: sticky;
     top: 0;
-    background: var(--dashBlue);
-    padding: 10px;
-    color: white;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     align-content: center;
+    padding: 10px;
+    background: var(--dashBlue);
+    color: white;
 }
 
 nav div {
@@ -53,37 +64,23 @@ nav div {
     align-items: center;
 }
 
-#logo-empresa {
-    display: flex;
+div#logo-empresa {
     flex-direction: column;
 }
 
-nav div ul {
+div#menu ul {
     list-style: none;
     text-transform: uppercase;
     display: flex;
     flex-direction: row;
 }
 
-nav div ul li {
+div#menu ul li {
     padding: 10px;
 }
 
-nav div ul li a {
+div#menu ul li a {
     color: white;
-}
-
-a {
-    /* color: #606060; */
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--dashGreen);
-}
-a:visited {
-    color: var(--dashGreen);
 }
 
 header {
@@ -140,14 +137,53 @@ section#solucoes div div h3 {
 .cartao {
     display: flex;
     flex-direction: column;
+    padding: 10px 0;
+}
+.cartao h3 {
+    color: var(--darkBrown);
+}
+.cartao div {
+    padding-left: 1em;
 }
 
 section#materiais {
     background-color: var(--dashGreen);
 }
 
+section.imagem {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.443);
+    background-size: cover;
+    background-attachment: fixed;
+}
+section.imagem div {
+    display: inline-block;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
 section#sensor {
-    background-color: var(--darkBrown);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #BFDBFE;
+    background-image: url(../imagens/sensor-vibracao.png);
+    background-position: right center;
+    height: 100vh;
+}
+section#sensor h3 {
+    text-align: center;
+    padding: 10px;
+    font-size: 3em;
+}
+section#sensor p {
+    font-size: 2em;
+    color: rgba(255, 248, 220, 0.85);
+    padding: 8px;
 }
 
 section#planilhas {
