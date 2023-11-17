@@ -26,6 +26,9 @@ if (document.querySelectorAll('[id^=sc_exc_line_]') != null) {
 tabela = document.querySelector('table#hidden_bloco_10 tbody tr:nth-child(2)').style['flex-direction'] = 'column';
 motivo = document.querySelector('td#hidden_field_data_motivo_encaminhamento table tbody tr:nth-child(1)');
 
+//iterar 1 estilo em selectorAll
+document.querySelectorAll('span#id_read_off_jornada >table >tbody >tr').forEach((el) => {el.style.display = 'inline-flex'})
+
 //função (CSS) 'has()' para capturar o elemento pai que não tem #id
 document.querySelector('td:has(#id_read_on_motivo_encaminhamento)'); //cuidado, pois no 1º <td> que encontra um filho com esse #id, irá capturar todo mundo abaixo dele!
 
@@ -84,7 +87,7 @@ function centraliza_botao(conteiner) {
         }
     });
 }
-window.onLoad = function() { //só aplica JS depois do DOM totalmente carregado
+window.onload = function() { //só aplica JS depois do DOM totalmente carregado
     centraliza_botao();
 }
 
@@ -94,3 +97,21 @@ const valor = parseFloat(elemento.innerText.replace('R$', '').split(',')[0].repl
 
 //ADICIONANDO CLASSE CSS
 elemento.classList.add('btn-outline-primary');
+
+//Add text before or after an HTML element
+var text = document.createTextNode('the text');
+var child = document.getElementById('childDiv');
+child.parentNode.insertBefore(text, child);
+Exemplo: document.querySelector('td#Check_All_jornada').parentNode.insertBefore(document.createTextNode('TODOS OS DIAS '), document.querySelector('td#Check_All_jornada'));
+
+//Para manipular elementos de um MODAL, use .PARENT para transitar entre diferentes CONTEXTOS
+window.parent.document.querySelector('div#TB_window').style.setProperty('padding', '10px');
+window.parent.document.querySelector('div#TB_window').style.setProperty('width', 'auto');
+window.parent.document.querySelector('div#TB_window').style.setProperty('height', 'auto');
+window.parent.document.querySelector('div#TB_window').style.setProperty('border-radius', '20px');
+
+window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.setProperty('width', '360');
+window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.setProperty('height', '180');
+
+window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('text-align', 'center');
+window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('font-size', 'medium');

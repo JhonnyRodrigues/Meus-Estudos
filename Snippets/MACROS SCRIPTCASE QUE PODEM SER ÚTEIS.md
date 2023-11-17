@@ -58,4 +58,27 @@
 
 #MACETES
 
-- Transformar um campo (grid) em botão: `{imprimir} = '<input type="button" value="IMPRIMIR ASO" class="scButton_default"/>';`
+- Transformar um campo (GRID) em botão: `{imprimir} = '<input type="button" value="IMPRIMIR ASO" class="scButton_default"/>';`
+
+# DICAS
+- Ao injetar _CSS_ num FORM, opte pelo evento **onLoad**.
+- Ao injetar _CSS_ numa GRID, opte pelo evento **onScriptInit**. Exemplo:
+```css
+?>
+	<style>
+		img {
+			width: 50%;
+		}
+	</style>
+<?php
+```
+- Ao injetar _Javascript_ num FORM, opte pelo menu 'Programação' -> 'Métodos Javascript' ou pelo menu 'Formulário' -> 'Javascript'.
+- Ao injetar _Javascript_ numa GRID, opte pelo evento **onFooter** (não esqueça de ativá-lo no submenu 'Layout' -> 'Cabeçalho e Rodapé'). Exemplo:
+```javascript
+?>
+	<script>
+		document.querySelectorAll('[id^=id_sc_field_mensagem_] > span >p >img').forEach((el) => {el.style.width='50%'})
+	</script>
+<?php
+```
+-
