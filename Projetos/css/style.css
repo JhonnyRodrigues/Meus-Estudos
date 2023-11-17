@@ -13,55 +13,74 @@
     padding: 0px;
 }
 
-html{
+html {
     width: 97vw;
     height: 100vh;
     background-color: var(--cerulean)
 }
 
-body{
+body {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
-nav, header, main, footer {
+nav,
+header,
+main,
+footer {
     width: 100%;
 }
 
-nav {
-    background: var(--dashBlue);
-    padding: 10px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-}
-nav div{
-    margin: auto;
-    align-items: center;
-}
-#logo-empresa {
-    display: flex;
-    flex-direction: column;
-}
-nav div ul {
-    list-style: none;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: row;
-}
-nav div ul li {
-    padding: 10px;
-}
-nav div ul li a {
-    color: white;
-}
-
 a {
-    /* color: #606060; */
     text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
     color: var(--dashGreen);
+}
+a:visited {
+    color: rgb(199, 255, 241)
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    padding: 10px;
+    background: var(--dashBlue);
+    color: white;
+}
+
+nav div {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+div#logo-empresa {
+    flex-direction: column;
+}
+
+div#menu ul {
+    list-style: none;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+}
+
+div#menu ul li {
+    padding: 10px;
+}
+
+div#menu ul li a {
+    color: white;
 }
 
 header {
@@ -75,11 +94,13 @@ header {
     background-repeat: no-repeat;
     font-weight: bolder;
 }
+
 header div h2 {
     font-size: 6vw;
     color: var(--dashBlue);
     margin: 2rem;
 }
+
 header div p {
     font-size: 3vw;
     color: var(--pennBlue);
@@ -89,6 +110,7 @@ h2 {
     text-align: center;
     /* font-size: 2rem; */
 }
+
 section div h3 {
     /* font-size: 1.5rem; */
     color: var(--dashGreen);
@@ -102,24 +124,66 @@ section#solucoes {
     background-color: var(--dashBlue);
     color: white;
 }
+
 section#solucoes div {
     /* display: flex; */
     /* flex-direction: row; */
 }
-section#solucoes div div h3{
+
+section#solucoes div div h3 {
     /* padding: 10px; */
 }
+
 .cartao {
     display: flex;
     flex-direction: column;
+    padding: 10px 0;
+}
+.cartao h3 {
+    color: var(--darkBrown);
+}
+.cartao div {
+    padding-left: 1em;
 }
 
 section#materiais {
     background-color: var(--dashGreen);
 }
 
+section.imagem {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.443);
+    background-size: cover;
+    background-attachment: fixed;
+}
+section.imagem div {
+    display: inline-block;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
 section#sensor {
-    background-color: var(--darkBrown);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #BFDBFE;
+    background-image: url(../imagens/sensor-vibracao.png);
+    background-position: right center;
+    height: 100vh;
+}
+section#sensor h3 {
+    text-align: center;
+    padding: 10px;
+    font-size: 3em;
+}
+section#sensor p {
+    font-size: 2em;
+    color: rgba(255, 248, 220, 0.85);
+    padding: 8px;
 }
 
 section#planilhas {
@@ -137,28 +201,37 @@ footer {
     align-content: center;
     justify-content: center;
     align-items: center;
+    background: var(--dashBlue);
+    padding: 10px;
+    color: white;
 }
+
 footer div#contato {
+    width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
+    justify-content: space-evenly;
+    align-items: baseline;
 }
+
 div#contato h3 {
     text-align: center;
+    padding-bottom: 10px;
 }
+
 div#contato div ul {
     list-style: none;
 }
+
 section#redes-sociais {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0;
 }
+
 section#redes-sociais img {
     width: 50px;
     margin: 10px;
@@ -166,9 +239,235 @@ section#redes-sociais img {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.539);
     box-sizing: border-box;
 }
+
 section#redes-sociais img:hover {
     border: 2px solid rgba(255, 255, 255, 0.581);
     transform: translate(-3px, -3px);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.598);
     transition: transform .4s, border .7s;
+}
+
+
+
+
+
+
+
+ul#album-fotos {
+    width: 700px;
+    margin: 0 auto;
+    padding: 50px;
+    overflow: hidden;
+    list-style: none;
+    /* display: table-footer-group; */
+}
+
+ul#album-fotos li {
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    border: 5px solid white;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    transition: all 0.35s ease-out;
+}
+ul#album-fotos li:hover {
+    transform: scale(1.5);
+}
+
+ul#album-fotos li span {
+    opacity: 0;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px black;
+    background-color: rgba(0, 0, 0, 0.3);
+    font-size: 9pt;
+    line-height: 370px;
+    padding: 5px;
+}
+ul#album-fotos li:hover span {
+    opacity: 1;
+}
+
+
+
+
+ul#album-fotos li#foto01 {
+    background: url('../imagens/eng01.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto01:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto02 {
+    background: url('../imagens/eng02.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto02:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto03 {
+    background: url('../imagens/eng03.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto03:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto04 {
+    background: url('../imagens/eng04.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto04:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto05 {
+    background: url('../imagens/eng05.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto05:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto06 {
+    background: url('../imagens/eng06.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto06:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto07 {
+    background: url('../imagens/eng07.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto07:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto08 {
+    background: url('../imagens/eng08.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto08:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto09 {
+    background: url('../imagens/eng09.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto09:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto10 {
+    background: url('../imagens/eng10.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto10:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto11 {
+    background: url('../imagens/eng11.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto11:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto12 {
+    background: url('../imagens/eng12.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto12:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto13 {
+    background: url('../imagens/eng13.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto13:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto14 {
+    background: url('../imagens/eng14.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto14:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
+}
+
+ul#album-fotos li#foto15 {
+    background: url('../imagens/eng15.jpg') no-repeat;
+    background-position: 50% 50%;
+    background-size: 400px 400px;
+    background-color: white;
+    border-radius: 5%;
+}
+ul#album-fotos li#foto15:hover {
+    background-position: 0px 0px;
+    background-size: 200px 200px;
 }
