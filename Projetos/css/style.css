@@ -14,7 +14,7 @@
 }
 
 html {
-    width: 97vw;
+    width: 100vw;
     height: 100vh;
     background-color: var(--cerulean)
 }
@@ -33,13 +33,15 @@ footer {
 a {
     text-decoration: none;
 }
+
 a:hover {
     text-decoration: underline;
     color: var(--dashGreen);
 }
-a:visited {
+
+/* a:visited {
     color: rgb(199, 255, 241)
-}
+} */
 
 nav {
     position: sticky;
@@ -50,9 +52,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     align-content: center;
-    padding: 10px;
+    padding: 10px 0;
     background: var(--dashBlue);
-    color: white;
+    color: white !important;
 }
 
 nav div {
@@ -62,6 +64,14 @@ nav div {
     align-content: center;
     justify-content: center;
     align-items: center;
+}
+
+nav a.menu {
+    color: #fff;
+}
+
+nav a:hover.menu {
+    color: var(--dashGreen);
 }
 
 div#logo-empresa {
@@ -77,10 +87,6 @@ div#menu ul {
 
 div#menu ul li {
     padding: 10px;
-}
-
-div#menu ul li a {
-    color: white;
 }
 
 header {
@@ -125,23 +131,16 @@ section#solucoes {
     color: white;
 }
 
-section#solucoes div {
-    /* display: flex; */
-    /* flex-direction: row; */
-}
-
-section#solucoes div div h3 {
-    /* padding: 10px; */
-}
-
 .cartao {
     display: flex;
     flex-direction: column;
     padding: 10px 0;
 }
+
 .cartao h3 {
     color: var(--darkBrown);
 }
+
 .cartao div {
     padding-left: 1em;
 }
@@ -157,12 +156,14 @@ section.imagem {
     background-size: cover;
     background-attachment: fixed;
 }
+
 section.imagem div {
     display: inline-block;
     padding: 5px;
     background-color: rgba(0, 0, 0, 0.2);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
+
 section#sensor {
     display: flex;
     flex-direction: row;
@@ -170,16 +171,24 @@ section#sensor {
     align-content: center;
     justify-content: center;
     align-items: center;
-    background-color: #BFDBFE;
     background-image: url(../imagens/sensor-vibracao.png);
-    background-position: right center;
+    background-color: #BFDBFE;
+    /* background-size: contain; */
+    background-size: 100% 100%;
+    /* background-repeat: no-repeat; */
+    /* background-position: center center; */
+    position: relative; /* esconde o menu superior */
     height: 100vh;
+    /* height: 93vh; 93% da view port: a imagem ocupa toda a tela mas sem aparecer a barra de rolagem */
+    padding: 10px;
 }
+
 section#sensor h3 {
     text-align: center;
     padding: 10px;
     font-size: 3em;
 }
+
 section#sensor p {
     font-size: 2em;
     color: rgba(255, 248, 220, 0.85);
@@ -188,10 +197,6 @@ section#sensor p {
 
 section#planilhas {
     background-color: var(--pennBlue);
-}
-
-section#galeria {
-    /* background-color: var(--cerulean); */
 }
 
 footer {
@@ -272,6 +277,7 @@ ul#album-fotos li {
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
     transition: all 0.35s ease-out;
 }
+
 ul#album-fotos li:hover {
     transform: scale(1.5);
 }
@@ -285,6 +291,7 @@ ul#album-fotos li span {
     line-height: 370px;
     padding: 5px;
 }
+
 ul#album-fotos li:hover span {
     opacity: 1;
 }
@@ -299,6 +306,7 @@ ul#album-fotos li#foto01 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto01:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -311,6 +319,7 @@ ul#album-fotos li#foto02 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto02:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -323,6 +332,7 @@ ul#album-fotos li#foto03 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto03:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -335,6 +345,7 @@ ul#album-fotos li#foto04 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto04:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -347,6 +358,7 @@ ul#album-fotos li#foto05 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto05:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -359,6 +371,7 @@ ul#album-fotos li#foto06 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto06:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -371,6 +384,7 @@ ul#album-fotos li#foto07 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto07:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -383,6 +397,7 @@ ul#album-fotos li#foto08 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto08:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -395,6 +410,7 @@ ul#album-fotos li#foto09 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto09:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -407,6 +423,7 @@ ul#album-fotos li#foto10 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto10:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -419,6 +436,7 @@ ul#album-fotos li#foto11 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto11:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -431,6 +449,7 @@ ul#album-fotos li#foto12 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto12:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -443,6 +462,7 @@ ul#album-fotos li#foto13 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto13:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -455,6 +475,7 @@ ul#album-fotos li#foto14 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto14:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
@@ -467,6 +488,7 @@ ul#album-fotos li#foto15 {
     background-color: white;
     border-radius: 5%;
 }
+
 ul#album-fotos li#foto15:hover {
     background-position: 0px 0px;
     background-size: 200px 200px;
