@@ -1,11 +1,13 @@
 @charset "UTF-8";
 
 :root {
-    --cerulean: #227c9d;
-    --pennBlue: #0a1045;
-    --darkBrown: #363020;
     --dashGreen: #34CFA8;
     --dashBlue: #031788;
+    --pennBlue: #0a1045;
+    --cerulean: #227c9d;
+    --darkBrown: #363020;
+    --backgroundSensor: #BFDBFE;
+    --scannerSensor: #0BEDF3;
 }
 
 * {
@@ -20,14 +22,16 @@ html {
 }
 
 body {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
 }
 
 nav,
 header,
 main,
 footer {
-    width: 100%;
+    width: 100vw;
 }
 
 a {
@@ -39,10 +43,42 @@ a:hover {
     color: var(--dashGreen);
 }
 
-/* a:visited {
-    color: rgb(199, 255, 241)
-} */
+a:visited {
+    color: #bc70ff;
+}
 
+h2 {
+    text-align: center;
+    /* font-size: 2rem; */
+}
+
+section {
+    padding: 20px;
+}
+
+/* ######################## CLASSE CARTÃO ######################## */
+
+.cartao {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.cartao h3 {
+    color: var(--scannerSensor);
+    font-size: 1.5em;
+}
+
+.cartao h4 {
+    color: var(--cerulean);
+    font-size: 1.2em;
+}
+
+.cartao div {
+    padding-left: 1em;
+}
+
+/* ############################ MENU ############################# */
 nav {
     position: sticky;
     top: 0;
@@ -89,6 +125,8 @@ div#menu ul li {
     padding: 10px;
 }
 
+/* ######################## CABEÇALHO ######################## */
+
 header {
     height: 75vh;
     display: flex;
@@ -101,49 +139,34 @@ header {
     font-weight: bolder;
 }
 
-header div h2 {
-    font-size: 6vw;
+header h1 {
+    font-size: 5vw;
+    /* font-size: 3em; */
     color: var(--dashBlue);
-    margin: 2rem;
+    margin: 0 1em;
+    padding-bottom: .5em;
 }
 
-header div p {
+header h2 {
     font-size: 3vw;
+    /* font-size: 1.5em; */
     color: var(--pennBlue);
+    margin: 0 2em;
 }
 
-h2 {
-    text-align: center;
-    /* font-size: 2rem; */
-}
-
-section div h3 {
-    /* font-size: 1.5rem; */
-    color: var(--dashGreen);
-}
-
-section {
-    padding: 20px;
-}
+/* ######################## SOLUÇÕES ######################## */
 
 section#solucoes {
-    background-color: var(--dashBlue);
+    background-color: var(--pennBlue);
     color: white;
 }
 
-.cartao {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 0;
+section#solucoes h2 {
+    color: var(--dashGreen);
+    font-size: 3em;
 }
 
-.cartao h3 {
-    color: var(--darkBrown);
-}
-
-.cartao div {
-    padding-left: 1em;
-}
+/* ######################## MATERIAIS ######################## */
 
 section#materiais {
     background-color: var(--dashGreen);
@@ -164,6 +187,8 @@ section.imagem div {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
+/* ######################## SENSOR ######################## */
+
 section#sensor {
     display: flex;
     flex-direction: row;
@@ -172,12 +197,13 @@ section#sensor {
     justify-content: center;
     align-items: center;
     background-image: url(../imagens/sensor-vibracao.png);
-    background-color: #BFDBFE;
+    background-color: var(--backgroundSensor);
     /* background-size: contain; */
     background-size: 100% 100%;
     /* background-repeat: no-repeat; */
     /* background-position: center center; */
-    position: relative; /* esconde o menu superior */
+    position: relative;
+    /* esconde o menu superior */
     height: 100vh;
     /* height: 93vh; 93% da view port: a imagem ocupa toda a tela mas sem aparecer a barra de rolagem */
     padding: 10px;
@@ -195,9 +221,20 @@ section#sensor p {
     padding: 8px;
 }
 
+/* ######################## PLANILHAS ######################## */
+
 section#planilhas {
     background-color: var(--pennBlue);
+    /* background-color: var(--dashGreen); */
 }
+
+/* ######################## GALERIA ######################## */
+
+section#galeria {
+    background-color: var(--dashGreen);
+}
+
+/* ######################## RODAPÉ ######################## */
 
 footer {
     display: flex;
@@ -206,8 +243,8 @@ footer {
     align-content: center;
     justify-content: center;
     align-items: center;
-    background: var(--dashBlue);
-    padding: 10px;
+    background: var(--pennBlue);
+    padding: 15px 0;
     color: white;
 }
 
@@ -252,11 +289,7 @@ section#redes-sociais img:hover {
     transition: transform .4s, border .7s;
 }
 
-
-
-
-
-
+/* ######################## GALERIA ######################## */
 
 ul#album-fotos {
     width: 700px;
