@@ -44,7 +44,8 @@ a:hover {
 }
 
 a:visited {
-    color: #bc70ff;
+    /* color: #bc70ff; */
+    color: var(--dashGreen);
 }
 
 h2 {
@@ -76,6 +77,10 @@ section {
 
 .cartao div {
     padding-left: 1em;
+}
+
+.cartao ul {
+    padding-left: 2em;
 }
 
 /* ############################ MENU ############################# */
@@ -172,19 +177,19 @@ section#materiais {
     background-color: var(--dashGreen);
 }
 
-section.imagem {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: white;
-    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.443);
-    background-size: cover;
-    background-attachment: fixed;
+section#materiais h2 {
+    color: var(--cerulean);
+    font-size: 3em;
 }
 
-section.imagem div {
-    display: inline-block;
-    padding: 5px;
-    background-color: rgba(0, 0, 0, 0.2);
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+section#materiais h3 {
+    color: var(--backgroundSensor);
+    font-size: 2em;
+}
+
+section#materiais p {
+    color: white;
+    font-size: 1.2em;
 }
 
 /* ######################## SENSOR ######################## */
@@ -196,28 +201,41 @@ section#sensor {
     align-content: center;
     justify-content: center;
     align-items: center;
-    background-image: url(../imagens/sensor-vibracao.png);
-    background-color: var(--backgroundSensor);
-    /* background-size: contain; */
-    background-size: 100% 100%;
-    /* background-repeat: no-repeat; */
-    /* background-position: center center; */
     position: relative;
     /* esconde o menu superior */
     height: 100vh;
     /* height: 93vh; 93% da view port: a imagem ocupa toda a tela mas sem aparecer a barra de rolagem */
     padding: 10px;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: var(--backgroundSensor);
+    color: white;
+    box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.443);
+    background-image: url(../imagens/sensor-vibracao.png);
+    /* background-size: contain; */
+    /* background-size: cover; */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+section#sensor div {
+    display: inline-block;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 section#sensor h3 {
+    color: var(--backgroundSensor);
     text-align: center;
     padding: 10px;
     font-size: 3em;
 }
 
 section#sensor p {
-    font-size: 2em;
     color: rgba(255, 248, 220, 0.85);
+    font-size: 2em;
     padding: 8px;
 }
 
@@ -225,7 +243,52 @@ section#sensor p {
 
 section#planilhas {
     background-color: var(--pennBlue);
-    /* background-color: var(--dashGreen); */
+    color: white;
+
+    
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    position: relative; */
+
+    /* esconde o menu superior */
+    /* height: 100vh; */
+    /* height: 93vh; 93% da view port: a imagem ocupa toda a tela mas sem aparecer a barra de rolagem */
+    /* padding: 10px; */
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    /* background-color: var(--backgroundSensor); */
+    /* color: white; */
+    /* box-shadow: inset 6px 6px 13px 0px rgba(0, 0, 0, 0.443); */
+    /* background-image: url(../imagens/planilha-digital_v2.avif); */
+    /* background-size: contain; */
+    /* background-size: cover; */
+    /* background-size: 100% 100%; */
+    /* background-repeat: no-repeat; */
+    /* background-position: center center; */
+    /* background-attachment: fixed; */
+}
+
+section#planilhas h2 {
+    color: var(--dashGreen);
+    font-size: 3em;
+}
+
+section#planilhas h3 {
+    /* color: var(--cerulean); */
+    color: rgba(255, 248, 220, 0.85) !important;
+    font-size: 2em;
+}
+
+section#planilhas h4 {
+    color: var(--scannerSensor) !important;
+    font-size: 1.5em;
+}
+
+section#planilhas figure {
+    margin: 0 3em;;
 }
 
 /* ######################## GALERIA ######################## */
@@ -258,12 +321,16 @@ footer div#contato {
     align-items: baseline;
 }
 
+footer a {
+    color: var(--dashGreen);
+}
+
 div#contato h3 {
     text-align: center;
     padding-bottom: 10px;
 }
 
-div#contato div ul {
+div#contato ul {
     list-style: none;
 }
 
