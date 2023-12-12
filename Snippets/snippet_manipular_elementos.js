@@ -32,6 +32,9 @@ document.querySelectorAll('span#id_read_off_jornada >table >tbody >tr').forEach(
 //função (CSS) 'has()' para capturar o elemento pai que não tem #id
 document.querySelector('td:has(#id_read_on_motivo_encaminhamento)'); //cuidado, pois no 1º <td> que encontra um filho com esse #id, irá capturar todo mundo abaixo dele!
 
+//função .parentNode para capturar somente elemento pai
+document.querySelector('span#id_ajax_label_mensagem_revisao').parentNode.style.textAlign='center';
+
 //função para hover em botão
 function configurarBotao(botao) {
     botao.addEventListener('mouseover', (event) => {
