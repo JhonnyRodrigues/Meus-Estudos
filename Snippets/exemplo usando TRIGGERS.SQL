@@ -1,7 +1,24 @@
 --------------------------------------------------------------------------------------
+------------------------- BUSCA VALOR PARA  A PRIMARY KEY ----------------------------
+--------------------------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER GEN_LOGS_EMAILS
+BEFORE INSERT ON LOGS_EMAILS
+FOR EACH ROW WHEN (NEW.ID_LOG IS NULL AND NEW.DATA_INSERCAO IS NULL)
+BEGIN
+	SELECT  SEQ_LOGS_EMAILS.NEXTVAL
+	INTO    :NEW.ID_LOG
+	FROM    DUAL;
+   
+--	SELECT SYSDATE
+--	INTO :NEW.DATA_INSERCAO
+--	FROM DUAL;
+
+	:NEW.DATA_INSERCAO := SYSDATE;
+END;
+
+--------------------------------------------------------------------------------------
 ------------------------ SINCRONIZA CAMPO EM OUTRA TABELA ----------------------------
 --------------------------------------------------------------------------------------
-
 CREATE OR REPLACE TRIGGER SGI.SYNC_FUNCIONARIO_CARGO
 FOR UPDATE ON SGI.RH_CARGO  
 COMPOUND TRIGGER
