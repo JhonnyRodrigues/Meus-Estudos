@@ -81,4 +81,4 @@
 	</script>
 <?php
 ```
--
+- Limpe as variáveis globais (variáveis de sessão) somente nos eventos _after_

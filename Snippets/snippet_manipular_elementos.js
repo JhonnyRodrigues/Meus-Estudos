@@ -101,6 +101,12 @@ const valor = parseFloat(elemento.innerText.replace('R$', '').split(',')[0].repl
 //ADICIONANDO CLASSE CSS
 elemento.classList.add('btn-outline-primary');
 
+// INJETANDO ELEMENTO NO BODY PARA ALTERAR PROPRIEDADE DE TODA A CLASSE
+let suspeitoWidth100 = document.createElement('style');
+suspeitoWidth100.setAttribute('id', 'id_para_encontrar');
+suspeitoWidth100.innerHTML = ".scFormTable { width: 100%; }";
+document.querySelector('body').append(suspeitoWidth100);
+
 //Add text before or after an HTML element
 var text = document.createTextNode('the text');
 var child = document.getElementById('childDiv');
