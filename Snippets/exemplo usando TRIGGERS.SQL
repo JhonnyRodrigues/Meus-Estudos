@@ -245,3 +245,17 @@ BEGIN
 	END;
 	dbms_output.Put_line('FIM da trigger bloqueio_HE');
 END;
+
+----------------------------------------------------------------------------------
+------------------ CRIA NOVO ID PARA A TABELA QUANDO VAZIO -----------------------
+----------------------------------------------------------------------------------
+CREATE OR REPLACE TRIGGER SGI.GEN_LOGS_EMAILS
+BEFORE INSERT ON LOGS_EMAILS
+FOR EACH ROW WHEN (NEW.ID_LOG IS NULL AND NEW.DATA_INSERCAO IS NULL)
+BEGIN
+	SELECT  SEQ_LOGS_EMAILS.NEXTVAL
+	INTO    :NEW.ID_LOG
+	FROM    DUAL;
+
+	:NEW.DATA_INSERCAO := SYSDATE;
+END;
