@@ -14,6 +14,16 @@ FROM
 WHERE
 	REGEXP_LIKE(NOME_FUNCIONARIO, '^J', 'c') --CASE SENSITIVE
 
+--##############################################################################################################
+--#################### EXEMPLO USANDO REGEXP_LIKE PARA ENCONTRAR O RESPONSÁVEL FINANCEIRO  #####################
+--##############################################################################################################
+SELECT
+	COD_FUNCIONARIO
+FROM
+	RH_FUNCIONARIOS
+WHERE --DIRETOR DO DEPARTAMENTO DE FINANCAS
+	REGEXP_LIKE(CARGO_EXERCICIO , '(DIRETOR)(.*)(FINAN)(.*)', 'i') --CASE INSENSITIVE
+
 
 --##############################################################################################################
 --#################### EXEMPLO USANDO REGEXP_REPLACE PARA ALTERAR STRING NO BANCO DE DADOS #####################
