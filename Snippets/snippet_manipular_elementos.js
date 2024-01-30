@@ -124,3 +124,13 @@ window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.s
 
 window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('text-align', 'center');
 window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('font-size', 'medium');
+
+
+//Transformando um NodeList em Array usando SPREAD OPERATOR
+/*(No exemplo abaixo, eu precisava usar a função filter() em uma NodeList, porém essa função só está presente em Arrays)
+(Minha necessidade era retornar todas as <options> de um <select> com exceção da <option value="4">CANCELADA</option>)*/
+[...document.querySelectorAll('#id_sc_field_situacao > option')].filter((option) => option.value != 4)
+
+//capturar elemento <select> com atributo específico (o problema da diferente sintaxe entre o CSS:checked e o JS.selected)
+/* 1° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]:checked')
+/* 2° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]').selected
