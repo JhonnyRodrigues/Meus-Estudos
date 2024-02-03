@@ -32,6 +32,9 @@ document.querySelectorAll('span#id_read_off_jornada >table >tbody >tr').forEach(
 //função (CSS) 'has()' para capturar o elemento pai que não tem #id
 document.querySelector('td:has(#id_read_on_motivo_encaminhamento)'); //cuidado, pois no 1º <td> que encontra um filho com esse #id, irá capturar todo mundo abaixo dele!
 
+//função .parentNode para capturar somente elemento pai
+document.querySelector('span#id_ajax_label_mensagem_revisao').parentNode.style.textAlign='center';
+
 //função para hover em botão
 function configurarBotao(botao) {
     botao.addEventListener('mouseover', (event) => {
@@ -98,6 +101,12 @@ const valor = parseFloat(elemento.innerText.replace('R$', '').split(',')[0].repl
 //ADICIONANDO CLASSE CSS
 elemento.classList.add('btn-outline-primary');
 
+// INJETANDO ELEMENTO NO BODY PARA ALTERAR PROPRIEDADE DE TODA A CLASSE
+let suspeitoWidth100 = document.createElement('style');
+suspeitoWidth100.setAttribute('id', 'id_para_encontrar');
+suspeitoWidth100.innerHTML = ".scFormTable { width: 100%; }";
+document.querySelector('body').append(suspeitoWidth100);
+
 //Add text before or after an HTML element
 var text = document.createTextNode('the text');
 var child = document.getElementById('childDiv');
@@ -115,3 +124,24 @@ window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.s
 
 window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('text-align', 'center');
 window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('font-size', 'medium');
+
+
+//Transformando um NodeList em Array usando SPREAD OPERATOR
+/*(No exemplo abaixo, eu precisava usar a função filter() em uma NodeList, porém essa função só está presente em Arrays)
+(Minha necessidade era retornar todas as <options> de um <select> com exceção da <option value="4">CANCELADA</option>)*/
+[...document.querySelectorAll('#id_sc_field_situacao > option')].filter((option) => option.value != 4)
+
+//capturar elemento <select> com atributo específico (o problema da diferente sintaxe entre o CSS:checked e o JS.selected)
+/* 1° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]:checked')
+/* 2° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]').selected
+
+
+
+//Usando PROMISES para executar função após término de outra função
+function funcao1() { return new Promise(resolve => { /* Lógica da função 1 */ }); }
+function funcao2() { /* Lógica da função 1 */ }
+funcao1().then(() => { funcao2(); });
+/* Exemplo usando função da biblioteca SweetAlert2: */
+Swal.fire({text: "Não é permitido assinar esta demanda antes do Diretor responsável!"}).then(
+	() => { window.parent.tb_remove(); }
+);
