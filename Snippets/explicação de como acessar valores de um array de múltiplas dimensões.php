@@ -1,0 +1,21 @@
+<?php
+
+$variavel = array(
+	'teste' => array (
+		'data' => '2022-11-09',
+		'ph' => array (
+			'10',
+			'20'
+		)
+	)
+);
+// uma variável, que contém um array, que contém em sua 1° propriedade outro array , de 2 posições(data e ph); sendo que a 1° posição armazena uma data, e a 2° posição armazena outro array; este também com 2 posições não-nomeadas (0 e 1) e com valores 10 e 20, respectivamente
+
+foreach ($variavel['teste']['ph'] as $value) {...} //para cada valor-de-chave do array 'ph', faça...
+
+/*
+o operador -> é usado para acessar métodos e propriedades de um OBJETO
+o operador => é usado para associar valores a chaves de um ARRAY
+*/
+
+?>

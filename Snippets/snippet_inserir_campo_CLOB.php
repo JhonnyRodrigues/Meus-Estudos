@@ -1,6 +1,6 @@
 <?php
 
-{mensagem} = (empty({mensagem})) ? null : str_replace("'","''",{mensagem});
+{mensagem} = str_replace("'","''",{mensagem});
 
 $messageToInsert = '';
 

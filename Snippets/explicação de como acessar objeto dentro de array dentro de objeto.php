@@ -14,7 +14,6 @@
     class stdClassRisco
     {
         public $id_risco = '27';
-
     }
     
     $std = new stdClassP(); //'$std' é uma nova instância da classe 'stdClassP'

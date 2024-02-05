@@ -1,5 +1,5 @@
 document.querySelector('form').addEventListener('submit', function(event) {
-  event.preventDefault(); // Para evitar o envio do formulário, pois estamos apenas capturando o valor
+  event.preventDefault(); // impede o envio de dados do formulário, pois queremos apenas capturar os valores
   const campoNome = document.querySelector('input[name="nome"]').value;
   const campoCpf = document.querySelector('input[name="cpf"]').value;
   const campoCdc = document.querySelector('input[name="cdc"]').value;
