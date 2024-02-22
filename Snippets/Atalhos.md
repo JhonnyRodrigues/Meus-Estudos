@@ -11,7 +11,7 @@
 * **indentação automática**: `alt + shift + F`
 * **comentar linha**: `control + ;`
 * **comentar em bloco**: `alt + shift + A`
-* **apaga a linha**: `control + shift + K`
+* **apaga a linha**: `control + shift + K` ou `shift + del`
 * **recortar toda a linha**: `Ctrl + X (não tendo nada selecionado)`
 * **Mover linha para cima/baixo**: `Alt + Seta para Cima ou Baixo`
 * **Clonar linha para cima/baixo**: `Alt + Shift + Seta para Cima ou Baixo`
@@ -55,7 +55,7 @@
 ## Scriptcase
 * **documentação**: `F1`
 * **comentar linha**: `control + ;`
-* **apaga a linha**: `control + shift + K`
+* **apaga a linha**: `control + shift + K` ou `shift + del`
 * **multicursor**: `control + click`
 * **indentação automática**: `control + alt + i`
 * **seleciona escopo**: `control + shift + space`
