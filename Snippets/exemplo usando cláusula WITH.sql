@@ -1,4 +1,4 @@
--- Nesse exemplo, a cláusula WITH pemite ordenar os campos de forma específica: colocando as solicitações abertas no topo, seguidas das demais (como 'encaminhadas', 'analisando', ect)
+-- Nesse exemplo, a cláusula WITH (uma espécie de view inline) pemite ordenar os campos de forma específica: colocando as solicitações abertas no topo, seguidas das demais (como 'encaminhadas', 'analisando', ect)
 
 WITH subquery AS (
     SELECT
@@ -142,3 +142,4 @@ ORDER BY
 	( CASE FK_STATUS WHEN 1 THEN 1 ELSE 2 END ),
 	DATA_HISTORICO DESC,
 	FK_STATUS
+    
