@@ -82,4 +82,4 @@
 <?php
 ```
 - Limpe as variáveis globais (variáveis de sessão) somente nos eventos _after_
-- Substitua funções ```exit()``` por ```sc_error_message()``` em eventos ajax, por exemplo **onAfterUpdate**
+- Substitua funções php como ```exit()``` por ```sc_error_message()``` + ```sc_error_exit()``` em eventos ajax, como por exemplo **onAfterUpdate**, **act_btn_actionBars**
