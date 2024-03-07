@@ -1,6 +1,7 @@
 <?php
 
-// Objetivo: transformar array(array("106"),array("623"))   em  array("106", "623") 
+// Objetivo: transformar array(array('COD_FUNCIONARIO' => "106"),array('COD_FUNCIONARIO' => "623"))   em  array("106", "623") 
+//Ou seja, guardar valores do dataset dentro de único array
 
 var_dump({datasetSuperFinancas});
 /* Retorna:
