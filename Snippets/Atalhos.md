@@ -50,6 +50,7 @@
 * **multicursor**: `control + click`
 * **pula query anterior**: `alt + up`
 * **abre query em outra grid**: `control + \`
+* **abre plano de execução para análise de performance**: `control + shift + E`
 
 
 ## Scriptcase
