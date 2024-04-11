@@ -125,6 +125,24 @@ window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.s
 window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('text-align', 'center');
 window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('font-size', 'medium');
 
+//Para capturar elementos acima, como pai, avô, tio-avô, use .PARENT
+//Exemplo da estrutura:
+<div>
+    <div>
+        <select required>
+            <option value="" disabled selected>selecione o valor</option>
+        </select>
+        </div>
+    <label>nome do campo</label>
+</div>
+//Como capturar o label correspondente
+document.querySelectorAll('select[required]').forEach((el) => {
+    if(el.value == '') {
+        el.parentElement.querySelector('input').classList.add('invalid');
+        camposVazios.push(el.parentElement.parentElement.querySelector('label').textContent.trim());
+    }
+})
+
 
 //Transformando um NodeList em Array usando SPREAD OPERATOR
 /*(No exemplo abaixo, eu precisava usar a função filter() em uma NodeList, porém essa função só está presente em Arrays)
@@ -143,5 +161,5 @@ function funcao2() { /* Lógica da função 1 */ }
 funcao1().then(() => { funcao2(); });
 /* Exemplo usando função da biblioteca SweetAlert2: */
 Swal.fire({text: "Não é permitido assinar esta demanda antes do Diretor responsável!"}).then(
-	() => { window.parent.tb_remove(); }
+	() => { window.parent.tb_remove(); } //mostra o alerta e, só depois de confirmar, fecha o modal
 );

@@ -1,3 +1,16 @@
+//Exemplo mais recente e mais simples
+function aplicarMascara(elemento) {
+	let valorPuro = elemento.value.replace(/([^0-9])+/g, ""); /* remove qualquer caractere nao numerico */
+
+	if (valorPuro.length === 11) { //CPF
+		elemento.value = valorPuro.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+	} else if (valorPuro.length === 14) { //CNPJ
+		elemento.value = valorPuro.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+	} else {
+		elemento.value = valorPuro;
+	}
+}
+
 /*########################################################################################################################################
 ################################################ APLICANDO MASCARAS USANDO JAVASCRIPT PURO ###############################################
 ########################################################################################################################################*/
