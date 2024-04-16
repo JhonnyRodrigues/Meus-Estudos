@@ -95,3 +95,143 @@ function validarFormulario(form) {
 		return false;
 	}
 }
+
+//#################################################
+/*A funcao acima pode ser melhor substituida por:*/
+//#################################################
+
+function aplicarMascara(elemento) {
+	let valorPuro = elemento.value.replace(/([^0-9])+/g, ""); /* remove qualquer caractere nao numerico */
+
+	if (valorPuro.length === 11) { //CPF
+		elemento.value = valorPuro.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+	} else if (valorPuro.length === 14) { //CNPJ
+		elemento.value = valorPuro.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5');
+	} else {
+		elemento.value = valorPuro;
+	}
+}
+
+function verificarDocumento(elemento) { //messe caso, um único campo armazenava tanto CPF quanto CNPJ
+	documento = elemento.value.replace(/([^0-9])+/g, "");
+	if (documento.length < 12) {
+		if (!validarCPF(documento)) {
+			alert("CPF inválido!\nPor favor, verifique os números digitados.");
+			elemento.value = '';
+		}
+	} else {
+		if (!validarCNPJ(documento)) {
+			alert("CNPJ inválido!\nPor favor, verifique os números digitados.");
+			elemento.value = '';
+		}			
+	}
+}
+
+function validarCPF(cpf) {
+	var soma = 0;
+	var resto;
+	var cpfPuro = cpf.replace(/([^0-9])+/g, "");
+
+	if (/^([0]{11}|[1]{11}|[2]{11}|[3]{11}|[4]{11}|[5]{11}|[6]{11}|[7]{11}|[8]{11}|[9]{11})$/.test(cpfPuro)) return false;
+
+	for (i = 1; i <= 9; i++) soma = soma + parseInt(cpfPuro.substring(i - 1, i)) * (11 - i);
+	resto = (soma * 10) % 11;
+
+	if ((resto == 10) || (resto == 11)) resto = 0;
+	if (resto != parseInt(cpfPuro.substring(9, 10))) return false;
+
+	soma = 0;
+	for (i = 1; i <= 10; i++) soma = soma + parseInt(cpfPuro.substring(i - 1, i)) * (12 - i);
+	resto = (soma * 10) % 11;
+
+	if ((resto == 10) || (resto == 11)) resto = 0;
+	if (resto != parseInt(cpfPuro.substring(10, 11))) return false;
+	return true;
+}
+
+function validarCNPJ(cnpj) {
+	cnpj = cnpj.replace(/[^\d]+/g,'');
+
+	if (cnpj == '') return false;
+	if (cnpj.length != 14) return false;
+
+	// Elimina CNPJs invalidos conhecidos
+	if (cnpj == "00000000000000" || 
+		cnpj == "11111111111111" || 
+		cnpj == "22222222222222" || 
+		cnpj == "33333333333333" || 
+		cnpj == "44444444444444" || 
+		cnpj == "55555555555555" || 
+		cnpj == "66666666666666" || 
+		cnpj == "77777777777777" || 
+		cnpj == "88888888888888" || 
+		cnpj == "99999999999999")
+	return false;
+		
+	// Valida DVs
+	tamanho = cnpj.length - 2
+	numeros = cnpj.substring(0,tamanho);
+	digitos = cnpj.substring(tamanho);
+	soma = 0;
+	pos = tamanho - 7;
+	for (i = tamanho; i >= 1; i--) {
+	soma += numeros.charAt(tamanho - i) * pos--;
+	if (pos < 2)
+			pos = 9;
+	}
+	resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+	if (resultado != digitos.charAt(0))
+		return false;
+		
+	tamanho = tamanho + 1;
+	numeros = cnpj.substring(0,tamanho);
+	soma = 0;
+	pos = tamanho - 7;
+	for (i = tamanho; i >= 1; i--) {
+	soma += numeros.charAt(tamanho - i) * pos--;
+	if (pos < 2)
+			pos = 9;
+	}
+	resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+	if (resultado != digitos.charAt(1))
+		return false;
+		
+	return true;
+}
+
+function validarFormulario() {
+	let camposVazios = [];
+	document.querySelectorAll('select[required]').forEach((el) => {
+		if(el.value == '') {
+			el.parentElement.querySelector('input').classList.add('invalid'); //adiciona classe da lib materialize para deixar elemento vermelho
+			camposVazios.push(el.parentElement.parentElement.querySelector('label').textContent.trim()); //captura o label do campo vazio
+		}
+	})
+	if(camposVazios.length > 0) {
+		M.toast({html: `Por favor, selecione um valor para o campo ${camposVazios.join(', ')}.`}); //funcao join JS equivale a explode PHP
+	}
+	
+	return camposVazios.length == 0; //so retorna false se houver campos vazios
+}
+
+function submitForm(event) {
+	if (!validarFormulario()) {
+		return false;
+	}
+
+	const formulario = document.querySelector('form');
+	if (!formulario.checkValidity()) {
+		formulario.reportValidity(); //funcao JS nativa que reporta os problemas na interface (baloes)
+		return false;
+	}
+
+	formulario.submit();
+
+	//DEBUG:
+	// document.querySelectorAll('input[id^="v"]').forEach((el) => {
+	//     console.log(el.name, el.value); //printa todos os valores
+	// });
+	// event.preventDefault(); // impede o envio de dados do formulário
+}
+
+document.querySelector('#btSubmit').addEventListener('click', submitForm);
