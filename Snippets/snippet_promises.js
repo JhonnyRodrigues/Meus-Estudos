@@ -32,8 +32,8 @@ Swal.fire({
 			// return response.text(); // Retornar os dados enviados pelo PHP no formato texto
 			return response.json(); // o método json() retorna uma Promise que, após análise de uma string JSON, vira um objeto.
 		})
-		// .then(() => { //só para testar a visualização do loading
-		// 	return new Promise((resolve, ) => setTimeout(() => resolve({enviado: true, mensagem: 'mostrei o loading'}), 10000));
+		// .then(() => {
+		// 	return new Promise((resolve, ) => setTimeout(() => resolve({enviado: true, mensagem: 'testando o SVG loading'}), 15000));
 		// })
 		.then(data => { // Se o processamento do arquivo for bem-sucedido, faça algo com essa resposta do PHP			
 			console.log("Resposta do PHP:", data);
@@ -70,55 +70,6 @@ Swal.fire({
 
 
 <style>
-	#sc_b_new_top,
-	#pesq_top,
-	#sc_testar_envio_email_top,
-	#f_sel_sub_gb,
-	#f_sel_sub_sel,
-	#sai_top,
-	#Bsair,
-	#sc_b_sai_top {
-		color: ivory;
-	}
-	#sel_groupby_top,
-	#selcmp_top,
-	#ordcmp_top,
-	#sc_btgp_btn_group_1_top,
-	#res_top,
-	#reload_top,
-	#Rrotac_top,
-	#Rconfig_top,
-	#Brestore_sel,
-	#Brestore_gb,
-	#f_sel_sub_sel,
-	#Rsai_top,
-	#Bsair_gb,
-	#Rgraf_top {
-		color: black;
-	}
-	
-    .circular-loader {
-        -webkit-animation: rotate 2s linear infinite;
-        animation: rotate 2s linear infinite;
-        height: 100%;
-        -webkit-transform-origin: center center;
-        -ms-transform-origin: center center;
-        transform-origin: center center;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        margin: auto;
-    }
-
-    .loader-path {
-        stroke-dasharray: 150, 200;
-        stroke-dashoffset: -10;
-        -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-        animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-        stroke-linecap: round;
-    }
-
 	dialog#loading_enviar_email {
 		width: 30vh;
 		height: 30vh;
@@ -132,96 +83,50 @@ Swal.fire({
 		background: #020202;
 		opacity: 0.4;
 	}
-
-    @-webkit-keyframes rotate {
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
-
-    @keyframes rotate {
-        100% {
-            -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
-        }
-    }
-
-    @-webkit-keyframes dash {
-        0% {
-            stroke-dasharray: 1, 200;
-            stroke-dashoffset: 0;
-        }
-
-        50% {
-            stroke-dasharray: 89, 200;
-            stroke-dashoffset: -35;
-        }
-
-        100% {
-            stroke-dasharray: 89, 200;
-            stroke-dashoffset: -124;
-        }
-    }
-
-    @keyframes dash {
-        0% {
-            stroke-dasharray: 1, 200;
-            stroke-dashoffset: 0;
-        }
-
-        50% {
-            stroke-dasharray: 89, 200;
-            stroke-dashoffset: -35;
-        }
-
-        100% {
-            stroke-dasharray: 89, 200;
-            stroke-dashoffset: -124;
-        }
-    }
-
-    @-webkit-keyframes color {
-        0% {
-            stroke: #70c542;
-        }
-
-        40% {
-            stroke: #70c542;
-        }
-
-        66% {
-            stroke: #70c542;
-        }
-
-        80%,
-        90% {
-            stroke: #70c542;
-        }
-    }
-
-    @keyframes color {
-        0% {
-            stroke: #727cf5;
-        }
-
-        40% {
-            stroke: #727cf5;
-        }
-
-        66% {
-            stroke: #727cf5;
-        }
-
-        80%,
-        90% {
-            stroke: #727cf5;
-        }
-    }
+	
+	svg {
+		width: 100px;
+		height: 100px;
+		margin: 20px;
+		display:inline-block;
+	}
 </style>
 
 <dialog id="loading_enviar_email">
-	<svg class="circular-loader" viewBox="25 25 50 50">
-		<circle class="loader-path" cx="50" cy="50" r="20" fill="none" stroke="#727cf5" stroke-width="3" />
+	<svg version="1.1" id="L7" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+		<path fill="#f00" d="M31.6,3.5C5.9,13.6-6.6,42.7,3.5,68.4c10.1,25.7,39.2,38.3,64.9,28.1l-3.1-7.9c-21.3,8.4-45.4-2-53.8-23.3
+	  c-8.4-21.3,2-45.4,23.3-53.8L31.6,3.5z">
+			<animateTransform 
+				attributeName="transform" 
+				attributeType="XML" 
+				type="rotate"
+				dur="2s" 
+				from="0 50 50"
+				to="360 50 50" 
+				repeatCount="indefinite"
+			/>
+		</path>
+		<path fill="#0f0" d="M42.3,39.6c5.7-4.3,13.9-3.1,18.1,2.7c4.3,5.7,3.1,13.9-2.7,18.1l4.1,5.5c8.8-6.5,10.6-19,4.1-27.7 c-6.5-8.8-19-10.6-27.7-4.1L42.3,39.6z">
+			<animateTransform 
+				attributeName="transform" 
+				attributeType="XML" 
+				type="rotate"
+				dur="1s" 
+				from="0 50 50"
+				to="-360 50 50" 
+				repeatCount="indefinite"
+			/>
+		</path>
+		<path fill="#00f" d="M82,35.7C74.1,18,53.4,10.1,35.7,18S10.1,46.6,18,64.3l7.6-3.4c-6-13.5,0-29.3,13.5-35.3s29.3,0,35.3,13.5 L82,35.7z">
+			<animateTransform 
+			attributeName="transform" 
+			attributeType="XML" 
+			type="rotate"
+			dur="2s" 
+			from="0 50 50"
+			to="360 50 50" 
+			repeatCount="indefinite"
+			/>
+		</path>
 	</svg>
 </dialog>
