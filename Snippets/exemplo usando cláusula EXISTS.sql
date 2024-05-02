@@ -1,0 +1,33 @@
+-- relaciona cada solicitação com sua movimentação mais recente
+SELECT
+	S.FK_REPARTICAO
+FROM
+	HELP_SOLICITACOES S
+JOIN
+	(
+		SELECT
+			FK_SOLICITACAO,
+			MAX(ID_HISTORICO) AS MMR /*movimentacao mais recente*/
+		FROM
+			HELP_HISTORICOS
+		WHERE
+			FK_STATUS = 10
+		GROUP BY
+			FK_SOLICITACAO
+	) ENC
+	ON ENC.FK_SOLICITACAO = S.ID_SOLICITACAO
+
+
+
+-- solução usando cláusula EXISTS
+SELECT
+    S.FK_REPARTICAO
+FROM
+    HELP_SOLICITACOES S
+WHERE
+    EXISTS (
+        SELECT 'EXISTE'
+        FROM HELP_HISTORICOS H
+        WHERE H.FK_SOLICITACAO = S.ID_SOLICITACAO
+        AND H.FK_STATUS = 10
+    )
