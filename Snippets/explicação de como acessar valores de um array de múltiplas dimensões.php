@@ -9,7 +9,7 @@ $variavel = array(
 		)
 	)
 );
-// uma variável, que contém um array, que contém em sua 1° propriedade outro array , de 2 posições(data e ph); sendo que a 1° posição armazena uma data, e a 2° posição armazena outro array; este também com 2 posições não-nomeadas (0 e 1) e com valores 10 e 20, respectivamente
+// uma variável, que contém um array, que contém em sua 1° propriedade 'teste' outro array , de 2 posições('data' e 'ph'); sendo que a 1° posição contém uma data, e a 2° posição contém outro array; este último array também com 2 posições não-nomeadas (portanto, [0] e [1]) e respectivamente com valores '10' e '20'
 
 foreach ($variavel['teste']['ph'] as $value) {...} //para cada valor-de-chave do array 'ph', faça...
 
