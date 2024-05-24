@@ -83,3 +83,6 @@
 ```
 - Limpe as variáveis globais (variáveis de sessão) somente nos eventos _after_
 - Substitua funções php como ```exit()``` por ```sc_error_message()``` + ```sc_error_exit()``` em eventos ajax, como por exemplo **onAfterUpdate**, **act_btn_actionBars**
+
+- use a macro ```sc_exit(ref)``` quando precisar atualizar a aplicação sem sair do iframe, semelhante ao ```sc_redir()```
+- use a macro ```sc_ajax_refresh()``` quando precisar atualizar toda a aplicação, dentro dela contém um ```window.location.reload```
