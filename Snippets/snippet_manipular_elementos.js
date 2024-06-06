@@ -150,6 +150,7 @@ document.querySelectorAll('select[required]').forEach((el) => {
 (Minha necessidade era retornar todas as <options> de um <select> com exceção da <option value="4">CANCELADA</option>)*/
 [...document.querySelectorAll('#id_sc_field_situacao > option')].filter((option) => option.value != 4)
 
+
 //capturar elemento <select> com atributo específico (o problema da diferente sintaxe entre o CSS:checked e o JS.selected)
 /* 1° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]:checked')
 /* 2° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]').selected
@@ -158,9 +159,16 @@ document.querySelectorAll('select[required]').forEach((el) => {
 
 //Usando PROMISES para executar função após término de outra função
 function funcao1() { return new Promise(resolve => { /* Lógica da função 1 */ }); }
-function funcao2() { /* Lógica da função 1 */ }
+function funcao2() { /* Lógica da função 2 */ }
 funcao1().then(() => { funcao2(); });
 /* Exemplo usando função da biblioteca SweetAlert2: */
 Swal.fire({text: "Não é permitido assinar esta demanda antes do Diretor responsável!"}).then(
 	() => { window.parent.tb_remove(); } //mostra o alerta e, só depois de confirmar, fecha o modal
 );
+
+
+//Clonar elementos
+let iconElement = document.createElement('i');
+matriculasElements.forEach((link) => {
+    link.appendChild(iconElement.cloneNode(true));
+});
