@@ -172,3 +172,7 @@ let iconElement = document.createElement('i');
 matriculasElements.forEach((link) => {
     link.appendChild(iconElement.cloneNode(true));
 });
+
+
+//A propriedade contentWindow retorna o objeto gerado por um <iframe> (CSS não permite cross-domain, diferente de JS)
+window.parent.document.querySelector('div#TB_window > iframe').contentWindow.document.querySelector('body').style.background = 'orange';
