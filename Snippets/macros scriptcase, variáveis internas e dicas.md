@@ -5,6 +5,9 @@
 
 - **sc_select_where**(add): É possível, em tempo de execução da aplicação de **consulta**, adicionar um campo/condição à cláusula WHERE da somente consulta.
 
+- **sc_begin_trans()**: usar sem moderação pois o módulo de logs do scriptcase se encarrega de commitar
+- **sc_commit_trans()**: usar somente quando houver redirecionamento manual, ou seja, quando "furar" o módulo de logs do scriptcase. Do contrário, os logs serão duplicados.
+
 - **sc_select_order**("Campo"): É possível, em tempo de execução da aplicação de consulta, alterar a cláusula ORDER BY do select principal da consulta.
 
 - **sc_sql_injection**({Meu_Campo}) ou ($Minha_Variável): Todos os acessos a base de dados, gerados pelo Scriptcase, têm proteção contra "sql injection". Mas nos comandos gerados pelo usuário (macros: sc_lookup, sc_select ou sc_exec_sql), caso seja necessário, deverá ser utilizada esta macro para proteção.
@@ -41,6 +44,7 @@
 - **_numOfRows**: retorna a quantidade de linhas da consulta utilizando a macro **sc_select()**.Exemplo: `if ({dataset}->_numOfRows < 1) { ... }`
 
 - **sc_btn_insert** ou **sc_btn_update** ou **sc_btn_delete** ou **sc_btn_new**: retorna `true` quando o botão é selecionado.
+Cuidado ao utilizá-las em validações, evite erros utilizando parênteses pois o código fonte apresenta operador lógico. Exemplo: `sc_btn_update` equivale a `$this->sc_evento == "alterar" || $this->sc_evento == "update"`
 
 - **{sc_seq_register}**: disponibiliza o **número sequencial** do registro que está sendo processado no evento onRecord
 

@@ -91,9 +91,10 @@ function centraliza_botao(conteiner) {
         }
     });
 }
-window.onload = function() { //só aplica JS depois do DOM totalmente carregado
-    centraliza_botao();
-}
+
+
+window.onload = function() {} //só aplica JS depois do DOM totalmente carregado
+addEventListener("DOMContentLoaded", (event) => {}); //The DOMContentLoaded event is fired when the document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading (the load event can be used to detect a fully-loaded page).
 
 //manipulando conteúdo
 elemento.innerText = 'R$4.235.159,53';
