@@ -78,18 +78,20 @@ como a titularidade da ligação,
 mas também a categoria,
 numeração do imóvel etc.</ p>';
 
-$array = str_split($textao, 4000);
+$array = str_split($textao, 4000); //quebra o texto em pedaços de 4 mil caracteres para cada chave de um array
 var_dump($array);
 
 $result = array_reduce($array,
 	function ($acumulador, $chunk) {
-		$acumulador .= "|| TO_CLOB('{$chunk}')";
+		$acumulador .= "|| TO_CLOB('{$chunk}')"; //concatena a função CLOB para cada pedaço do $textao
 		return $acumulador;
 	},
-	''
+	'' //acumulador é iniciado como uma string vazia
 );
 
 var_dump($result);
 
 
 a saída imprimirá: string(5249) "|| TO_CLOB('13/08/13 09h42min - V ... blahblahblah ... al')|| TO_CLOB('terações ...blahblahblah ... numeração do imóvel etc.</ p>')"
+
+//Nota: posteriormente, foi implementada condicional ternária no $acumulador para que a string não inicie com o operador de concatenação (||) do SGBD Oracle
