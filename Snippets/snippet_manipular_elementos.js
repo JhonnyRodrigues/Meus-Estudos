@@ -177,3 +177,10 @@ matriculasElements.forEach((link) => {
 
 //A propriedade contentWindow retorna o objeto gerado por um <iframe> (CSS não permite cross-domain, diferente de JS)
 window.parent.document.querySelector('div#TB_window > iframe').contentWindow.document.querySelector('body').style.background = 'orange';
+
+//Converter string data:'20/09/2024' em objeto Date com saída: 'Fri Sep 20 2024 00:00:00 GMT-0300 (Horário Padrão de Brasília)'
+function converterStringParaData(dataString) { //
+    const [dia, mes, ano] = dataString.split('/');
+    const dataObjeto = new Date(ano, mes - 1, dia); //mês em JavaScript inicia no zero, por isso subtraí 1
+    return dataObjeto;
+}
