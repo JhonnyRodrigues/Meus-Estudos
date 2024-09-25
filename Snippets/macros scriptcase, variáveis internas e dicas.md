@@ -37,7 +37,9 @@
 
 - **sc_master_value**({campo_a_atualizar},{campo_atualizado}): ao trabalhar com aplicação mestre-detalhe, atualiza os valores da aplicação mestre
 
-- **sc_label**("nome_do_campo"): alterar dinamicamente o label dos campos 
+- **sc_label**("nome_do_campo"): alterar dinamicamente o label dos campos
+
+- **sc_field_no_validate**({nome_do_campo1}, {nome_do_campo2}): ignora as validações dos campos informados no parâmetro. Pode ser utilizada apenas no evento onLoad.
 
 # VARIÁVEIS
 
