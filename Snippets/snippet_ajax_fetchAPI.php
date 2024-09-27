@@ -45,7 +45,7 @@ if (email == '') {
 <?php
 header('Content-Type: text/html; charset=utf-8'); // Configurar o arquivo para o charset padrao da web
 
-if(isset($_POST['email'])) {
+if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $mensagem = mb_convert_encoding("Um e-mail foi enviado para o endereço: $email.", 'UTF-8', 'ISO-8859-1');
 
