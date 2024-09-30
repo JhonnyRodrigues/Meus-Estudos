@@ -1,6 +1,7 @@
 <?php
 session_start(); //indica ao PHP para trabalhar com sessões
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -29,16 +30,17 @@ session_start(); //indica ao PHP para trabalhar com sessões
                         com a tutoria do <a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a>
                     </h3>
 
-                    <?php if (@$_SESSION['status_cadastro']) { ?> <!--note que a condicional fica aberta-->
+                    <?php
+                    if (@$_SESSION['status_cadastro']) {
+                    ?> <!--note que a condicional fica aberta-->
                         <div class="notification is-success">
                             <p>Cadastro efetuado!</p>
                             <p>Faça login informando o seu usuário e senha <a href="login.php">AQUI</a></p>
                         </div>
-                    <?php }
+                    <?php
+                    }
                     unset($_SESSION['status_cadastro']); //agora fecha a condicional e destrói a sessão para não ficar sempre exibindo a mensagem
-                    ?>
-
-                    <?php if (@$_SESSION['usuario_existe']) { //o arroba silencia o erro PHP ("Warning: Undefined array")
+                    if (@$_SESSION['usuario_existe']) { //o arroba silencia o erro PHP ("Warning: Undefined array")
                     ?>
                         <div class="notification is-info">
                             <p>O usuário escolhido já existe. Informe outro e tente novamente.</p>
@@ -55,16 +57,19 @@ session_start(); //indica ao PHP para trabalhar com sessões
                                     <input name="nome" type="text" class="input is-large" placeholder="Nome" autofocus>
                                 </div>
                             </div>
+
                             <div class="field">
                                 <div class="control">
                                     <input name="usuario" type="text" class="input is-large" placeholder="Usuário">
                                 </div>
                             </div>
+
                             <div class="field">
                                 <div class="control">
                                     <input name="senha" class="input is-large" type="password" placeholder="Senha">
                                 </div>
                             </div>
+                            
                             <button type="submit" class="button is-block is-link is-large is-fullwidth">Cadastrar</button>
                         </form>
                     </div>

@@ -2,6 +2,7 @@
 *Esse arquivo faz a validação para impedir que a página `painel.php` seja acessada pela URL sem prévia autenticação-->
 <?php
 session_start(); //inicia a sessão para pegar a variável $usuário
+// if (!$_SESSION['usu@rio']) {
 if (!$_SESSION['nome']) {    //se a sessão do usuário NÃO existir
     header('location:index.php'); //redirecione novamente para a index
     exit;

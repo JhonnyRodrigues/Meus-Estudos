@@ -3,7 +3,7 @@
 
 include_once './conexao.php';
 
-$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+$dados = filter_input_array(INPUT_POST, FILTER_DEFAULT); //sanitiza os valores
 
 if (empty($dados['nome'])) { /** atributo encontrado no input do form cadastro.php */
     $retorno = ['status' => false, 'msg' => "É necessário preencher o campo nome!"];
