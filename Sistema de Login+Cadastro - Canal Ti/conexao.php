@@ -1,19 +1,25 @@
 <?php
 
-define('HOST','127.0.0.1'); //essa constante vai armazenar o endereço IP do Banco de Dados
+define('HOST', '127.0.0.1'); //essa constante vai armazenar o endereço IP do Banco de Dados
 define('PORTA', 3306);
 define('USUARIO', 'root');  //armazena o usuario do Banco de Dados
 define('SENHA', 'hakunamatata');
-define('DB','MeuBanco'); //essa constante vai armazenar o nome da Base de Dados
+define('DB', 'MeuBanco'); //essa constante vai armazenar o nome da Base de Dados
 define('CHARSET', 'utf8mb4');
 
 ############################################ PDO #####################################
 # conexão usada no arquivo `cadastrar_usando_sweetalert2.php`
 try {
-    $conexao = new PDO("mysql:host=".HOST.";port=".PORTA.";dbname=".DB.",".USUARIO.",".SENHA);
+    $conexao = new PDO(
+        "mysql:host=" . HOST 
+        . ";port=" . PORTA 
+        . ";dbname=" . DB 
+        . "," . USUARIO 
+        . "," . SENHA
+    );
 } catch (PDOException $err) {
     $retorno = [
-        'status' => false, 
+        'status' => false,
         'msg' => "Não foi possível se conectar ao Banco de Dados.Erro gerado: " . $err->getMessage()
     ];
 }
@@ -33,12 +39,12 @@ if ($conexao->connect_errno) {
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 }
-if (!$mysqli->query("SET a=1")) {
+if (!$mysqli->query()) {
     printf("Error message: %s\n", $mysqli->error);
 }
 $conexao->close();
 */
-################################### ORIENTADO A OBJETOS ####################################
+######################################### POO ############################################
 /*
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 try {
@@ -48,16 +54,14 @@ try {
 } catch (\mysqli_sql_exception $e) {
      throw new \mysqli_sql_exception($e->getMessage(), $e->getCode());
 } finally {
-    unset(HOST, PORTA, USUARIO, SENHA, DB, CHARSET); // we don't need them anymore
+    unset(HOST, PORTA, USUARIO, SENHA, DB, CHARSET);
 }
 
-function prepared_query($conexao, $sql, $params, $types = "") {
-    $types = $types ?: str_repeat("s", count($params));
+function prepared_query($conexao, $sql, $params, $types = '') {
+    $types = $types ?: str_repeat("s", count($params)); //operador de coalescência;
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param($types, ...$params);
+    $stmt->bind_param($types, ...$params); //spread operator
     $stmt->execute();
     return $stmt;
 }
 */
-
-?>

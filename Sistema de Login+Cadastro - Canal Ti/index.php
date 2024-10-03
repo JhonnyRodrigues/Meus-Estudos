@@ -28,11 +28,14 @@ session_start(); //toda a vez que trabalhar com sessões, lembre-se de usar essa
                     <h3 class="subtitle has-text-grey">
                         com a tutoria do <a href="https://youtube.com/canaltioficial" target="_blank">Canal TI</a>
                     </h3>
-                    <?php if (isset($_SESSION['nao_autenticado'])) { ?> <!--se a variável de sessão `nao_autenticado` existir, então mostra a DIV de ERRO-->
+                    <?php
+                    if (isset($_SESSION['nao_autenticado'])) {
+                    ?> <!--se a variável de sessão `nao_autenticado` existir, então mostra a DIV de ERRO-->
                         <div class="notification is-danger">
                             <p>ERRO: Usuário ou senha inválidos.</p>
                         </div>
-                    <?php } // perceba que aqui é FECHADA a condicional aberta pra função isset()
+                    <?php
+                    } // perceba que aqui é FECHADA a condicional aberta pra função isset()
                     unset($_SESSION['nao_autenticado']); //destrói essa sessão caso o usuário acesse a aplicação pela 1ª vez.
                     ?>
                     <div class="box"> <!--DIV pro formulário-->
@@ -47,7 +50,9 @@ session_start(); //toda a vez que trabalhar com sessões, lembre-se de usar essa
                                 <div class="control">
                                     <input name="senha" class="input is-large" type="password" placeholder="Sua senha" autocomplete="on">
                                 </div>
-                            </div><button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
+                            </div>
+
+                            <button type="submit" class="button is-block is-link is-large is-fullwidth">Entrar</button>
                         </form>
                     </div>
                     <div>
