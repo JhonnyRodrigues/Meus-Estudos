@@ -184,3 +184,10 @@ function converterStringParaData(dataString) { //
     const dataObjeto = new Date(ano, mes - 1, dia); //mês em JavaScript inicia no zero, por isso subtraí 1
     return dataObjeto;
 }
+
+// Verificar se a tecla ESC foi pressionada
+document.addEventListener('keydown', function(event) {
+    if (event.code === 'Escape') { 
+        closeModal();
+    }
+});
