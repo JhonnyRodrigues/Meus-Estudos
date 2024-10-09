@@ -109,11 +109,11 @@ aplicaCssCabecalho('#idTableDoencas thead tr th', widthTableDoencas);
 css(tableDoencas, { 'border-collapse': 'collapse' });
 aplicaCssBtnAdicionar(btnAddDoenca);
 
-listar('id_corpo_tabela_risco', listaRiscos, removeRisco, 'modeloRisco'); //chama essa função para, ao carregar a página, já apresente a descrição mesmo que o objeto esteja vazio
+listar('id_corpo_tabela_risco', listaRiscos, removeRisco, 'modeloRisco'); //já chama essa função para que, ao carregar a página, apresente a descrição mesmo que o objeto esteja vazio
 listar('id_corpo_tabela_doenca', listaDoencas, removeDoenca, 'modeloDoenca');
 
 //-----------------------------------------------------------------------------------------------------\\
-//-------------------------------------- Implementação das funções -------------------------------------\\
+//------------------------------- Implementação das funções construtoras -------------------------------\\
 //-------------------------------------------------------------------------------------------------------\\
 function insereCabecalhoRiscos() { //<---
     return '<thead>'

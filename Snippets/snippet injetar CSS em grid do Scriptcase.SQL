@@ -1,3 +1,4 @@
+--injeta estilo CSS diretamente no valor do campo, para aplicação grid/scriptcase
 
     CASE
         WHEN A.FK_SITUACAO = 1 THEN '<span class="aguardando">aguardando</span>'
@@ -8,6 +9,7 @@
         ELSE '<span class="nao-encontrado"> - </span>'
     END AS SITUACAO,
 
+--#No evento onInit da aplicação de consulta do Scriptcase:
 ?>
 <style>
 	:root {
@@ -42,4 +44,5 @@
 	}
 </style>
 <?php
-/*lembrar de configurar o campo para tipo 'texto'*/
+
+/*Nota: lembrar de configurar o campo para tipo 'texto'*/

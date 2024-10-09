@@ -10,31 +10,31 @@ opcaoConcluir.setAttribute('disabled', true);
 //operador '.' para capturar elemento através de suas classes (no plural)
 document.querySelector('td.scFormDataFontOdd.css_motivo_encaminhamento_line')
 
-//operador '>' para capturar o elemento filho que não tem #id 
+//operador '>' para capturar o elemento filho
 let opcaoConcluir = document.querySelector('#id_sc_field_fk_status > option[value="4"]');
-opcaoConcluir.style.setProperty('color', 'lightgray', 'important');
+
+//(o problema da diferente sintaxe entre o CSS:checked e o JS.selected) para capturar elemento <select> com atributo específico 
+/* 1° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]:checked')
+/* 2° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]').selected
 
 //operador like '^' para capturar elementos semelhantes
-if (document.querySelectorAll('[id^=sc_exc_line_]') != null) {
-    document.querySelectorAll('[id^=sc_exc_line_]').forEach((el) => el.addEventListener('click', () => {
-        document.querySelector('#nmsc_iframe_liga_MED_CADASTRAR_AGENDAMENTOS_F').contentWindow.location.reload(true);
-        document.querySelector('#iframe_item_131').contentWindow.location.reload(true)
-    }))
-}
+document.querySelectorAll('[id^=sc_exc_line_]').forEach((el) => el.addEventListener('click', () => {
+    document.querySelector('#nmsc_iframe_liga_MED_CADASTRAR_AGENDAMENTOS_F').contentWindow.location.reload(true);
+    document.querySelector('#iframe_item_131').contentWindow.location.reload(true)
+}));
 
 //pseudoclass ':nth-child()' para capturar elementos filhos
 tabela = document.querySelector('table#hidden_bloco_10 tbody tr:nth-child(2)').style['flex-direction'] = 'column';
-motivo = document.querySelector('td#hidden_field_data_motivo_encaminhamento table tbody tr:nth-child(1)');
 
 //iterar 1 estilo em selectorAll
 document.querySelectorAll('span#id_read_off_jornada >table >tbody >tr').forEach((el) => {el.style.display = 'inline-flex'})
 
 //função (CSS) 'has()' para capturar o elemento pai que não tem #id
-document.querySelector('td:has(#id_read_on_motivo_encaminhamento)'); //cuidado, pois no 1º <td> que encontra um filho com esse #id, irá capturar todo mundo abaixo dele!
-//ou usar a função closest()
+document.querySelector('td:has(#id_read_on_motivo_encaminhamento)'); //cuidado, pois no 1º <td> que encontra um filho com esse #id, irá capturar todo mundo abaixo dele! Existe outra opção: usar a função closest()
 
 //função .parentNode para capturar somente elemento pai
 document.querySelector('span#id_ajax_label_mensagem_revisao').parentNode.style.textAlign='center';
+
 
 //função para hover em botão
 function configurarBotao(botao) {
@@ -65,13 +65,14 @@ function configurarBotao(botao) {
     botao.addEventListener('mousedown', (event) => {
         event.preventDefault(); //impede a seleção do texto dentro do <input> (por algum motivo, a propriedade [userSelect: 'none'] não está funcionando)
     });
-    // botao.onmousedown = function(event) {event.preventDefault();};	
-    // botao.onmousemove = function(event) {event.preventDefault();};
+    botao.onmousedown = function(event) {event.preventDefault();};	
+    botao.onmousemove = function(event) {event.preventDefault();};
 }
 const botaoResposta = document.querySelector('#id_sc_field_btn_resposta');
 const botaoSolucao = document.querySelector('#id_sc_field_btn_adicionar_solucao');
 configurarBotao(botaoResposta);
 configurarBotao(botaoSolucao);
+
 
 //função adicionar propriedades
 function centraliza_botao(conteiner) {
@@ -80,10 +81,10 @@ function centraliza_botao(conteiner) {
         flexWrap: 'wrap',
         alignContent: 'center',
         justifyContent: 'center',
-        //alignItems: 'center', ou em camelCase ou entre aspas simples
+        //alignItems: 'center', ou em camelCase ou entre aspas simples!
         'align-items': 'center'
     };
-    // conteiner = document.querySelector('#id_sc_field_btn_codchamado_<?= {sc_seq_register}; ?>');
+    // conteiner = document.querySelector('#id_sc_field_btn_codchamado_<?={sc_seq_register}?>');
     conteiner = document.querySelectorAll('a[id^="id_sc_field_btn_codchamado_"]');
     conteiner.forEach((botao) => {
         for (const style in styles) {
@@ -113,19 +114,12 @@ document.querySelector('body').append(suspeitoWidth100);
 var text = document.createTextNode('the text');
 var child = document.getElementById('childDiv');
 child.parentNode.insertBefore(text, child);
-Exemplo: document.querySelector('td#Check_All_jornada').parentNode.insertBefore(document.createTextNode('TODOS OS DIAS '), document.querySelector('td#Check_All_jornada'));
+//Exemplo: 
+document.querySelector('td#Check_All_jornada').parentNode.insertBefore(document.createTextNode('TODOS OS DIAS '), document.querySelector('td#Check_All_jornada'));
 
-//Para manipular elementos de um MODAL, use .PARENT para transitar entre diferentes CONTEXTOS
-window.parent.document.querySelector('div#TB_window').style.setProperty('padding', '10px');
+//Manipular elementos de um MODAL: use .parent para transitar entre diferentes CONTEXTOS
 window.parent.document.querySelector('div#TB_window').style.setProperty('width', 'auto');
-window.parent.document.querySelector('div#TB_window').style.setProperty('height', 'auto');
-window.parent.document.querySelector('div#TB_window').style.setProperty('border-radius', '20px');
-
 window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.setProperty('width', '360');
-window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.setProperty('height', '180');
-
-window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('text-align', 'center');
-window.document.querySelector('div#mensagem_sincronizacao').style.setProperty('font-size', 'medium');
 
 //Para capturar elementos acima, como pai, avô, tio-avô, use .PARENT
 //Exemplo da estrutura:
@@ -149,13 +143,7 @@ document.querySelectorAll('select[required]').forEach((el) => {
 //Transformando um NodeList em Array usando SPREAD OPERATOR
 /*(No exemplo abaixo, eu precisava usar a função filter() em uma NodeList, porém essa função só está presente em Arrays)
 (Minha necessidade era retornar todas as <options> de um <select> com exceção da <option value="4">CANCELADA</option>)*/
-[...document.querySelectorAll('#id_sc_field_situacao > option')].filter((option) => option.value != 4)
-
-
-//capturar elemento <select> com atributo específico (o problema da diferente sintaxe entre o CSS:checked e o JS.selected)
-/* 1° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]:checked')
-/* 2° opção: */ document.querySelector('#id_sc_field_situacao > option[value="4"]').selected
-
+[...document.querySelectorAll('#id_sc_field_situacao > option')].filter((option) => option.value != 4);
 
 
 //Usando PROMISES para executar função após término de outra função

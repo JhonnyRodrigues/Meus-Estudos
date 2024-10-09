@@ -18,18 +18,17 @@ function aplicarMascara(elemento) {
 // é importante que o atributo id seja nomeado com final '...Input'
 // o parâmetro passado na função criarMascara() deve ser igual à chave do objeto mascaras{}
 
+/*Essa função é chamada SEMPRE que o input é alterado, mas ela somente fará algo quando o tamanho do input for igual à propriedade maxLength.*/
 function criarMascara(mascaraInput) {
-	/** A função é chamada SEMPRE que o input é alterado, mas ela somente fará algo quando o tamanho do input for igual à propriedade maxLength.*/
 	elemento = document.getElementById(`${mascaraInput}Input`);
 	let valorInput = elemento.value;
-	let valorPuro = valorInput.replace(/([^0-9])+/g, "");
-	/** a variável valorPuro nada mais é do que uma substituição de todos os caracteres não numéricos por nada - na prática, ela remove qualquer coisa que não seja um número */
+	let valorPuro = valorInput.replace(/([^0-9])+/g, '');
 	let tamanhoAtual = valorPuro.length;
 	const maximoInput = elemento.maxLength;
 
 	const mascaras = {
 		cpf: valorInput.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4"),
-		/** Graças às REGExp implementada em cada função, o primeiro replace removerá todos os caracteres não numéricos. O segundo aplicará os pontos após cada grupo de três números e, em seguida, um traço antes dos dois últimos números. */
+		/** Graças às REGExp implementada em cada função, o primeiro replace removerá todos os caracteres não-numéricos. O segundo aplicará os pontos após cada grupo de três números e, em seguida, um traço antes dos dois últimos números. */
 		cep: valorInput.replace(/[^\d]/g, "").replace(/(\d{2})(\d{3})(\d{3})/, "$1.$2-$3"),
 		// telefone: valorInput.replace(/[^\d]/g, "").replace(/^(\d{2})(\d{4,5})([0-9]{4})/, "($1) $2-$3"),
 		telefone: (nrTelefone) => nrTelefone.replace(/[^\d]/g, "").replace(/^(\d{2})([2-8])(\d{3})(\d{4})/, "($1) $2$3-$4"),

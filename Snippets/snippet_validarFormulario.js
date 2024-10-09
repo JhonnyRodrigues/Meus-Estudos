@@ -112,7 +112,7 @@ function aplicarMascara(elemento) {
 	}
 }
 
-function verificarDocumento(elemento) { //messe caso, um único campo armazenava tanto CPF quanto CNPJ
+function verificarDocumento(elemento) { //nesse caso, um único campo armazenava tanto CPF quanto CNPJ
 	documento = elemento.value.replace(/([^0-9])+/g, "");
 	if (documento.length < 12) {
 		if (!validarCPF(documento)) {
@@ -211,7 +211,7 @@ function validarFormulario() {
 		M.toast({html: `Por favor, selecione um valor para o campo ${camposVazios.join(', ')}.`}); //funcao join JS equivale a explode PHP
 	}
 	
-	return camposVazios.length == 0; //so retorna false se houver campos vazios
+	return camposVazios.length == 0; //somente retorna false se houver campos vazios
 }
 
 function submitForm(event) {
