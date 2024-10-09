@@ -31,11 +31,9 @@
                 };
 
                 //Gerar e baixar o PDF
-                // html2pdf(content);
+                html2pdf(content);
                 // html2pdf(content, options);
-                html2pdf(content, {
-                    filename: 'objetoDireto.pdf'
-                });
+                // html2pdf(content, {filename: 'objetoDireto.pdf'});
                 // html2pdf().set(options).from(content).save();
             });
         }

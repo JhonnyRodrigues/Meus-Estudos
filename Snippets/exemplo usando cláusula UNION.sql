@@ -1,4 +1,3 @@
-Erro ao acessar o banco de dados ORA -00907: missing right parenthesis View SQL
 SELECT
         *
 FROM
