@@ -41,6 +41,8 @@
 
 - **sc_field_no_validate**({nome_do_campo1}, {nome_do_campo2}): ignora as validações dos campos informados no parâmetro. Pode ser utilizada apenas no evento onLoad.
 
+- **sc_log_add**("ação", "mensagem"): adiciona um registro na tabela de logs;
+
 # VARIÁVEIS
 
 - **_numOfRows**: retorna a quantidade de linhas da consulta utilizando a macro **sc_select()**.Exemplo: `if ({dataset}->_numOfRows < 1) { ... }`
