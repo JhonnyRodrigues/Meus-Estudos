@@ -1,66 +1,51 @@
 <?php
 
-require __DIR__ . "/funcoes.php";
+$saldo = 1_000.0;
+$titularConta = 'Vinicius Dias';
 
-$saldo = (float) 1_000.00; //o underline é ignorado, utilizado apenas para facilitar a leitura
-$titularConta = 'Jhonny Rodrigues';
-
-echo "**********************\n";
+echo "*************\n";
 echo "Titular: $titularConta\n";
 echo "Saldo atual: R$ $saldo\n";
-echo "**********************";
+echo "*************\n";
 
 do {
-    echo "\n1. Consultar saldo atual";
-    echo "\n2. Sacar valor";
-    echo "\n3. Depositar valor";
-    echo "\n4. Sair\n";
-    
-    $opcao = (int) fgets(STDIN); // ler a entrada do usuário
+    echo "1. Consultar saldo atual\n";
+    echo "2. Sacar valor\n";
+    echo "3. Depositar valor\n";
+    echo "4. Sair\n";
+
+    $opcao = (int) fgets(STDIN);
 
     switch ($opcao) {
         case 1:
-            echo "**********************\n";
+            echo "*************\n";
             echo "Titular: $titularConta\n";
             echo "Saldo atual: R$ $saldo\n";
-            echo "**********************\n\n";
+            echo "*************\n";
             break;
 
         case 2:
-            echo "**********************\n";
-            echo "Deseja sacar quanto? R$\n";
-            echo "**********************\n";
-            $valorSacar = (float) fgets(STDIN);
-            if ($valorSacar > $saldo) {
-                echo "**********************\n";
-                echo "Saldo insuficiente!\n";
-                echo "**********************\n";
+            echo "Qual valor deseja sacar?\n";
+            $valorASacar = (float) fgets(STDIN);
+            if ($valorASacar > $saldo) {
+                echo "Saldo insuficiente\n";
             } else {
-                $saldo -= $valorSacar;
-                echo "****************************\n";
-                echo "Saque realizado com sucesso!\n";
-                echo "****************************\n";
+                $saldo -= $valorASacar;
             }
             break;
-        
+
         case 3:
-            echo "**********************\n";
-            echo "Deseja depositar quanto? R$ \n";
-            echo "**********************\n";
-            $saldo += (float) abs(fgets(STDIN));
-            echo "Depósito realizado com sucesso!\n";
+            echo "Quanto deseja depositar?\n";
+            $valorADepositar = (float) fgets(STDIN);
+            $saldo += $valorADepositar;
             break;
 
         case 4:
-            echo "**********************\n";
-            echo "Encerrando programa...\n";
-            echo "**********************\n";
+            echo "Adeus\n";
             break;
 
         default:
-            echo "*********************\n";
-            echo "ERRO: Opção inválida!\n";
-            echo "*********************\n";
+            echo "OpÃ§Ã£o invÃ¡lida\n";
             break;
     }
 } while ($opcao != 4);
