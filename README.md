@@ -4,7 +4,7 @@
 
 # 📚 Portfólio de Estudos
 
-Bem-vindo(a) ao meu portfólio de estudos! Aqui você encontrará uma coleção organizada de **Cadernos**, **Aulas**, **Exercícios**, **Snippets** entre outros que desenvolvi ou utilizei durante minha jornada de aprendizado.
+Bem-vindo(a) ao meu portfólio de estudos! Aqui você encontrará uma coleção organizada de **Cadernos**, **Aulas**, **Exercícios**, **Snippets** entre outros materiais que desenvolvi ou utilizei durante minha jornada de aprendizado.
 
 ---
 
