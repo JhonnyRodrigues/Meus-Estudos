@@ -34,6 +34,7 @@ Anotações, resumos e explicações detalhadas sobre diversos tópicos.
 
 ### 2. **Snippets**
 Trechos de código reutilizáveis ou guardados para exemplificar conceitos, explicações, funções, comandos, dicas, atalhos e outras funcionalidades.
+
 📁 [Snippets](./Snippets)
 
 ### 3. **Aulas**
