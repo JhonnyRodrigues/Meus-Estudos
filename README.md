@@ -1,2 +1,84 @@
-# Estudos
-Aulas, Cadernos, Exercícios e outros materiais de estudo.
+<p align="center">
+<img loading="lazy" src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
+
+# 📚 Portfólio de Estudos
+
+Bem-vindo(a) ao meu portfólio de estudos! Aqui você encontrará uma coleção organizada de **Cadernos**, **Aulas**, **Exercícios**, **Snippets** entre outros que desenvolvi ou utilizei durante minha jornada de aprendizado.
+
+---
+
+## 🗂️ Estrutura
+
+### 1. **Cadernos**
+Anotações, resumos e explicações detalhadas sobre diversos tópicos.  
+📁 [Cadernos](./cadernos)
+
+  - Dicionário de Tecnologias
+  - Lógica de Programação
+  - HTML e CSS
+  - Banco de Dados
+  - Java
+  - Java POO
+  - Javascript
+  - PHP
+  - PHP POO
+  - GIT & GitHub
+  - JSON
+  - XML
+  - MarkDown
+  - UML
+  - Raciocínio Lógico
+  - Português
+  - Analista Programador
+
+### 2. **Aulas**
+Materiais de aulas teóricas e práticas organizadas por disciplinas e cursos livres.  
+📁 [Aulas](./aulas)
+- Exemplos de projetos e atividades
+- Slides e materiais complementares
+
+### 3. **Exercícios**
+Soluções e práticas para fixação de conceitos.  
+📁 [Exercícios](./exercicios)
+- Desafios de programação (HTML, CSS, JS, PHP)
+- Problemas resolvidos de concursos públicos
+
+### 4. **Outros Materiais**
+Coleção de documentos e projetos complementares.  
+📁 [Outros Materiais](./outros-materiais)
+- Referências úteis
+- Templates de projetos
+- Ferramentas e dicas de produtividade
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Linguagens:** HTML, CSS, JavaScript, PHP, SQL, PL/SQL, Java, JSON, XML, UML, Markdown
+- **Frameworks:** Netmake Scriptcase, Oracle APEX
+- **Bancos de Dados:** Oracle, MySQL
+- **Ambientes de Desenvolvimento:** Linux (Ubuntu), CMD (Windows), Git Bash, IDE Visual Studio Code e NetBeans
+
+---
+
+## 🚀 Como Usar este Repositório
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+Navegue pelas pastas e explore o conteúdo.
+
+---
+
+## 📌 Sobre Mim
+
+Sou Desenvolvedor Web, apaixonado por aprender e compartilhar conhecimento. Estou sempre em busca de aprimorar minhas habilidades e expandir meu domínio sobre desenvolvimento de sistemas e tecnologias web.
+
+---
+
+## 📬 Contato
+Se você quiser trocar ideias ou colaborar, entre em contato:
+
+✉️ [E-mail](mailto:jonatas.rdp@gmail.com)
+🌐 [LinkedIn](https://www.linkedin.com/in/jonatas-rodrigues-02331264)
