@@ -73,19 +73,3 @@ Coleção de documentos e projetos complementares.
    ```bash
    git clone https://github.com/seu-usuario/seu-repositorio.git
 Navegue pelas pastas e explore o conteúdo.
-
----
-
-## 📌 Sobre Mim
-
-Sou Desenvolvedor Web, apaixonado por aprender e compartilhar conhecimento. Estou sempre em busca de aprimorar minhas habilidades e expandir meu domínio sobre desenvolvimento de sistemas e tecnologias web.
-
----
-
-## 📬 Contato
-Se você quiser trocar ideias ou colaborar, entre em contato:
-
-✉️ [E-mail](mailto:jonatas.rdp@gmail.com)
-🌐 [LinkedIn](https://www.linkedin.com/in/jonatas-rodrigues-02331264)
-
-![Snake animation](https://github.com/JhonnyRodrigues/JhonnyRodrigues/blob/output/github-contribution-grid-snake.svg)
