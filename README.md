@@ -12,7 +12,7 @@ Bem-vindo(a) ao meu portfólio de estudos! Aqui você encontrará uma coleção 
 
 ### 1. **Cadernos**
 Anotações, resumos e explicações detalhadas sobre diversos tópicos.  
-📁 [Cadernos](./cadernos)
+📁 [Cadernos](./Cadernos)
 
   - Dicionário de Tecnologias
   - Lógica de Programação
@@ -33,6 +33,7 @@ Anotações, resumos e explicações detalhadas sobre diversos tópicos.
   - Analista Programador
 
 ### 2. **Snippets**
+📁 [Snippets](./Snippets)
 Trechos de código reutilizáveis ou guardados para exemplificar conceitos, explicações, funções, comandos, dicas, atalhos e outras funcionalidades.
 
 ### 3. **Aulas**
