@@ -33,8 +33,8 @@ Anotações, resumos e explicações detalhadas sobre diversos tópicos.
   - Analista Programador
 
 ### 2. **Snippets**
-📁 [Snippets](./Snippets)
 Trechos de código reutilizáveis ou guardados para exemplificar conceitos, explicações, funções, comandos, dicas, atalhos e outras funcionalidades.
+📁 [Snippets](./Snippets)
 
 ### 3. **Aulas**
 Materiais de aulas teóricas e práticas organizadas por disciplinas e cursos livres.  
