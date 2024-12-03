@@ -32,19 +32,22 @@ Anotações, resumos e explicações detalhadas sobre diversos tópicos.
   - Português
   - Analista Programador
 
-### 2. **Aulas**
+### 2. **Snippets**
+Trechos de código reutilizáveis ou guardados para exemplificar conceitos, explicações, funções, comandos, dicas, atalhos e outras funcionalidades.
+
+### 3. **Aulas**
 Materiais de aulas teóricas e práticas organizadas por disciplinas e cursos livres.  
 📁 [Aulas](./aulas)
 - Exemplos de projetos e atividades
 - Slides e materiais complementares
 
-### 3. **Exercícios**
+### 4. **Exercícios**
 Soluções e práticas para fixação de conceitos.  
 📁 [Exercícios](./exercicios)
 - Desafios de programação (HTML, CSS, JS, PHP)
 - Problemas resolvidos de concursos públicos
 
-### 4. **Outros Materiais**
+### 5. **Outros Materiais**
 Coleção de documentos e projetos complementares.  
 📁 [Outros Materiais](./outros-materiais)
 - Referências úteis
