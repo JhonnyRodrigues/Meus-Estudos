@@ -1,5 +1,9 @@
 # Lista de Atalhos
 
+##Navegador
+* **hard refresh (limpar cache)**: `control + shift + R`
+* **togle favorite bar**: `control + shift + B`
+
 ## VSCode
 ### Abrir
 * **última aba**: `control + shift + T`
