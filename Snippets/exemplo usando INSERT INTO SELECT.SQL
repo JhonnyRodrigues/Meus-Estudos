@@ -1,0 +1,12 @@
+--A consulta retorna vários registros, preciso que o retorno dessa consulta seja usado como parametro para multiplas inserções
+
+INSERT INTO	
+	HELP_RELACAO_LOCAIS_FUNC_AUT (ID_RELACAO_LOCAIS_FUNC_AUT,FK_FUNCIONARIO,FK_LOCAL)
+SELECT
+	(SELECT MAX(ID_RELACAO_LOCAIS_FUNC_AUT) + 1	FROM HELP_RELACAO_LOCAIS_FUNC_AUT ) + ROWNUM,
+	COD_FUNCIONARIO,
+	8
+FROM
+	RH_FUNCIONARIOS
+WHERE
+	ATIVO = 1;
