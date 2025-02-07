@@ -121,7 +121,7 @@ document.querySelector('td#Check_All_jornada').parentNode.insertBefore(document.
 window.parent.document.querySelector('div#TB_window').style.setProperty('width', 'auto');
 window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.setProperty('width', '360');
 
-//Para capturar elementos acima, como pai, avô, tio-avô, use .PARENT
+//Para capturar elementos acima, como pai, avô, tio-avô, use .PARENT ou a função CLOSEST()
 //Exemplo da estrutura:
 <div>
     <div>
@@ -133,11 +133,13 @@ window.parent.document.querySelector('div#TB_window >#TB_iframeContent').style.s
 </div>
 //Como capturar o label correspondente
 document.querySelectorAll('select[required]').forEach((el) => {
-    if(el.value == '') {
+    if (el.value == '') {
         el.parentElement.querySelector('input').classList.add('invalid');
         camposVazios.push(el.parentElement.parentElement.querySelector('label').textContent.trim());
     }
 })
+//Outro exemplo usando closest + childNodes para capturar conteúdo do elemento pai
+document.querySelector(`input[type="radio"][name="sexo"]`).closest('p').childNodes[0].textContent.trim()
 
 
 //Transformando um NodeList em Array usando SPREAD OPERATOR
