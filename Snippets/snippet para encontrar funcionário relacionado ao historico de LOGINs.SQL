@@ -1,0 +1,12 @@
+-- capturar funcionário com base em histórico de login's
+SELECT
+	F.*
+FROM
+	SGI.SEGURANCA_USERS su
+	JOIN RH_FUNCIONARIOS F ON UPPER(F.NOME_USUARIO) = UPPER(SU.LOGIN)
+WHERE
+	UPPER(SU.LOGIN) = UPPER(:LOGIN)
+	AND F.DT_ADMISSAO >= DATE :DATA_INSERCAO /*data de registro do formulario*/
+ORDER BY
+	F.DT_ADMISSAO ASC
+FETCH FIRST 1 ROW ONLY
