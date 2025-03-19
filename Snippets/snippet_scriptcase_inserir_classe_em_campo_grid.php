@@ -1,5 +1,5 @@
-<?php
-// exemplo de como inserir dinamicamente uma classe em campo da grid, no Scriptcase
+-- exemplo de como inserir dinamicamente uma classe em campo da grid, no Scriptcase
+-- Obs.: aplicar na consulta principal da aplicação
 
 SELECT
     TEU.COD_FUNCIONARIO AS COD_FUNCIONARIO,
