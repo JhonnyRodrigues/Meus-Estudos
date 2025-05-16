@@ -89,6 +89,7 @@ Cuidado ao utilizá-las em validações, evite erros utilizando parênteses pois o c
 	</script>
 <?php
 ```
+- Jamais crie variáveis locais com o mesmo nome dos {CAMPOS}
 - Limpe as variáveis globais (variáveis de sessão) somente nos eventos _after_
 - Substitua funções php como ```exit()``` por ```sc_error_message()``` + ```sc_error_exit()``` em eventos ajax, como por exemplo **onAfterUpdate**, **act_btn_actionBars**
 
