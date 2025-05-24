@@ -1,0 +1,16 @@
+Estrutura consolidada no mercado (ex: Laravel, Symfony, Slim): estrutura MVC
+
+project/
+├── public/               ← Ponto de entrada único (index.php)
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/  ← Lógica de requisições
+│   │   └── Middleware/   ← Filtros entre requisição e resposta
+│   ├── Models/           ← Regras de negócio e acesso a dados
+│   ├── Services/         ← Lógica de negócio reutilizável
+│   └── Views/            ← Templates (Blade, Twig, etc.)
+├── routes/               ← Arquivo de rotas (`web.php`)
+├── config/               ← Configurações (banco, mail, etc.)
+├── storage/              ← Logs, cache, uploads
+├── vendor/               ← Composer
+└── composer.json
