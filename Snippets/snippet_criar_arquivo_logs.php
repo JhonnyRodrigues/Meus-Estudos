@@ -4,26 +4,32 @@
 // unlink("../logs/lembretes_solicitacoes.txt");exit;
 if (!is_dir('../logs')) {
     if (!mkdir('../logs', 0755)) {
-        errorMessage("Falha ao criar o diretório que armazena os logs de envio de e-mails lembretes aos solicitantes.", 5);
+        warningMessage("Falha ao criar o diretÃ³rio que armazena os logs de envio de e-mails lembretes aos solicitantes.", 5);
+        return [];
     } else {
-        // echo 'Diretório criado com sucesso!';
+        // echo 'DiretÃ³rio criado com sucesso!';
         $file = fopen("../logs/lembretes_solicitacoes.txt", "a+"); //modo de criacao
         if (!$file) {
-            errorMessage("Falha ao abrir o arquivo que armazena os logs de envio de e-mails lembretes aos solicitantes.", 6);
+            warningMessage("Falha ao criar o arquivo para armazenar os logs de envio de e-mails lembretes aos solicitantes.", 6);
+            return [];
         } else if (filesize("../logs/lembretes_solicitacoes.txt") == 0) {
-            fwrite($file, "DATA e HORA --- USUÁRIO LOGADO --- E-MAIL DO DESTINATÁRIO"); //cabecalho
+            fwrite($file, "DATA e HORA --- USUÃRIO LOGADO --- E-MAIL DO DESTINATÃRIO"); //cabecalho
         }
     }
 } else {
-    // echo 'O diretório já existe.';
+    // echo 'O diretÃ³rio jÃ¡ existe.';
     $file = fopen("../logs/lembretes_solicitacoes.txt", "a+"); //modo de criacao
     if (!$file) {
-        errorMessage("Falha ao abrir o arquivo que armazena os logs de envio de e-mails lembretes aos solicitantes.", 6);
+        warningMessage("Falha ao abrir o arquivo que armazena os logs de envio de e-mails lembretes aos solicitantes.", 7);
+        return [];
     } else if (filesize("../logs/lembretes_solicitacoes.txt") == 0) {
-        fwrite($file, "DATA e HORA --- USUÁRIO LOGADO --- E-MAIL DO DESTINATÁRIO"); //cabecalho
+        fwrite($file, "DATA e HORA --- USUÃRIO LOGADO --- E-MAIL DO DESTINATÃRIO"); //cabecalho
     }
 }
-fwrite($file, "\n" . date('d/m/Y H:i:s') . ' - ' . $_SESSION['usr_login'] . ' - ' . {datasetSolicitAguardando}->fields['EMAIL']);
-fclose($file);
 
-?>
+
+#ARQUIVO LOGS
+fwrite($file, "\n" . date('d/m/Y H:i:s') . " - $usuarioLogado - " . {datasetSolicitAguardando}->fields['EMAIL']);
+
+#ARQUIVO LOGS
+fclose($file);
