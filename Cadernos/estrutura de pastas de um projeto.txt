@@ -1,0 +1,102 @@
+A seguir, um **mapa macro** de pastas para um projeto PHP moderno (DDD + camadas claras), com uma breve descrição de cada área e como elas se relacionam:
+
+```
+├── config/
+│   ├── services.php        # Registro de serviços (injeção de dependências)
+│   ├── database.php        # Configurações de conexão (DSN, credenciais)
+│   └── routes.php          # Definição de rotas/endpoints
+│
+├── public/
+│   ├── index.php           # Front controller (único ponto de entrada HTTP)
+│   ├── .htaccess           # Regras de rewrite (Apache)
+│   └── assets/             # CSS, JS, imagens públicos
+│
+├── resources/
+│   ├── views/              # Templates (Blade, Twig ou PHP puro)
+│   └── translations/       # Arquivos de i18n (locale/*/*.php ou JSON)
+│
+├── src/
+│   ├── Domain/             # **Camada de Modelo de Domínio**  
+│   │   ├── Entity/         # Entidades (objetos com identidade)
+│   │   ├── ValueObject/    # Objetos de Valor (imutáveis, sem ID)
+│   │   ├── Enum/           # Enumerações de domínio
+│   │   ├── Service/        # Regras de negócio que orquestram VOs e Entidades
+│   │   ├── Repository/     # Interfaces de persistência (abstrações)
+│   │   ├── Specification/  # Regras reutilizáveis (filtros, validações)
+│   │   ├── Event/          # Eventos de domínio (notify, pub/sub)
+│   │   └── Exception/      # Exceções específicas do domínio
+│   │
+│   ├── Application/        # **Camada de Aplicação (Use Cases)**  
+│   │   ├── UseCase/        # Casos de uso (ex: RegisterUser, PlaceOrder)
+│   │   ├── DTO/            # Data Transfer Objects (entrada/saída de casos de uso)
+│   │   ├── Service/        # Interfaces de serviços externos (APIs, Mailer)
+│   │   └── Exception/      # Erros na orquestração de casos de uso
+│   │
+│   ├── Infrastructure/     # **Implementação de Infraestrutura**  
+│   │   ├── Persistence/    # Implementações de Repository (ORM, PDO)
+│   │   ├── Api/            # Clientes HTTP para serviços externos
+│   │   ├── Messaging/      # Integração com filas/event buses
+│   │   └── Logging/        # Adaptadores de logging (Monolog, etc.)
+│   │
+│   ├── UI/                  # **Camada de Apresentação (Interface com o usuário)**  
+│   │   ├── Controller/     # Controllers (MVC) ou Handlers (PSR-15)
+│   │   ├── Presenter/      # Adapta saída de Application para views/JSON
+│   │   └── Middleware/     # Cross-cutting concerns (autenticação, CORS)
+│   │
+│   └── Shared/             # **Componentes reutilizáveis**  
+│       ├── Utils/          # Helpers, funções utilitárias genéricas
+│       ├── Exception/      # Exceções de infra ou gerais
+│       └── ValueObject/    # VOs que podem ser usados em vários domínios
+│
+├── tests/
+│   ├── Unit/               # Testes unitários
+│   ├── Integration/        # Testes de integração
+│   └── Feature/            # Testes de fim a fim ou de aceitação
+│
+├── var/
+│   ├── cache/              # Cache de templates, etc.
+│   └── log/                # Arquivos de log
+│
+├── scripts/                # Scripts CLI de manutenção, import, deploy
+│
+├── docs/                   # Documentação do projeto, guias de API, ER, etc.
+│
+├── vendor/                 # Dependências gerenciadas pelo Composer
+│
+├── composer.json           # Gerenciador de dependências e autoload (PSR-4)
+├── phpunit.xml             # Configuração de testes
+└── README.md               # Visão geral do projeto
+```
+
+---
+
+### 🔗 **Como as camadas se relacionam**
+
+1. **public/index.php**
+   — carrega o container (config/), resolve o Controller (UI/Controller) e dispara um Use Case (Application/UseCase).
+
+2. **Application/UseCase**
+   — recebe DTOs de entrada, orquestra Domain Services e Entities, valida regras, e retorna DTOs de saída.
+
+3. **Domain**
+   — contém toda a lógica de negócio pura: entidades, VOs, regras (Services), contratos (Repository, Specification).
+
+4. **Infrastructure**
+   — provê implementações concretas para os contratos definidos no Domain/Application (ex.: gravar no banco, chamar APIs).
+
+5. **UI/Presenter**
+   — transforma DTOs de saída dos Use Cases em estruturas prontas para as Views ou JSON (API).
+
+6. **resources/views**
+   — consome os dados formatados pelo Presenter para renderizar HTML, ou a API retorna JSON diretamente.
+
+---
+
+### 🌟 **Por que essa organização?**
+
+* **Clareza de responsabilidades** (SRP): cada pasta tem um motivo único para existir.
+* **Isolamento de dependências**: Domain e Application não conhecem Infrastructure concreta.
+* **Testabilidade**: você pode mockar facilmente Repositories e Services na camada de Application.
+* **Escalabilidade e manutenção**: ao crescer, as áreas permanecem bem definidas e descentralizadas.
+
+Com esse “esqueleto” você visualiza o **macro** do projeto, tornando mais fácil navegar no código, entender fluxos e manter a aplicação consistente conforme evolui.
