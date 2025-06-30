@@ -1,148 +1,67 @@
-+:
-		INSERT INTO HELP_SOLICITACOES (
-			ID_SOLICITACAO,
-			COD_CHAMADO,
-			ASSUNTO,
-			FK_SOLICITANTE,
-			FK_REPARTICAO,
-			FK_RAMAL,
-			EMAIL,
-			FK_CATEGORIA_SERVICO,
-			FK_PRIORIDADE,
-			DATA_ABERTURA,
-			ENDERECO_IP
-		) VALUES (
-			'1824',
-			'2503U00U1824',
-			'Cadastrar usuário',
-			'709',
-			'138',
-			'9633',
-			'toliveira@semaepiracicaba.sp.gov.br',
-			'82',
-			'2',
-			SYSDATE,
-			'10.210.4.39'
-		)
-	; 
-		INSERT INTO HELP_HISTORICOS (
-			ID_HISTORICO,
-			DATA_INSERCAO, 
-			FK_SOLICITACAO, 
-			FK_SOLICITANTE, 
-			FK_ENCAMINHADA_POR, 
-			FK_STATUS,
-			MENSAGEM
-		) VALUES (
-			SEQ_HELP_HISTORICOS.NEXTVAL,
-			SYSDATE,
-			'1824',
-			'709',
-			'709',
-			'1',
-			'Solicito o cadastro de usuário para um novo funcionário'
-		)	
-	; BEGIN 
-				INSERT INTO HELP_RELACAO_TERMOS_ACEITOS (
-					ID_RELACAO_TERMO_ACEITO,
-					FK_USUARIO,
-					FK_TERMO
-				) VALUES (
-					SEQ_HELP_RELACAO_TERMOS_USERS.NEXTVAL,
-					'338',
-					'3140'
-				);
-			
-				INSERT INTO HELP_RELACAO_TERMOS_ACEITOS (
-					ID_RELACAO_TERMO_ACEITO,
-					FK_USUARIO,
-					FK_TERMO
-				) VALUES (
-					SEQ_HELP_RELACAO_TERMOS_USERS.NEXTVAL,
-					'338',
-					'82'
-				);
-			END;; 
-		INSERT INTO HELP_USUARIOS (
-			FK_SOLICITACAO ,
-			FK_FUNCIONARIO ,
-			NOME_FUNCIONARIO ,
-			MATRICULA ,
-			FK_CARGO ,
-			FK_REPARTICAO ,
-			CPF ,
-			RG ,
-			HORA_INICIO_JORNADA ,
-			HORA_FIM_JORNADA ,
-			DATA_INSERCAO ,
-			OBSERVACAO
-		) VALUES (
-			:idSolicitacao,
-			'338',
-			'ABILIO PERINA JUNIOR',
-			'020004',
-			'117',
-			:reparticaoUsuario,
-			'13946363857',
-			'17.992.009',
-			TO_DATE(:entrada, 'HH24:MI'),
-			TO_DATE(:saida, 'HH24:MI'),
-			SYSDATE,
-			'Solicitação gerada automaticamente através do formulário de cadastro de funcionários.
-O novo usuário também deverá ter acesso à aplicação de registro de presença, disponível no módulo Público. Portanto, adicionar privilégio atráves do Cadastro de Usuários -> grupo Ponto Online'
-		) RETURNING ID_USUARIO INTO :idUsuario
-	; BEGIN
-				INSERT INTO HELP_RELACAO_SISTEMAS_USUARIOS VALUES (
-					'666',
-					'                                                  ',
-					'1'
-				);
-			
-				INSERT INTO HELP_RELACAO_SISTEMAS_USUARIOS VALUES (
-					'667',
-					'                                                  ',
-					'2'
-				);
-			
-				INSERT INTO HELP_RELACAO_SISTEMAS_USUARIOS VALUES (
-					'668',
-					'                                                  ',
-					'19'
-				);
-			
-				INSERT INTO HELP_RELACAO_SISTEMAS_USUARIOS VALUES (
-					'669',
-					'                                                  ',
-					'46'
-				);
-			END;; BEGIN
-				INSERT INTO HELP_RELACAO_JORNADAS_USUARIOS VALUES (
-					'607',
-					'                                                  ',
-					'2'
-				);
-			
-				INSERT INTO HELP_RELACAO_JORNADAS_USUARIOS VALUES (
-					'608',
-					'                                                  ',
-					'3'
-				);
-			
-				INSERT INTO HELP_RELACAO_JORNADAS_USUARIOS VALUES (
-					'609',
-					'                                                  ',
-					'4'
-				);
-			
-				INSERT INTO HELP_RELACAO_JORNADAS_USUARIOS VALUES (
-					'610',
-					'                                                  ',
-					'5'
-				);
-			
-				INSERT INTO HELP_RELACAO_JORNADAS_USUARIOS VALUES (
-					'611',
-					'                                                  ',
-					'6'
-				);
-			END;Array
+<?php
+function queryBinded($codFuncionario = 709, $dataConsulta = '2020-06-01') {
+    $queryCargoPeriodo = "
+    DECLARE 
+        cargo NUMBER; -- Definição explícita do tipo numérico
+    BEGIN
+        SELECT CARGO_PERIODO
+          INTO cargo
+        FROM (
+              -- Query A: busca no histórico de cargos com a regra de DATA_TERMINO NULL
+              SELECT
+                  1 AS PRIORIDADE,
+                  FC.FK_CARGO AS CARGO_PERIODO
+              FROM RH_CARGO C
+              JOIN RH_FUNCIONARIOS_CARGOS_EXERC FC 
+                ON FC.FK_CARGO = C.ID_CARGO
+              WHERE FC.FK_FUNCIONARIO = :codFuncionario
+                AND (:v_data BETWEEN FC.DATA_INICIO AND FC.DATA_TERMINO
+                     OR (FC.DATA_TERMINO IS NULL AND :v_data >= FC.DATA_INICIO))
+              UNION ALL
+              -- Query B: se não houver histórico válido, utiliza o cargo atual
+              SELECT
+                  2 AS PRIORIDADE,
+                  FK_ID_CARGO_EXERCICIO AS CARGO_PERIODO
+              FROM RH_FUNCIONARIOS
+              WHERE COD_FUNCIONARIO = :codFuncionario
+        )
+        ORDER BY PRIORIDADE
+        FETCH FIRST 1 ROW ONLY;
+
+        :cargo := cargo; --  transferir o valor obtido na variável local para a variável de bind (parâmetro de saída) 
+    END;
+    ";
+
+    // Definição dos valores de entrada
+    $v_data = $dataConsulta;
+    $idCargo = str_repeat(" ", 50); // buffer da variável é aumentado antes de passar para o bind, a fim de evitar o erro de truncamento.
+	/*	O truncamento acontece quando um valor, armazenado ou processado, é cortado porque o espaço reservado para ele é menor que o necessário.
+	Se o tamanho da variável for menor do que o valor retornado, o dado pode ser truncado ou gerar um erro como: ORA-06502: PL/SQL: numeric or value error: character string buffer too small*/
+
+    // Definição dos parâmetros
+    $params = array(
+        'v_data'         => $v_data,
+        'codFuncionario' => $codFuncionario,
+        'cargo'        => &$idCargo // Passagem por referência
+    );
+
+    // Execução da query
+    $dataset = $this->Db->Execute($queryCargoPeriodo, $params);
+
+    // Tratamento do retorno para garantir que seja um número
+    if ($dataset === false || trim($idCargo) === "") {
+        // Se houver erro ou não encontrar cargo, rollback da transação
+        if ($this->Ini->sc_tem_trans_banco) {
+            $this->Db->RollbackTrans();
+            $this->Ini->sc_tem_trans_banco = false;
+        }
+        return array(
+            'success' => false,
+            'message' => 'Erro ao realizar a consulta ou cargo não encontrado.'
+        );
+    } else {
+        return (int)trim($idCargo); // Retorna como número inteiro, removendo espaços extras
+    }
+}
+
+var_dump(queryBinded());
