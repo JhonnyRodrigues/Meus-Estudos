@@ -1,7 +1,7 @@
---Uma consulta hierárquica é usada quando se tem dados que possuem uma relação de ancestralidade, como uma estrutura de árvore (por exemplo, organograma de uma empresa).
+--Uma consulta hierï¿½rquica ï¿½ usada quando se tem dados que possuem uma relaï¿½ï¿½o de ancestralidade, como uma estrutura de ï¿½rvore (por exemplo, organograma de uma empresa).
 
 -- Hierarquia ASCENDENTE:
---O objetivo dessa query é retornar qual ramificação de alta gestao a lotação do usuário pertence
+--O objetivo dessa query ï¿½ retornar qual ramificaï¿½ï¿½o de alta gestao a lotaï¿½ï¿½o do usuï¿½rio pertence
 SELECT
 	COD_LOTACAO
 FROM
@@ -13,7 +13,7 @@ WHERE
 		FROM
 			RH_LOTACOES L2
 		WHERE
-			( --ramificação de alta gestao:
+			( --ramificaï¿½ï¿½o de alta gestao:
 				L2.NOME_LOTACAO LIKE '%PRESID_N%' -- id 1
 				OR L2.NOME_LOTACAO LIKE '%PROCURADORIA%' -- 3
 				OR L2.NOME_LOTACAO LIKE '%SUPERINTEND_NCIA%' -- 89, 90
@@ -31,7 +31,7 @@ CONNECT BY PRIOR
 
 
 -- Hierarquia DESCENDENTE:
---O objetivo dessa query é retornar quais são os filhos/netos/bisnetos.. da LOTACAO_PAI
+--O objetivo dessa query ï¿½ retornar quais sï¿½o os filhos/netos/bisnetos.. da LOTACAO_PAI
 SELECT
     L.COD_LOTACAO
 FROM
@@ -39,4 +39,7 @@ FROM
 START WITH
     L.COD_LOTACAO_PAI = 149 --Diretoria Geral Administrativa e Financeira
 CONNECT BY PRIOR
-    L.COD_LOTACAO = L.COD_LOTACAO_PAI /*note a inversao*/
+    L.COD_LOTACAO = L.COD_LOTACAO_PAI /* NOTE A INVERSAO! */
+
+-- Limitar por nÃ­veis
+-- O objetivo dessa query Ã© retornar apenas o primeiro nÃ­vel abaixo da presidÃªncia, ou seja, as diretorias + Procuradoria jurÃ­dica
