@@ -1,3 +1,4 @@
 CREATE SEQUENCE SGI.SEQ_HELP_SOLICITACOES INCREMENT BY 1 MINVALUE 1 MAXVALUE 9999999999999999999999999999 NOCYCLE NOCACHE NOORDER 
 
---Obs.: por padrão, o SGBD Oracle 19 está configurado com CACHE 20, recomendável retirar (NOCACHE)!
+--OBS.: por padrão, o SGBD Oracle 19 está configurado com CACHE 20, recomendável retirar (NOCACHE)!
+ALTER SEQUENCE SEQ_WHATEVER NOCACHE;
