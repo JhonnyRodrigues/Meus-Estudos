@@ -30,6 +30,6 @@ array(2) {
 }
 */
 
-// Explica��o: "Para cada elemento contido no array {datasetSuperFinancas}, retorne o valor contido em sua chave 'COD_FUNCIONARIO'"
+// Explicação: "Para cada elemento contido no array {datasetSuperFinancas}, retorne o valor contido em sua chave 'COD_FUNCIONARIO'"
 
 ?>

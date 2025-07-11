@@ -1,8 +1,9 @@
-a saída com var_dump() imprimia: array(2) { [0]=> bool(false) [1]=> bool(false) }
-Intenção: eliminar valores falsos de dentro do array
 <?php
-
-# CHAMA FUNÇÕES DE NOTIFICAÇÃO EM MODAL
+/*
+a saÃ­da com var_dump() imprimia: array(2) { [0]=> bool(false) [1]=> bool(false) }
+IntenÃ§Ã£o: eliminar valores falsos de dentro do array
+*/
+# CHAMA FUNÃ‡Ã•ES DE NOTIFICAÃ‡ÃƒO EM MODAL
 if ([usr_login]) {
 	$notificacoes = array(
 		controlLastViewed(1, 'getSqlAssinaturasPendentes'),
@@ -20,4 +21,4 @@ if ([usr_login]) {
 	var_dump($notificacoes);exit;
 }
 
-Após array_filter() a saída ficou: array(0) { }
+// ApÃ³s array_filter() a saÃ­da ficou: array(0) { }
