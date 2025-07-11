@@ -1,7 +1,7 @@
 <?php
 
 // Objetivo: transformar array(array('COD_FUNCIONARIO' => "106"),array('COD_FUNCIONARIO' => "623"))   em  array("106", "623") 
-//Ou seja, guardar valores do dataset dentro de único array
+//Ou seja, guardar valores do dataset dentro de ï¿½nico array
 
 var_dump({datasetSuperFinancas});
 /* Retorna:
@@ -19,7 +19,8 @@ array(2) {
 }
 */
 
-var_dump(array_map(function ($arg) {return $arg['COD_FUNCIONARIO'];}, {datasetSuperFinancas}));
+var_dump(array_map(function ($arg) {return $arg['COD_FUNCIONARIO'];}, {datasetSuperFinancas})); //funÃ§Ã£o anÃ´nima ou
+$lotacoesConsolidadoras = array_map(fn($arg) => $arg['COD_LOTACAO'], {datasetLotacoesConsolidadoras}); //arrow function
 /* Retorna:
 array(2) {
   [0]=>
@@ -29,6 +30,6 @@ array(2) {
 }
 */
 
-// Explicação: "Para cada elemento contido no array {datasetSuperFinancas}, retorne o valor contido em sua chave 'COD_FUNCIONARIO'"
+// Explicaï¿½ï¿½o: "Para cada elemento contido no array {datasetSuperFinancas}, retorne o valor contido em sua chave 'COD_FUNCIONARIO'"
 
 ?>
