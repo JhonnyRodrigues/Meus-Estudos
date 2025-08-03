@@ -1,4 +1,4 @@
----------------------------------------------------- PRODUTOS ---------------------------------------------------------
+--### MÓDULO PRODUTOS
 CREATE TABLE
   PRODUTOS (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -6,7 +6,7 @@ CREATE TABLE
     FK_CATEGORIA INT NOT NULL,
     FK_FORNECEDOR INT NULL,
     CUSTO_AQUISICAO DECIMAL(10, 2) NULL,
-    VALOR_ATUAL DECIMAL(10, 2) NULL, -- preço à vista
+    VALOR_ATUAL DECIMAL(10, 2) NULL COMMENT 'preço à vista',
     PRECIFICACAO_AUTOMATICA BOOLEAN DEFAULT FALSE,
     ATIVO BOOLEAN DEFAULT TRUE,
     DATA_ATUALIZACAO DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -31,7 +31,7 @@ CREATE TABLE
 CREATE TABLE
   ESTOQUES (
     ID INT AUTO_INCREMENT PRIMARY KEY,
-    FK_PRODUTO INT NOT NULL UNIQUE, -- um registro por produto
+    FK_PRODUTO INT NOT NULL UNIQUE COMMENT 'um registro por produto',
     QUANTIDADE_ATUAL INT NOT NULL DEFAULT 0,
     DATA_ATUALIZACAO DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (FK_PRODUTO) REFERENCES PRODUTOS (ID)
@@ -56,9 +56,9 @@ CREATE TABLE
     ID INT AUTO_INCREMENT PRIMARY KEY,
     FK_PRODUTO INT NOT NULL,
     QUANTIDADE INT NOT NULL,
-    FK_ACAO INT NOT NULL, -- entrada, saída.
-    FK_ORIGEM INT NULL, -- compra, venda.
-    FK_REFERENCIA INT NULL, -- referência a venda, compra, etc.
+    FK_ACAO INT NOT NULL COMMENT 'Ex: entrada, saída etc',
+    FK_ORIGEM INT NULL COMMENT 'Ex: compra, venda, ajuste etc',
+    ID_TRANSACAO_ORIGEM INT NULL COMMENT 'Identificador da transação que originou a movimentação (ex: ID da venda, ID da compra, ID do ajuste, ID da devolução etc).',
     DATA_MOVIMENTACAO DATETIME DEFAULT CURRENT_TIMESTAMP,
     OBSERVACOES VARCHAR(4000) NULL,
     FOREIGN KEY (FK_PRODUTO) REFERENCES PRODUTOS (ID),
@@ -66,7 +66,7 @@ CREATE TABLE
     FOREIGN KEY (FK_ORIGEM) REFERENCES ESTOQUE_ORIGENS_MOVIMENTACAO (ID)
   );
 
----------------------------------------------------- VENDAS ------------------------------------------------------------------
+--### MÓDULO VENDAS
 CREATE TABLE
   VENDA_ORIGENS (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -90,7 +90,7 @@ CREATE TABLE
 
 CREATE TABLE
   VENDAS (
-    ID INT AUTO_INCREMENT PRIMARY KEY, -- chave candidata para número do pedido
+    ID INT AUTO_INCREMENT PRIMARY KEY COMMENT 'chave candidata para número do pedido',
     FK_CLIENTE INT NOT NULL,
     FK_VENDEDOR INT NOT NULL,
     FK_ORIGEM INT NULL,
@@ -112,9 +112,9 @@ CREATE TABLE
     FK_VENDA INT NOT NULL,
     FK_PRODUTO INT NOT NULL,
     QUANTIDADE INT NOT NULL,
-    PRECO_ORIGINAL DECIMAL(10, 2) NULL, -- valor histórico (sem desconto). É PRODUTO.VALOR_ATUAL no momento da venda (sem desconto)
-    VALOR_DESCONTO DECIMAL(10, 2) NULL, -- por unidade, se houver
-    PRECO_UNITARIO_FINAL DECIMAL(10, 2) NOT NULL, -- após desconto
+    PRECO_ORIGINAL DECIMAL(10, 2) NULL COMMENT 'valor histórico (sem desconto). É PRODUTO.VALOR_ATUAL no momento da venda (sem desconto)',
+    VALOR_DESCONTO DECIMAL(10, 2) NULL COMMENT 'por unidade, se houver',
+    PRECO_UNITARIO_FINAL DECIMAL(10, 2) NOT NULL COMMENT 'após desconto',
     VALOR_TOTAL_ITENS DECIMAL(10, 2) GENERATED ALWAYS AS (QUANTIDADE * PRECO_UNITARIO_FINAL) STORED,
     FOREIGN KEY (FK_VENDA) REFERENCES VENDAS (ID),
     FOREIGN KEY (FK_PRODUTO) REFERENCES PRODUTOS (ID)
@@ -144,12 +144,12 @@ CREATE TABLE
     FK_PRODUTO INT NOT NULL,
     QUANTIDADE INT NOT NULL CHECK (QUANTIDADE > 0),
     RESERVADO BOOLEAN NOT NULL DEFAULT TRUE,
-    MOTIVO_LIBERACAO VARCHAR(255) NULL, -- justificativa da liberação da reserva de um item. Preenchido somente quando RESERVADO = FALSE
+    MOTIVO_LIBERACAO VARCHAR(255) NULL COMMENT 'Justificativa da liberação da reserva de um item. Preenchido somente quando RESERVADO = FALSE',
     FOREIGN KEY (FK_PRE_VENDA) REFERENCES PRE_VENDAS (ID),
     FOREIGN KEY (FK_PRODUTO) REFERENCES PRODUTOS (ID)
   );
 
----------------------------------------------------------FINANÇAS ---------------------------------------------------------
+--### MÓDULO FINANCEIRO
 CREATE TABLE
   CREDITOS_RECEBER (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -232,7 +232,7 @@ CREATE TABLE
     NOME VARCHAR(100) NOT NULL UNIQUE,
     DESCRICAO VARCHAR(255) NOT NULL,
     ORDEM INT NOT NULL,
-    COR VARCHAR(100) NULL, -- ex: '#FF0000'
+    COR VARCHAR(100) NULL COMMENT 'Ex: #FF0000',
     ATIVO ENUM ('S', 'N') DEFAULT 'S'
   );
 
@@ -260,7 +260,7 @@ CREATE TABLE
     FOREIGN KEY (FK_NATUREZA_FINANCEIRA) REFERENCES NATUREZAS_FINANCEIRAS (ID)
   );
 
----------------------------------------------------- CADASTRO ------------------------------------------------------------
+--### MÓDULO CADASTRO
 CREATE TABLE
   CLIENTES (
     ID INT AUTO_INCREMENT PRIMARY KEY,
@@ -290,19 +290,8 @@ CREATE TABLE
   );
 
 CREATE TABLE
-  USUARIOS (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    NOME VARCHAR(100) NOT NULL,
-    EMAIL VARCHAR(150) NOT NULL UNIQUE,
-    HASH_SENHA VARCHAR(255) NOT NULL,
-    ATIVO BOOLEAN DEFAULT TRUE,
-    DATA_CRIACAO DATETIME DEFAULT CURRENT_TIMESTAMP,
-    DATA_ATUALIZACAO DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-  );
-
-CREATE TABLE
   VENDEDORES (
-    ID INT PRIMARY KEY, -- mesmo valor de USUARIOS.ID
+    ID INT PRIMARY KEY COMMENT 'mesmo valor de USUARIOS.ID',
     APELIDO VARCHAR(50),
     PERCENTUAL_COMISSAO DECIMAL(5, 2),
     ATIVO BOOLEAN DEFAULT TRUE,
@@ -312,15 +301,28 @@ CREATE TABLE
     FOREIGN KEY (ID) REFERENCES USUARIOS (ID)
   );
 
-CREATE TABLE
-  PERFIS (
-    ID INT AUTO_INCREMENT PRIMARY KEY,
-    NOME VARCHAR(50) NOT NULL UNIQUE,
-    DESCRICAO VARCHAR(100) NULL
-  );
+--### MÓDULO SEGURANÇA
+CREATE TABLE USUARIOS (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  NOME VARCHAR(100) NOT NULL,
+  LOGIN VARCHAR(50) UNIQUE NOT NULL,
+  SENHA_HASH VARCHAR(255) NOT NULL,
+  EMAIL VARCHAR(100),
+  ATIVO BOOLEAN DEFAULT TRUE,
+  DATA_CRIACAO DATETIME DEFAULT CURRENT_TIMESTAMP,
+  ULTIMO_ACESSO DATETIME NULL,
+  OBSERVACOES VARCHAR(1000)
+);
 
-CREATE TABLE
-  USUARIOS_PERFIS (
+CREATE TABLE PERFIS (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  NOME VARCHAR(50) NOT NULL,
+  DESCRICAO VARCHAR(255),
+  NIVEL_ACESSO INT DEFAULT 1 COMMENT '1: menor privilégio; valores maiores indicam maior privilégio',
+  ATIVO BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE USUARIOS_PERFIS (
     FK_USUARIO INT NOT NULL,
     FK_PERFIL INT NOT NULL,
     DATA_CRIACAO DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -329,7 +331,158 @@ CREATE TABLE
     FOREIGN KEY (FK_PERFIL) REFERENCES PERFIS (ID)
   );
 
---------------------------------------------------- TRIGGERS ordenacao -------------------------------------------------
+CREATE TABLE APLICACOES (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  NOME VARCHAR(100) NOT NULL,
+  DESCRICAO VARCHAR(255),
+  ROTA VARCHAR(200) NULL COMMENT 'URL ou identificador da funcionalidade'
+);
+
+CREATE TABLE MODULOS (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  NOME VARCHAR(50) NOT NULL,
+  DESCRICAO VARCHAR(255)
+);
+
+CREATE TABLE APLICACOES_MODULOS (
+  FK_MODULO INT NOT NULL,
+  FK_APLICACAO INT NOT NULL,
+  PRIMARY KEY (FK_MODULO, FK_APLICACAO),
+  FOREIGN KEY (FK_MODULO) REFERENCES MODULOS(ID),
+  FOREIGN KEY (FK_APLICACAO) REFERENCES APLICACOES(ID)
+);
+
+CREATE TABLE PERMISSOES (
+  FK_PERFIL INT NOT NULL,
+  FK_APLICACAO INT NOT NULL,
+  ACESSAR   BOOLEAN DEFAULT FALSE,
+  INSERIR   BOOLEAN DEFAULT FALSE,
+  ATUALIZAR BOOLEAN DEFAULT FALSE,
+  EXCLUIR   BOOLEAN DEFAULT FALSE,
+  EXPORTAR  BOOLEAN DEFAULT FALSE,
+  IMPRIMIR  BOOLEAN DEFAULT FALSE,
+  PRIMARY KEY (FK_PERFIL, FK_APLICACAO),
+  FOREIGN KEY (FK_PERFIL) REFERENCES PERFIS(ID),
+  FOREIGN KEY (FK_APLICACAO) REFERENCES APLICACOES(ID)
+) COMMENT='Permissões por perfil e aplicação.';
+
+CREATE TABLE LOGS (
+	ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	INSERTED_DATE DATETIME,
+	USERNAME VARCHAR(50) NOT NULL,
+	APPLICATION VARCHAR(255) NOT NULL,
+	ACTION VARCHAR(30) NOT NULL,
+	DESCRIPTION TEXT,
+	IP_USER VARCHAR(45) NOT NULL,
+	CREATOR VARCHAR(50) NOT NULL COMMENT 'indica quem criou o registro. Exemplos: scriptcase, outro sistema, API',
+);
+
+CREATE TABLE USUARIOS_SESSOES (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  FK_USUARIO INT NOT NULL,
+  TOKEN_SESSAO VARCHAR(255) NOT NULL,
+  DATA_LOGIN DATETIME DEFAULT CURRENT_TIMESTAMP,
+  DATA_LOGOUT DATETIME COMMENT 'Se NULL, a sessão é considerada ativa',
+  IP_ORIGEM VARCHAR(45),
+  DISPOSITIVO VARCHAR(100) COMMENT '$_SERVER["HTTP_USER_AGENT"]: desktop, mobile, tablet, API, crawler (se for um robô)',
+  FOREIGN KEY (FK_USUARIO) REFERENCES USUARIOS(ID)
+);
+
+CREATE TABLE USUARIOS_BLOQUEIOS (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  FK_USUARIO INT NOT NULL,
+  MOTIVO VARCHAR(255) COMMENT 'Descrição detalhada do motivo do bloqueio',
+  ORIGEM ENUM('Manual', 'Tentativas falhas', 'Sistema', 'Admin', 'Política de segurança') COMMENT 'Categoria do evento que gerou o bloqueio',
+  DATA_BLOQUEIO DATETIME DEFAULT CURRENT_TIMESTAMP,
+  DATA_EXPIRACAO DATETIME COMMENT 'Se NULL, o bloqueio é permanente',
+  BLOQUEADO_POR INT COMMENT 'ID do usuário que executou o bloqueio, se aplicável',
+  FOREIGN KEY (FK_USUARIO) REFERENCES USUARIOS(ID),
+  FOREIGN KEY (BLOQUEADO_POR) REFERENCES USUARIOS(ID)
+);
+
+CREATE TABLE RECUPERACAO_SENHA (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  FK_USUARIO INT NOT NULL,
+  TOKEN VARCHAR(255) NOT NULL,
+  DATA_SOLICITACAO DATETIME DEFAULT CURRENT_TIMESTAMP,
+  DATA_UTILIZACAO DATETIME COMMENT 'Se NULL, o token ainda não foi utilizado',
+  DATA_EXPIRACAO DATETIME COMMENT 'Após essa data, o token perde a validade',
+  IP_ORIGEM VARCHAR(45),
+  FOREIGN KEY (FK_USUARIO) REFERENCES USUARIOS(ID)
+);
+
+CREATE TABLE USUARIOS_TENTATIVAS_LOGIN (
+  ID INT AUTO_INCREMENT PRIMARY KEY,
+  SUCESSO BOOLEAN NOT NULL,
+  FK_USUARIO INT COMMENT 'preenchido sempre que o sistema conseguir identificar o usuário pelo login digitado, independente do sucesso da senha',
+  USERNAME_DIGITADO VARCHAR(100) NOT NULL,
+  DATA_TENTATIVA DATETIME DEFAULT CURRENT_TIMESTAMP,
+  IP_ORIGEM VARCHAR(45),
+  DISPOSITIVO VARCHAR(100),
+  FOREIGN KEY (FK_USUARIO) REFERENCES USUARIOS(ID),
+  INDEX IDX_TENTATIVA_USUARIO (FK_USUARIO),
+  INDEX IDX_TENTATIVA_DATA (DATA_TENTATIVA),
+  INDEX IDX_TENTATIVA_SUCESSO (SUCESSO)
+);
+/* Trigger para bloqueio automático após 5 falhas em 15 minutos */
+/* MySQL não permite triggers que façam INSERT em outras tabelas com subqueries que usam a mesma tabela. Então, em vez de usar trigger direta, usaremos uma procedure + trigger simplificada. */
+/* Procedure de verificação e bloqueio: */
+DELIMITER $$
+CREATE PROCEDURE SP_VERIFICA_BLOQUEIO_TENTATIVAS(IN P_ID_USUARIO INT)
+BEGIN
+  DECLARE V_FALHAS INT;
+  -- CONTA TENTATIVAS FALHAS NOS ÚLTIMOS 15 MINUTOS
+  SELECT COUNT(*) INTO V_FALHAS
+  FROM USUARIOS_TENTATIVAS_LOGIN
+  WHERE FK_USUARIO = P_ID_USUARIO
+    AND SUCESSO = FALSE
+    AND DATA_TENTATIVA >= (NOW() - INTERVAL 15 MINUTE);
+  -- SE HOUVER 5 OU MAIS FALHAS, INSERE O BLOQUEIO
+  IF V_FALHAS >= 5 THEN
+    INSERT INTO USUARIOS_BLOQUEIOS (
+      FK_USUARIO,
+      MOTIVO,
+      DATA_BLOQUEIO,
+      ORIGEM
+    ) VALUES (
+      P_ID_USUARIO,
+      'BLOQUEIO AUTOMÁTICO POR EXCESSO DE TENTATIVAS FALHAS DE LOGIN',
+      NOW(),
+      'TENTATIVAS FALHAS'
+    );
+  END IF;
+END$$
+DELIMITER ;
+
+/* Trigger AFTER INSERT na tabela USUARIOS_TENTATIVAS_LOGIN */
+DELIMITER $$
+CREATE TRIGGER TRG_TENTATIVA_LOGIN_FALHA
+AFTER INSERT ON USUARIOS_TENTATIVAS_LOGIN
+FOR EACH ROW
+BEGIN
+  IF NEW.SUCESSO = FALSE AND NEW.FK_USUARIO IS NOT NULL THEN
+    CALL SP_VERIFICA_BLOQUEIO_TENTATIVAS(NEW.FK_USUARIO);
+  END IF;
+END$$
+DELIMITER ;
+
+
+--### MÓDULO CONFIGURAÇÕES
+CREATE TABLE CONFIGURACOES (
+    ID_CONFIGURACAO     INT AUTO_INCREMENT PRIMARY KEY,
+    CHAVE               VARCHAR(100) NOT NULL UNIQUE,
+    VALOR               TEXT NOT NULL,
+    DESCRICAO           VARCHAR(255),
+    TIPO                VARCHAR(20) COMMENT 'Ex: STRING, INT, DECIMAL, BOOLEAN, DATA',
+    AGRUPAMENTO         VARCHAR(50) COMMENT 'Ex: "FINANCEIRO", "GERAL", "ETIQUETAS"',
+    AMBIENTE            ENUM('D','P') DEFAULT 'P' COMMENT 'D = Desenvolvimento, P = Produção',
+    ATIVO               BOOLEAN DEFAULT TRUE,
+    DATA_CRIACAO        DATETIME DEFAULT CURRENT_TIMESTAMP,
+    DATA_ATUALIZACAO    DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+--### TRIGGERS de ordenação
 -- DELIMITER $$
 CREATE TRIGGER TRG_ORDEM_FORMAS_PAGAMENTO BEFORE INSERT ON FORMAS_PAGAMENTO FOR EACH ROW BEGIN DECLARE MAX_ORDEM INT;
 SELECT
@@ -374,7 +527,7 @@ SET
 END --$$
 -- DELIMITER ;
 
---------------------------------------------------- CHECK constraints --------------------------------------------------
+--### CHECK constraints
 ALTER TABLE PRODUTOS ADD CONSTRAINT CHK_PROD_PRECIFICACAO_BOOLEAN CHECK (PRECIFICACAO_AUTOMATICA IN (0, 1));
 
 ALTER TABLE PRODUTO_CATEGORIAS ADD CONSTRAINT CHK_PC_MARGEM_LUCRO CHECK (MARGEM_LUCRO BETWEEN 0 AND 100),
@@ -395,7 +548,7 @@ ALTER TABLE OBRIGACOES_FINANCEIRAS ADD CONSTRAINT CHK_OB_VALOR_PAGO CHECK (
   AND VALOR_PAGO <= VALOR_TOTAL
 );
 
---------------------------------- Índices em FKs (melhora performance em JOINs) ----------------------------------------------
+--### Índices em FKs melhoram desempenho em JOINs
 ALTER TABLE PRODUTOS ADD INDEX IDX_PRODUTOS_FK_CATEGORIA (FK_CATEGORIA),
 ADD INDEX IDX_PRODUTOS_FK_FORNECEDOR (FK_FORNECEDOR);
 
@@ -435,7 +588,16 @@ ADD INDEX IDX_PG_FK_FORMA_PGTO (FK_FORMA_PAGAMENTO);
 
 ALTER TABLE CATEGORIAS_FINANCEIRAS ADD INDEX IDX_CATF_FK_NATUREZA (FK_NATUREZA_FINANCEIRA);
 
----------------------------------------------------- SEEDs (dados sugeridos) -----------------------------------------------------------
+ALTER TABLE LOGS  ADD INDEX IDX_LOGS_USERNAME (USERNAME), 
+                  ADD INDEX IDX_LOGS_APPLICATION (APPLICATION), 
+                  ADD INDEX IDX_LOGS_ACTION (ACTION), 
+                  ADD INDEX IDX_LOGS_INSERTED_DATE (INSERTED_DATE);
+
+ALTER TABLE USUARIOS_SESSOES ADD INDEX IDX_SESSAO_USUARIO (FK_USUARIO), ADD INDEX IDX_SESSAO_TOKEN (TOKEN_SESSAO);
+ALTER TABLE USUARIOS_BLOQUEIOS ADD INDEX IDX_BLOQUEIO_USUARIO (FK_USUARIO);
+ALTER TABLE RECUPERACAO_SENHA ADD UNIQUE INDEX IDX_RECUP_SENHA_TOKEN (TOKEN), ADD INDEX IDX_RECUP_SENHA_USUARIO (FK_USUARIO);
+
+--### SEEDs (dados sugeridos)
 INSERT INTO ESTOQUE_ACOES_MOVIMENTACAO (ACAO) VALUES
 ('ENTRADA'),
 ('SAIDA'),
@@ -517,13 +679,129 @@ INSERT INTO PERFIS (NOME, DESCRICAO) VALUES
 ('VENDEDOR', 'Permissões de Venda'),
 ('FINANCEIRO','Acesso ao módulo financeiro, exibição de relatórios');
 
-------------------------------------------- TESTES ------------------------------------------------
-/* Simular um fluxo completo de venda a prazo, envolvendo:
+-- ⚙️ Configurações Gerais
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('NOME_EMPRESA', 'Val Mendes Modas', 'Nome comercial da empresa para exibição nos relatórios e etiquetas', 'STRING', 'GERAL'),
+('EMAIL_EMPRESA', 'contato@valmendesmodas.com.br', 'E-mail padrão para contato e envio de cobranças', 'STRING', 'GERAL'),
+('TELEFONE_EMPRESA', '(19) 99999-0000', 'Telefone de contato exibido em documentos', 'STRING', 'GERAL'),
+('CNPJ_EMPRESA', '12.345.678/0001-90', 'CNPJ da empresa para relatórios e contratos', 'STRING', 'GERAL'),
+('FUSO_HORARIO', 'America/Sao_Paulo', 'Fuso horário do sistema', 'STRING', 'GERAL'),
+('IDIOMA_PADRAO', 'pt_BR', 'Idioma padrão do sistema', 'STRING', 'GERAL');
+-- 💸 Financeiro
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('PERCENTUAL_LUCRO_PADRAO', '30', 'Lucro percentual padrão aplicado ao preço de custo', 'DECIMAL', 'FINANCEIRO'),
+('VENCIMENTO_CREDIARIO_PADRAO', '30', 'Número de dias padrão para vencimento de vendas a prazo (crediário)', 'INT', 'FINANCEIRO'),
+('AVISO_INADIMPLENCIA_DIAS', '5', 'Dias antes ou após vencimento para envio de mensagem de inadimplência', 'INT', 'FINANCEIRO'),
+('EXIBIR_FLUXO_CAIXA_INICIAL', 'true', 'Exibir fluxo de caixa na tela inicial do sistema', 'BOOLEAN', 'FINANCEIRO'),
+('FORMA_PAGAMENTO_PADRAO', 'Dinheiro', 'Forma de pagamento sugerida nas vendas à vista', 'STRING', 'FINANCEIRO');
+-- 🧾 Etiquetas e Impressão
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('ETIQUETA_LARGURA_CM', '5.0', 'Largura da etiqueta padrão em centímetros', 'DECIMAL', 'ETIQUETAS'),
+('ETIQUETA_ALTURA_CM', '3.0', 'Altura da etiqueta padrão em centímetros', 'DECIMAL', 'ETIQUETAS'),
+('ETIQUETA_MODELO_PADRAO', 'modelo1', 'Modelo de layout de etiqueta padrão', 'STRING', 'ETIQUETAS'),
+('IMPRIMIR_PRECO_ETIQUETA', 'true', 'Se deve imprimir o preço de venda na etiqueta', 'BOOLEAN', 'ETIQUETAS'),
+('IMPRIMIR_LOGO_ETIQUETA', 'true', 'Se deve imprimir a logo da empresa na etiqueta', 'BOOLEAN', 'ETIQUETAS');
+-- 📩 Mensagens
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('MENSAGEM_COBRANCA_PADRAO', 'Olá, tudo bem? Verificamos que há um pagamento em aberto. Por favor, entre em contato para regularizar. Loja Val Mendes Modas 💳👗', 'Mensagem de cobrança enviada por WhatsApp', 'STRING', 'MENSAGENS'),
+('MENSAGEM_AGRADECIMENTO_VENDA', 'Obrigado por comprar conosco! Esperamos te ver em breve 😊', 'Mensagem de agradecimento automática após venda', 'STRING', 'MENSAGENS');
+-- 🛒 Vendas
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('HABILITAR_PRE_VENDA', 'true', 'Permitir operação de pré-venda no sistema', 'BOOLEAN', 'VENDAS'),
+('PERMITIR_DESCONTO_LIVRE', 'false', 'Permitir inserir descontos livres no momento da venda', 'BOOLEAN', 'VENDAS'),
+('DESCONTO_MAXIMO_AUTORIZADO', '15', 'Desconto percentual máximo sem autorização gerencial', 'DECIMAL', 'VENDAS'),
+('GERAR_PEDIDO_AUTOMATICO', 'true', 'Gerar pedido automaticamente após finalização de venda', 'BOOLEAN', 'VENDAS');
+-- 📈 Relatórios
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('GRAFICO_METRICA_PADRAO', 'vendas_diarias', 'Tipo de métrica padrão exibida no gráfico da dashboard', 'STRING', 'RELATORIOS'),
+('EXIBIR_TOP_CLIENTES', 'true', 'Exibir ranking de clientes que mais compraram na dashboard', 'BOOLEAN', 'RELATORIOS');
+-- 🔐 Segurança / Sistema
+INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
+('FORCAR_SENHA_FORTE', 'true', 'Obrigar uso de senha forte para usuários do sistema', 'BOOLEAN', 'SEGURANCA'),
+('TEMPO_SESSAO_MINUTOS', '30', 'Tempo de expiração de sessão por inatividade (em minutos)', 'INT', 'SEGURANCA');
+
+--### TESTES Módulo de Segurança e Acesso
+-- Perfis
+INSERT INTO PERFIS (NOME, DESCRICAO, NIVEL_ACESSO) VALUES
+  ('Administrador',        'Acesso total ao sistema',          99),
+  ('Operador Financeiro',  'Acesso restrito ao financeiro',    50),
+  ('Caixa',                'Operações de venda e caixa',       20),
+  ('Vendedor',             'Registro de vendas e consultas',   10);
+
+-- Usuário Admin
+INSERT INTO USUARIOS (NOME, LOGIN, SENHA_HASH, EMAIL) VALUES
+  ('Admin Sistema', 'admin', SHA2('admin123', 256), 'admin@empresa.com.br');
+SET @ID_ADMIN = LAST_INSERT_ID(),
+SET @LOGIN_ADMIN = (SELECT LOGIN FROM USUARIOS WHERE ID = @ID_ADMIN);
+
+-- Associação Usuário ↔ Perfil
+INSERT INTO USUARIOS_PERFIS (FK_USUARIO, FK_PERFIL)
+VALUES (
+  @ID_ADMIN,
+  (SELECT ID FROM PERFIS WHERE NOME = 'Administrador')
+);
+
+-- Módulos (antigos grupos de aplicações)
+INSERT INTO MODULOS (NOME, DESCRICAO) VALUES
+  ('Financeiro', 'Controle de fluxo de caixa, contas a pagar e receber'),
+  ('Estoque',    'Gestão de entradas, saídas e inventário'),
+  ('Vendas',     'Operações de vendas e pré-vendas'),
+  ('Cadastro',   'Manutenção de cadastros mestres');
+
+-- Aplicações / Telas
+INSERT INTO APLICACOES (NOME, ROTA, DESCRICAO) VALUES
+  ('Fluxo de Caixa',       '/financeiro/fluxo-caixa',       'Visão do caixa diário e mensal'),
+  ('Contas a Pagar',       '/financeiro/contas-pagar',      'Listagem e gestão de contas a pagar'),
+  ('Estoque Movimentações','/estoque/movimentacoes',        'Registro de entradas e saídas'),
+  ('Cadastro de Clientes', '/cadastro/clientes',            'CRUD de clientes'),
+  ('Cadastro de Produtos', '/cadastro/produtos',            'CRUD de produtos'),
+  ('Registro de Venda',    '/vendas/novo',                  'Formulário de nova venda'),
+  ('Listagem de Vendas',   '/vendas/lista',                 'Consulta de vendas realizadas');
+
+-- Relacionamento entre Aplicações e Módulos
+INSERT INTO APLICACOES_MODULOS (FK_MODULO, FK_APLICACAO)
+SELECT M.ID, A.ID
+FROM MODULOS M
+JOIN APLICACOES A ON
+  (M.NOME = 'Financeiro' AND A.NOME IN ('Fluxo de Caixa', 'Contas a Pagar'))
+  OR
+  (M.NOME = 'Estoque'    AND A.NOME = 'Estoque Movimentações')
+  OR
+  (M.NOME = 'Cadastro'   AND A.NOME IN ('Cadastro de Clientes', 'Cadastro de Produtos'))
+  OR
+  (M.NOME = 'Vendas'     AND A.NOME IN ('Registro de Venda', 'Listagem de Vendas'));
+
+-- Permissões: Administrador → todas as ações em todas as aplicações
+INSERT INTO PERMISSOES (
+  FK_PERFIL, FK_APLICACAO,
+  ACESSAR, INSERIR, ATUALIZAR, EXCLUIR, EXPORTAR, IMPRIMIR
+)
+SELECT
+  P.ID, A.ID,
+  TRUE, TRUE, TRUE, TRUE, TRUE, TRUE
+FROM PERFIS P
+CROSS JOIN APLICACOES A
+WHERE P.NOME = 'Administrador';
+
+-- Log de criação do usuário administrador
+INSERT INTO LOGS (USERNAME, APPLICATION, ACTION, DESCRIPTION, IP_USER, CREATOR)
+VALUES (
+  'admin',
+  'Sistema',
+  'CRIAÇÃO',
+  'Usuário administrador criado e perfil vinculado',
+  '127.0.0.1',
+  'test simulator'
+);
+
+--### TESTES Simulação de Venda com Cliente e Vendedor a prazo
+/* envolvendo:
 1. Cadastro de um cliente.
 2. Cadastro de um usuário com perfil de vendedor.
 3. Realização de uma venda com produtos.
 4. Geração de contas a receber associadas à venda.
-5. Definição da forma de pagamento e da situação financeira. */
+5. Definição da forma de pagamento e da situação financeira.
+fluxo completo: cliente → usuário/vendedor → venda → itens → contas a receber → log.*/
 
 -- Cliente
 INSERT INTO CLIENTES (NOME, CPF, TELEFONE, LIMITE_CREDIARIO)
@@ -531,18 +809,20 @@ VALUES ('Maria da Silva', '12345678901', '19991234567', 1000.00);
 SET @ID_CLIENTE = LAST_INSERT_ID();
 
 -- Usuário vendedor
-INSERT INTO USUARIOS (NOME, EMAIL, HASH_SENHA)
-VALUES ('Carlos Vendedor', 'carlos@loja.com', 'senha123_hash');
+INSERT INTO USUARIOS (NOME, LOGIN, EMAIL, SENHA_HASH)
+VALUES ('Carlos Vendedor', 'carlos', 'carlos@loja.com', SHA2('senha123', 256));
 SET @ID_USUARIO = LAST_INSERT_ID();
 
--- Perfil e vínculo
-INSERT INTO PERFIS (NOME, DESCRICAO) VALUES ('VENDEDOR', 'Permite realizar vendas');
-SET @ID_PERFIL = LAST_INSERT_ID();
+-- Perfil vendedor (caso não exista ainda)
+INSERT IGNORE INTO PERFIS (NOME, DESCRICAO, NIVEL_ACESSO)
+VALUES ('Vendedor', 'Permite realizar vendas', 10);
+SET @ID_PERFIL = (SELECT ID FROM PERFIS WHERE NOME = 'Vendedor');
 
+-- Associação com o perfil
 INSERT INTO USUARIOS_PERFIS (FK_USUARIO, FK_PERFIL)
 VALUES (@ID_USUARIO, @ID_PERFIL);
 
--- Vendedor (ID igual ao do usuário)
+-- Vendedor (ID igual ao usuário)
 INSERT INTO VENDEDORES (ID, APELIDO, PERCENTUAL_COMISSAO)
 VALUES (@ID_USUARIO, 'Carlos', 5.0);
 
@@ -554,13 +834,12 @@ SET @ID_VENDA = LAST_INSERT_ID();
 -- Itens da venda
 INSERT INTO VENDAS_ITENS (FK_VENDA, DESCRICAO_ITEM, QUANTIDADE, PRECO_UNITARIO)
 VALUES
-(@ID_VENDA, 'Camisa Polo', 1, 120.00),
-(@ID_VENDA, 'Calça Jeans', 1, 80.00);
+  (@ID_VENDA, 'Camisa Polo', 1, 120.00),
+  (@ID_VENDA, 'Calça Jeans', 1, 80.00);
 
 -- Contas a receber (parcelado em 2x)
 INSERT INTO CONTAS_RECEBER (
   FK_CLIENTE, FK_VENDA, DATA_LANCAMENTO, VALOR_TOTAL, DATA_VENCIMENTO, FK_FORMA_PAGAMENTO, FK_SITUACAO_FINANCEIRA
 ) VALUES
-(@ID_CLIENTE, @ID_VENDA, NOW(), 100.00, DATE_ADD(NOW(), INTERVAL 15 DAY), 2, 1),
-(@ID_CLIENTE, @ID_VENDA, NOW(), 100.00, DATE_ADD(NOW(), INTERVAL 30 DAY), 2, 1);
-
+  (@ID_CLIENTE, @ID_VENDA, NOW(), 100.00, DATE_ADD(NOW(), INTERVAL 15 DAY), 2, 1),
+  (@ID_CLIENTE, @ID_VENDA, NOW(), 100.00, DATE_ADD(NOW(), INTERVAL 30 DAY), 2, 1);
