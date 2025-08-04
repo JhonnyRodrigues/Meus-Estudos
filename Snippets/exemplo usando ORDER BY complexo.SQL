@@ -1,4 +1,4 @@
--- Ordena, respectivamente, pelas situações:-  aguardando solicitante(11)- abertas(1)- demais (em trâmite interno DTI)- concluídas(4)- encerradas(10)- canceladas(11). Então, finalmente, ordena pelas mais recentes no topo.
+-- Ordena, respectivamente, pelas situaï¿½ï¿½es:-  aguardando solicitante(11)- abertas(1)- demais (em trï¿½mite interno DTI)- concluï¿½das(4)- encerradas(10)- canceladas(11). Entï¿½o, finalmente, ordena pelas mais recentes no topo.
 ORDER BY
     (
         CASE FK_STATUS
