@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram version="1" name="DER_MinhaLoja.erd">
+	<entities>
+		<data-source id="mysql8-19872731095-12a0f154c5f84b10">
+			<entity id="1" name="APLICACOES" fq-name="minhaloj_dev.APLICACOES" order="0" x="2500" y="280">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="2" name="APLICACOES_MODULOS" fq-name="minhaloj_dev.APLICACOES_MODULOS" order="1" x="2440" y="160">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="3" name="CATEGORIAS_FINANCEIRAS" fq-name="minhaloj_dev.CATEGORIAS_FINANCEIRAS" order="2" x="1040" y="20">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="4" name="CLIENTES" fq-name="minhaloj_dev.CLIENTES" order="3" x="1440" y="480">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="5" name="CONFIGURACOES" fq-name="minhaloj_dev.CONFIGURACOES" order="4" x="2240" y="260">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="6" name="CREDITOS_RECEBER" fq-name="minhaloj_dev.CREDITOS_RECEBER" order="5" x="680" y="600">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="7" name="ESTOQUES" fq-name="minhaloj_dev.ESTOQUES" order="6" x="680" y="1000">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="8" name="ESTOQUE_ACOES_MOVIMENTACAO" fq-name="minhaloj_dev.ESTOQUE_ACOES_MOVIMENTACAO" order="7" x="20" y="880">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="9" name="ESTOQUE_MOVIMENTACOES" fq-name="minhaloj_dev.ESTOQUE_MOVIMENTACOES" order="8" x="380" y="900">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="10" name="ESTOQUE_ORIGENS_MOVIMENTACAO" fq-name="minhaloj_dev.ESTOQUE_ORIGENS_MOVIMENTACAO" order="9" x="20" y="1020">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="11" name="FORMAS_PAGAMENTO" fq-name="minhaloj_dev.FORMAS_PAGAMENTO" order="10" x="40" y="340">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="12" name="FORNECEDORES" fq-name="minhaloj_dev.FORNECEDORES" order="11" x="780" y="220">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="13" name="LOGS" fq-name="minhaloj_dev.LOGS" order="12" x="2260" y="20">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="14" name="MODULOS" fq-name="minhaloj_dev.MODULOS" order="13" x="2500" y="20">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="15" name="NATUREZAS_FINANCEIRAS" fq-name="minhaloj_dev.NATUREZAS_FINANCEIRAS" order="14" x="1280" y="20">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="16" name="OBRIGACOES_FINANCEIRAS" fq-name="minhaloj_dev.OBRIGACOES_FINANCEIRAS" order="15" x="380" y="20">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="17" name="PAGAMENTOS" fq-name="minhaloj_dev.PAGAMENTOS" order="16" x="20" y="20">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="18" name="PERFIS" fq-name="minhaloj_dev.PERFIS" order="17" x="2480" y="680">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="19" name="PERMISSOES" fq-name="minhaloj_dev.PERMISSOES" order="18" x="2480" y="440">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="20" name="PRE_VENDAS" fq-name="minhaloj_dev.PRE_VENDAS" order="19" x="1760" y="300">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="21" name="PRE_VENDA_ITENS" fq-name="minhaloj_dev.PRE_VENDA_ITENS" order="20" x="1500" y="60">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="22" name="PRE_VENDA_SITUACOES" fq-name="minhaloj_dev.PRE_VENDA_SITUACOES" order="21" x="1740" y="60">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="23" name="PRODUTOS" fq-name="minhaloj_dev.PRODUTOS" order="22" x="1040" y="780">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="24" name="PRODUTO_CATEGORIAS" fq-name="minhaloj_dev.PRODUTO_CATEGORIAS" order="23" x="1080" y="320">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="25" name="RECEBIMENTOS" fq-name="minhaloj_dev.RECEBIMENTOS" order="24" x="40" y="620">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="26" name="RECUPERACAO_SENHA" fq-name="minhaloj_dev.RECUPERACAO_SENHA" order="25" x="2440" y="960">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="27" name="SITUACOES_FINANCEIRAS" fq-name="minhaloj_dev.SITUACOES_FINANCEIRAS" order="26" x="400" y="340">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="28" name="USUARIOS" fq-name="minhaloj_dev.USUARIOS" order="27" x="2240" y="720">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="29" name="USUARIOS_BLOQUEIOS" fq-name="minhaloj_dev.USUARIOS_BLOQUEIOS" order="28" x="2240" y="960">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="30" name="USUARIOS_PERFIS" fq-name="minhaloj_dev.USUARIOS_PERFIS" order="29" x="2480" y="840">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="31" name="USUARIOS_SESSOES" fq-name="minhaloj_dev.USUARIOS_SESSOES" order="30" x="2240" y="500">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="32" name="USUARIOS_TENTATIVAS_LOGIN" fq-name="minhaloj_dev.USUARIOS_TENTATIVAS_LOGIN" order="31" x="2000" y="960">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="33" name="VENDAS" fq-name="minhaloj_dev.VENDAS" order="32" border-width="3" x="1760" y="720">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="34" name="VENDA_ITENS" fq-name="minhaloj_dev.VENDA_ITENS" order="33" x="1480" y="920">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="35" name="VENDA_ORIGENS" fq-name="minhaloj_dev.VENDA_ORIGENS" order="34" x="1680" y="560">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="36" name="VENDA_SITUACOES" fq-name="minhaloj_dev.VENDA_SITUACOES" order="35" x="1760" y="1020">
+				<path name="minhaloj_dev"/>
+			</entity>
+			<entity id="37" name="VENDEDORES" fq-name="minhaloj_dev.VENDEDORES" order="36" x="2000" y="440">
+				<path name="minhaloj_dev"/>
+			</entity>
+		</data-source>
+	</entities>
+	<relations>
+		<relation name="APLICACOES_MODULOS_ibfk_2" fq-name="minhaloj_dev.APLICACOES_MODULOS.APLICACOES_MODULOS_ibfk_2" type="fk" pk-ref="1" fk-ref="2"/>
+		<relation name="PERMISSOES_ibfk_2" fq-name="minhaloj_dev.PERMISSOES.PERMISSOES_ibfk_2" type="fk" pk-ref="1" fk-ref="19"/>
+		<relation name="OBRIGACOES_FINANCEIRAS_ibfk_3" fq-name="minhaloj_dev.OBRIGACOES_FINANCEIRAS.OBRIGACOES_FINANCEIRAS_ibfk_3" type="fk" pk-ref="3" fk-ref="16"/>
+		<relation name="PRE_VENDAS_ibfk_1" fq-name="minhaloj_dev.PRE_VENDAS.PRE_VENDAS_ibfk_1" type="fk" pk-ref="4" fk-ref="20"/>
+		<relation name="VENDAS_ibfk_1" fq-name="minhaloj_dev.VENDAS.VENDAS_ibfk_1" type="fk" pk-ref="4" fk-ref="33"/>
+		<relation name="CREDITOS_RECEBER_ibfk_2" fq-name="minhaloj_dev.CREDITOS_RECEBER.CREDITOS_RECEBER_ibfk_2" type="fk" pk-ref="4" fk-ref="6"/>
+		<relation name="RECEBIMENTOS_ibfk_1" fq-name="minhaloj_dev.RECEBIMENTOS.RECEBIMENTOS_ibfk_1" type="fk" pk-ref="6" fk-ref="25"/>
+		<relation name="ESTOQUE_MOVIMENTACOES_ibfk_2" fq-name="minhaloj_dev.ESTOQUE_MOVIMENTACOES.ESTOQUE_MOVIMENTACOES_ibfk_2" type="fk" pk-ref="8" fk-ref="9"/>
+		<relation name="ESTOQUE_MOVIMENTACOES_ibfk_3" fq-name="minhaloj_dev.ESTOQUE_MOVIMENTACOES.ESTOQUE_MOVIMENTACOES_ibfk_3" type="fk" pk-ref="10" fk-ref="9"/>
+		<relation name="CREDITOS_RECEBER_ibfk_4" fq-name="minhaloj_dev.CREDITOS_RECEBER.CREDITOS_RECEBER_ibfk_4" type="fk" pk-ref="11" fk-ref="6"/>
+		<relation name="PAGAMENTOS_ibfk_2" fq-name="minhaloj_dev.PAGAMENTOS.PAGAMENTOS_ibfk_2" type="fk" pk-ref="11" fk-ref="17"/>
+		<relation name="RECEBIMENTOS_ibfk_2" fq-name="minhaloj_dev.RECEBIMENTOS.RECEBIMENTOS_ibfk_2" type="fk" pk-ref="11" fk-ref="25"/>
+		<relation name="OBRIGACOES_FINANCEIRAS_ibfk_1" fq-name="minhaloj_dev.OBRIGACOES_FINANCEIRAS.OBRIGACOES_FINANCEIRAS_ibfk_1" type="fk" pk-ref="12" fk-ref="16"/>
+		<relation name="PRODUTOS_ibfk_2" fq-name="minhaloj_dev.PRODUTOS.PRODUTOS_ibfk_2" type="fk" pk-ref="12" fk-ref="23"/>
+		<relation name="APLICACOES_MODULOS_ibfk_1" fq-name="minhaloj_dev.APLICACOES_MODULOS.APLICACOES_MODULOS_ibfk_1" type="fk" pk-ref="14" fk-ref="2"/>
+		<relation name="CATEGORIAS_FINANCEIRAS_ibfk_1" fq-name="minhaloj_dev.CATEGORIAS_FINANCEIRAS.CATEGORIAS_FINANCEIRAS_ibfk_1" type="fk" pk-ref="15" fk-ref="3"/>
+		<relation name="PAGAMENTOS_ibfk_1" fq-name="minhaloj_dev.PAGAMENTOS.PAGAMENTOS_ibfk_1" type="fk" pk-ref="16" fk-ref="17"/>
+		<relation name="PERMISSOES_ibfk_1" fq-name="minhaloj_dev.PERMISSOES.PERMISSOES_ibfk_1" type="fk" pk-ref="18" fk-ref="19"/>
+		<relation name="USUARIOS_PERFIS_ibfk_2" fq-name="minhaloj_dev.USUARIOS_PERFIS.USUARIOS_PERFIS_ibfk_2" type="fk" pk-ref="18" fk-ref="30"/>
+		<relation name="PRE_VENDA_ITENS_ibfk_1" fq-name="minhaloj_dev.PRE_VENDA_ITENS.PRE_VENDA_ITENS_ibfk_1" type="fk" pk-ref="20" fk-ref="21"/>
+		<relation name="VENDAS_ibfk_5" fq-name="minhaloj_dev.VENDAS.VENDAS_ibfk_5" type="fk" pk-ref="20" fk-ref="33"/>
+		<relation name="PRE_VENDAS_ibfk_4" fq-name="minhaloj_dev.PRE_VENDAS.PRE_VENDAS_ibfk_4" type="fk" pk-ref="22" fk-ref="20"/>
+		<relation name="ESTOQUES_ibfk_1" fq-name="minhaloj_dev.ESTOQUES.ESTOQUES_ibfk_1" type="fk" pk-ref="23" fk-ref="7"/>
+		<relation name="ESTOQUE_MOVIMENTACOES_ibfk_1" fq-name="minhaloj_dev.ESTOQUE_MOVIMENTACOES.ESTOQUE_MOVIMENTACOES_ibfk_1" type="fk" pk-ref="23" fk-ref="9"/>
+		<relation name="PRE_VENDA_ITENS_ibfk_2" fq-name="minhaloj_dev.PRE_VENDA_ITENS.PRE_VENDA_ITENS_ibfk_2" type="fk" pk-ref="23" fk-ref="21"/>
+		<relation name="VENDA_ITENS_ibfk_2" fq-name="minhaloj_dev.VENDA_ITENS.VENDA_ITENS_ibfk_2" type="fk" pk-ref="23" fk-ref="34"/>
+		<relation name="PRODUTOS_ibfk_1" fq-name="minhaloj_dev.PRODUTOS.PRODUTOS_ibfk_1" type="fk" pk-ref="24" fk-ref="23"/>
+		<relation name="CREDITOS_RECEBER_ibfk_3" fq-name="minhaloj_dev.CREDITOS_RECEBER.CREDITOS_RECEBER_ibfk_3" type="fk" pk-ref="27" fk-ref="6"/>
+		<relation name="OBRIGACOES_FINANCEIRAS_ibfk_2" fq-name="minhaloj_dev.OBRIGACOES_FINANCEIRAS.OBRIGACOES_FINANCEIRAS_ibfk_2" type="fk" pk-ref="27" fk-ref="16"/>
+		<relation name="RECUPERACAO_SENHA_ibfk_1" fq-name="minhaloj_dev.RECUPERACAO_SENHA.RECUPERACAO_SENHA_ibfk_1" type="fk" pk-ref="28" fk-ref="26"/>
+		<relation name="USUARIOS_BLOQUEIOS_ibfk_1" fq-name="minhaloj_dev.USUARIOS_BLOQUEIOS.USUARIOS_BLOQUEIOS_ibfk_1" type="fk" pk-ref="28" fk-ref="29"/>
+		<relation name="USUARIOS_BLOQUEIOS_ibfk_2" fq-name="minhaloj_dev.USUARIOS_BLOQUEIOS.USUARIOS_BLOQUEIOS_ibfk_2" type="fk" pk-ref="28" fk-ref="29"/>
+		<relation name="USUARIOS_PERFIS_ibfk_1" fq-name="minhaloj_dev.USUARIOS_PERFIS.USUARIOS_PERFIS_ibfk_1" type="fk" pk-ref="28" fk-ref="30"/>
+		<relation name="USUARIOS_SESSOES_ibfk_1" fq-name="minhaloj_dev.USUARIOS_SESSOES.USUARIOS_SESSOES_ibfk_1" type="fk" pk-ref="28" fk-ref="31"/>
+		<relation name="USUARIOS_TENTATIVAS_LOGIN_ibfk_1" fq-name="minhaloj_dev.USUARIOS_TENTATIVAS_LOGIN.USUARIOS_TENTATIVAS_LOGIN_ibfk_1" type="fk" pk-ref="28" fk-ref="32"/>
+		<relation name="VENDEDORES_ibfk_1" fq-name="minhaloj_dev.VENDEDORES.VENDEDORES_ibfk_1" type="fk" pk-ref="28" fk-ref="37"/>
+		<relation name="CREDITOS_RECEBER_ibfk_1" fq-name="minhaloj_dev.CREDITOS_RECEBER.CREDITOS_RECEBER_ibfk_1" type="fk" pk-ref="33" fk-ref="6"/>
+		<relation name="VENDA_ITENS_ibfk_1" fq-name="minhaloj_dev.VENDA_ITENS.VENDA_ITENS_ibfk_1" type="fk" pk-ref="33" fk-ref="34"/>
+		<relation name="PRE_VENDAS_ibfk_3" fq-name="minhaloj_dev.PRE_VENDAS.PRE_VENDAS_ibfk_3" type="fk" pk-ref="35" fk-ref="20"/>
+		<relation name="VENDAS_ibfk_3" fq-name="minhaloj_dev.VENDAS.VENDAS_ibfk_3" type="fk" pk-ref="35" fk-ref="33"/>
+		<relation name="PRE_VENDAS_ibfk_2" fq-name="minhaloj_dev.PRE_VENDAS.PRE_VENDAS_ibfk_2" type="fk" pk-ref="37" fk-ref="20"/>
+		<relation name="VENDAS_ibfk_2" fq-name="minhaloj_dev.VENDAS.VENDAS_ibfk_2" type="fk" pk-ref="37" fk-ref="33"/>
+	</relations>
+</diagram>
