@@ -121,14 +121,14 @@ CREATE TABLE USUARIOS_TENTATIVAS_LOGIN (
 
 -- MÓDULO CONFIGURAÇÕES
 CREATE TABLE CONFIGURACOES (
-    ID_CONFIGURACAO     INT AUTO_INCREMENT PRIMARY KEY,
+    ID                  INT AUTO_INCREMENT PRIMARY KEY,
     CHAVE               VARCHAR(100) NOT NULL UNIQUE,
     VALOR               TEXT NOT NULL,
     DESCRICAO           VARCHAR(255),
     TIPO                VARCHAR(20) COMMENT 'Ex: STRING, INT, DECIMAL, BOOLEAN, DATA',
     AGRUPAMENTO         VARCHAR(50) COMMENT 'Ex: "FINANCEIRO", "GERAL", "ETIQUETAS"',
     AMBIENTE            ENUM('D','P') DEFAULT 'P' COMMENT 'D = Desenvolvimento, P = Produção',
-    ATIVO 				CHAR(1) NOT NULL DEFAULT 'S' COMMENT 'S = Sim, N = Não',
+    ATIVO 				      CHAR(1) NOT NULL DEFAULT 'S' COMMENT 'S = Sim, N = Não',
     DATA_CRIACAO        DATETIME DEFAULT CURRENT_TIMESTAMP,
     DATA_ATUALIZACAO    DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
@@ -351,7 +351,7 @@ CREATE TABLE SITUACOES_FINANCEIRAS (
     DESCRICAO VARCHAR(255) NOT NULL,
     ORDEM INT NOT NULL,
     COR VARCHAR(100) NULL COMMENT 'Ex: #FF0000',
-    ATIVO ENUM ('S', 'N') DEFAULT 'S'
+    ATIVO CHAR(1) NOT NULL DEFAULT 'S' COMMENT 'S = Sim, N = Não'
   );
 
 CREATE TABLE NATUREZAS_FINANCEIRAS (
@@ -644,15 +644,15 @@ ADD INDEX IDX_TENTATIVA_SUCESSO (SUCESSO);
 -- SEEDs (dados sugeridos)
 INSERT INTO ESTOQUE_ACOES_MOVIMENTACAO (ACAO) VALUES
 ('ENTRADA'),
-('SAIDA'),
-('DEVOLUCAO'),
+('SAÍDA'),
+('DEVOLUÇÃO'),
 ('AJUSTE');
 
 INSERT INTO ESTOQUE_ORIGENS_MOVIMENTACAO (ORIGEM) VALUES
 ('VENDA'),
 ('COMPRA'),
-('PREVENDA'),
-('DEVOLUCAO'),
+('PRÉ-VENDA'),
+('DEVOLUÇÃO'),
 ('CORRECAO');
   
 INSERT INTO VENDA_ORIGENS (DESCRICAO) VALUES
@@ -687,11 +687,11 @@ INSERT INTO SITUACOES_FINANCEIRAS (NOME, DESCRICAO, COR) VALUES
 ('ABERTA','Conta aberta aguardando pagamento','#CCCCCC'),
 ('PAGA', 'Conta quitada', '#00CC00'),
 ('ATRASADA', 'Pagamento em atraso', '#FF0000'),
-('PARCIALMENTE_PAGA','Conta parcialmente quitada','#FF9900'),
+('PARCIALMENTE PAGA','Conta parcialmente quitada','#FF9900'),
 ('NEGOCIADA','Conta renegociada com novo vencimento','#0066CC'),
 ('CANCELADA','Conta cancelada por erro ou devolução','#999999'),
 ('ISENTA','Conta isenta de cobrança','#0099CC'),
-('EM_DISPUTA','Conta em análise ou contestação','#CC0066'),
+('EM DISPUTA','Conta em análise ou contestação','#CC0066'),
 ('ANTECIPADA','Conta paga antes do vencimento','#006600');
 
 INSERT INTO NATUREZAS_FINANCEIRAS (NOME, DESCRICAO) VALUES
@@ -711,9 +711,9 @@ INSERT INTO CATEGORIAS_FINANCEIRAS (NOME, DESCRICAO, FK_NATUREZA_FINANCEIRA) VAL
 ('PIX IMEDIATO', 'Recebimento à vista via PIX', 1),
 ('BOLETO BANCÁRIO','Recebimento programado via boleto',1),
 ('VENDA ONLINE','Receita gerada por e-commerce',1),
-( 'DISTRIBUIDOR',  'Vendas para distribuidores',1),
-( 'REPRESENTANTE','Vendas via representante comercial',1),
-( 'SERVICOS',     'Receita de serviços prestados',1);
+('DISTRIBUIDOR',  'Vendas para distribuidores',1),
+('REPRESENTANTE','Vendas via representante comercial',1),
+('SERVICOS',     'Receita de serviços prestados',1);
 ('FORNECEDOR ESTOQUE','Compra de produtos para revenda',2),
 ('DESPESA FIXA - ALUGUEL','Pagamento mensal do ponto físico',2),
 ('CAMPANHA MARKETING','Investimento em divulgação',5);
