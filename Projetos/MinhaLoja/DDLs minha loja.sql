@@ -269,7 +269,7 @@ CREATE TABLE PRE_VENDA_ITENS (
     FK_PRODUTO INT NOT NULL,
     QUANTIDADE INT NOT NULL CHECK (QUANTIDADE > 0),
     RESERVADO CHAR(1) NOT NULL DEFAULT 'S' COMMENT 'S = Sim, N = Não',
-    MOTIVO_LIBERACAO VARCHAR(255) NULL COMMENT 'Justificativa da liberação da reserva de um item. Preenchido somente quando RESERVADO = FALSE'/*,
+    MOTIVO_LIBERACAO VARCHAR(255) NULL COMMENT 'Justificativa da liberação da reserva de um item. Preenchido somente quando RESERVADO = N'/*,
     FOREIGN KEY (FK_PRE_VENDA) REFERENCES PRE_VENDAS (ID),
     FOREIGN KEY (FK_PRODUTO) REFERENCES PRODUTOS (ID)*/
   );
@@ -481,7 +481,7 @@ BEGIN
   SELECT COUNT(*) INTO V_FALHAS
   FROM USUARIOS_TENTATIVAS_LOGIN
   WHERE FK_USUARIO = P_ID_USUARIO
-    AND SUCESSO = FALSE
+    AND SUCESSO = 'N'
     AND DATA_TENTATIVA >= (NOW() - INTERVAL 15 MINUTE);
 
   IF V_FALHAS >= 5 THEN
@@ -504,7 +504,7 @@ CREATE TRIGGER TRG_TENTATIVA_LOGIN_FALHA
 AFTER INSERT ON USUARIOS_TENTATIVAS_LOGIN
 FOR EACH ROW
 BEGIN
-  IF NEW.SUCESSO = FALSE AND NEW.FK_USUARIO IS NOT NULL THEN
+  IF NEW.SUCESSO = 'N' AND NEW.FK_USUARIO IS NOT NULL THEN
     CALL SP_VERIFICA_BLOQUEIO_TENTATIVAS(NEW.FK_USUARIO);
   END IF;
 END;
@@ -754,7 +754,7 @@ INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
 -- 🛒 Vendas
 INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
 ('HABILITAR_PRE_VENDA', 'S', 'Permitir operação de pré-venda no sistema', 'BOOLEAN', 'VENDAS'),
-('PERMITIR_DESCONTO_LIVRE', 'false', 'Permitir inserir descontos livres no momento da venda', 'BOOLEAN', 'VENDAS'),
+('PERMITIR_DESCONTO_LIVRE', 'N', 'Permitir inserir descontos livres no momento da venda', 'BOOLEAN', 'VENDAS'),
 ('DESCONTO_MAXIMO_AUTORIZADO', '15', 'Desconto percentual máximo sem autorização gerencial', 'DECIMAL', 'VENDAS'),
 ('GERAR_PEDIDO_AUTOMATICO', 'S', 'Gerar pedido automaticamente após finalização de venda', 'BOOLEAN', 'VENDAS');
 -- 📈 Relatórios
@@ -775,7 +775,7 @@ INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
 
 -- Criar usuário Admin
 INSERT INTO USUARIOS (NOME, LOGIN, SENHA_HASH, EMAIL)
-VALUES ('Admin Sistema', 'admin', SHA2('admin123', 256), 'admin@empresa.com.br');
+VALUES ('Admin Sistema', 'admin', /*SHA2('admin123', 256)*/'$2y$10$En2aP2bibrhrvZNwSFTJ4uwcw95tcUi2.2fCu.EbtvtsWFgiT7Kvq', 'admin@empresa.com.br');
 SET @ID_ADMIN := LAST_INSERT_ID();
 
 INSERT INTO LOGS (username, application, action, description, ip_user, creator)
