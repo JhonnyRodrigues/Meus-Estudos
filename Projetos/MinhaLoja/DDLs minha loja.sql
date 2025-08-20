@@ -78,6 +78,7 @@ CREATE TABLE USUARIOS_SESSOES (
   ID INT AUTO_INCREMENT PRIMARY KEY,
   FK_USUARIO INT NOT NULL,
   TOKEN_HASH VARCHAR(255) NOT NULL,
+  DATA_EXPIRACAO DATETIME NULL,
   DATA_LOGIN DATETIME DEFAULT CURRENT_TIMESTAMP,
   DATA_LOGOUT DATETIME COMMENT 'Se NULL, a sessão é considerada ativa',
   IP_ORIGEM VARCHAR(45),
@@ -762,8 +763,15 @@ INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
 ('EXIBIR_TOP_CLIENTES', 'S', 'Exibir ranking de clientes que mais compraram na dashboard', 'BOOLEAN', 'RELATORIOS');
 -- 🔐 Segurança / Sistema
 INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
-('FORCAR_SENHA_FORTE', 'S', 'Obrigar uso de senha forte para usuários do sistema', 'BOOLEAN', 'SEGURANCA'),
-('TEMPO_SESSAO_MINUTOS', '30', 'Tempo de expiração de sessão por inatividade (em minutos)', 'INT', 'SEGURANCA');
+('SESSION_COOKIE_NAME', 'minhaloja_session', 'Nome do cookie usado para armazenar a sessão', 'STRING', 'SEGURANCA'),
+('SESSION_LIFETIME_CLIENT', '14400', 'Controla quanto tempo o navegador do usuário mantém o cookie de sessão', 'INT', 'SEGURANCA'),
+('SESSION_LIFETIME_SERVER', '14400', 'Define por quanto tempo a sessão será válida no banco de dados', 'INT', 'SEGURANCA'),
+('FORCE_STRONG_PASSWORD', 'S', 'Obrigar uso de senha forte para usuários do sistema', 'BOOLEAN', 'SEGURANCA'),
+('PASSWORD_MIN_LENGTH', '8', 'Quantidade mínima de caracteres exigidos para senha', 'INT', 'SEGURANCA'),
+('PASSWORD_EXPIRE_DAYS', '90', 'Número de dias antes da senha expirar', 'INT', 'SEGURANCA'),
+('MAX_LOGIN_ATTEMPTS', '5', 'Número máximo de tentativas de login antes de bloqueio', 'INT', 'SEGURANCA'),
+('LOGIN_BLOCK_TIME', '15', 'Tempo de bloqueio após tentativas falhas de login (em minutos)', 'INT', 'SEGURANCA');
+
 
 -- Criar usuário Admin
 INSERT INTO USUARIOS (NOME, LOGIN, SENHA_HASH, EMAIL)
