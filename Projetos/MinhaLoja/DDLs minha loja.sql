@@ -796,11 +796,14 @@ VALUES (
 );
 
 -- Módulos
-INSERT INTO MODULOS (NOME, DESCRICAO) VALUES
-  ('Financeiro', 'Controle de fluxo de caixa, contas a pagar e receber'),
-  ('Estoque',    'Gestão de entradas, saídas e inventário'),
-  ('Vendas',     'Operações de vendas e pré-vendas'),
-  ('Cadastro',   'Manutenção de cadastros mestres');
+INSERT INTO MODULOS (ID, NOME, DESCRICAO) VALUES
+('1', 'Cadastro',   'Manutenção de cadastros de entidades mestres'),
+('2', 'Estoque',    'Gestão de entradas, saídas e inventário'),
+('3', 'Vendas',     'Operações de vendas e pré-vendas'),
+('4', 'Finanças', 'Controle de fluxo de caixa, contas a pagar e receber'),
+('5', 'Relatórios', 'Geração de relatórios gerenciais e operacionais'),
+('6', 'Segurança',  'Gerenciamento de usuários, perfis e permissões'),
+('7', 'Configurações', 'Configurações gerais do sistema');
 
 -- Aplicações / Telas
 INSERT INTO APLICACOES (NOME, ROTA, DESCRICAO) VALUES
@@ -817,13 +820,13 @@ INSERT INTO APLICACOES_MODULOS (FK_MODULO, FK_APLICACAO)
 SELECT M.ID, A.ID
 FROM MODULOS M
 JOIN APLICACOES A ON
-  (M.NOME = 'Financeiro' AND A.NOME IN ('Fluxo de Caixa', 'Contas a Pagar'))
+  (M.NOME = 'Cadastro'   AND A.NOME IN ('Cadastro de Clientes', 'Cadastro de Produtos'))
   OR
   (M.NOME = 'Estoque'    AND A.NOME = 'Estoque Movimentações')
   OR
-  (M.NOME = 'Cadastro'   AND A.NOME IN ('Cadastro de Clientes', 'Cadastro de Produtos'))
+  (M.NOME = 'Vendas'     AND A.NOME IN ('Registro de Venda', 'Listagem de Vendas'))
   OR
-  (M.NOME = 'Vendas'     AND A.NOME IN ('Registro de Venda', 'Listagem de Vendas'));
+  (M.NOME = 'Finanças' AND A.NOME IN ('Fluxo de Caixa', 'Contas a Pagar'));
 
 -- ====================================================
 -- ===================== TESTES =======================
