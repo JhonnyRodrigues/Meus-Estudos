@@ -514,9 +514,20 @@ CREATE TRIGGER TRG_APLICACOES_CRIAR_PERMISSOES_PADRAO
 AFTER INSERT ON APLICACOES
 FOR EACH ROW
 BEGIN
-    INSERT INTO PERMISSOES (FK_PERFIL, FK_APLICACAO)
-    SELECT ID, NEW.ID
-    FROM PERFIS;
+  -- 1) Criar permissões padrão para todos os perfis (tudo 'N')
+  INSERT INTO PERMISSOES (FK_PERFIL, FK_APLICACAO)
+  SELECT ID, NEW.ID FROM PERFIS;
+  -- 2) Ajustar perfil administrador para ter todas as permissões 'S'
+  UPDATE PERMISSOES SET 
+    ACESSAR  = 'S',
+    INSERIR  = 'S',
+    ATUALIZAR= 'S',
+    EXCLUIR  = 'S',
+    EXPORTAR = 'S',
+    IMPRIMIR = 'S'
+  WHERE 
+    FK_PERFIL = 1
+    AND FK_APLICACAO = NEW.ID;
 END;
 
 /* Trigger BEFORE DELETE na tabela APLICACOES */
@@ -844,27 +855,88 @@ INSERT INTO MODULOS (ID, NOME, DESCRICAO) VALUES
 ('7', 'Configurações', 'Configurações gerais do sistema');
 
 -- Aplicações / Telas
-INSERT INTO APLICACOES (NOME, ROTA, DESCRICAO) VALUES
-  ('Fluxo de Caixa',       '/financeiro/fluxo-caixa',       'Visão do caixa diário e mensal'),
-  ('Contas a Pagar',       '/financeiro/contas-pagar',      'Listagem e gestão de contas a pagar'),
-  ('Estoque Movimentações','/estoque/movimentacoes',        'Registro de entradas e saídas'),
-  ('Cadastro de Clientes', '/cadastro/clientes',            'CRUD de clientes'),
-  ('Cadastro de Produtos', '/cadastro/produtos',            'CRUD de produtos'),
-  ('Registro de Venda',    '/vendas/novo',                  'Formulário de nova venda'),
-  ('Listagem de Vendas',   '/vendas/lista',                 'Consulta de vendas realizadas');
-
--- Relacionamento entre Aplicações e Módulos
-INSERT INTO APLICACOES_MODULOS (FK_MODULO, FK_APLICACAO)
-SELECT M.ID, A.ID
-FROM MODULOS M
-JOIN APLICACOES A ON
-  (M.NOME = 'Cadastro'   AND A.NOME IN ('Cadastro de Clientes', 'Cadastro de Produtos'))
-  OR
-  (M.NOME = 'Estoque'    AND A.NOME = 'Estoque Movimentações')
-  OR
-  (M.NOME = 'Vendas'     AND A.NOME IN ('Registro de Venda', 'Listagem de Vendas'))
-  OR
-  (M.NOME = 'Finanças' AND A.NOME IN ('Fluxo de Caixa', 'Contas a Pagar'));
+INSERT INTO APLICACOES (NOME, DESCRICAO, ROTA) VALUES
+('APLICACOES_F', 'Funcionalidade de aplicações - Formulário', '/APLICACOES_F/'),
+('APLICACOES_G', 'Funcionalidade de aplicações - Grid', '/APLICACOES_G/'),
+('APLICACOES_MODULOS_F', 'Funcionalidade de aplicações por módulo - Formulário', '/APLICACOES_MODULOS_F/'),
+('APLICACOES_MODULOS_G', 'Funcionalidade de aplicações por módulo - Grid', '/APLICACOES_MODULOS_G/'),
+('CATEGORIAS_FINANCEIRAS_F', 'Categorias financeiras - Formulário', '/CATEGORIAS_FINANCEIRAS_F/'),
+('CATEGORIAS_FINANCEIRAS_G', 'Categorias financeiras - Grid', '/CATEGORIAS_FINANCEIRAS_G/'),
+('CLIENTES_F', 'Cadastro de clientes - Formulário', '/CLIENTES_F/'),
+('CLIENTES_G', 'Cadastro de clientes - Grid', '/CLIENTES_G/'),
+('CONFIGURACOES_F', 'Configurações do sistema - Formulário', '/CONFIGURACOES_F/'),
+('CONFIGURACOES_G', 'Configurações do sistema - Grid', '/CONFIGURACOES_G/'),
+('CREDITOS_RECEBER_F', 'Créditos a receber - Formulário', '/CREDITOS_RECEBER_F/'),
+('CREDITOS_RECEBER_G', 'Créditos a receber - Grid', '/CREDITOS_RECEBER_G/'),
+('ESTOQUES_F', 'Gestão de estoques - Formulário', '/ESTOQUES_F/'),
+('ESTOQUES_G', 'Gestão de estoques - Grid', '/ESTOQUES_G/'),
+('ESTOQUE_ACOES_MOVIMENTACAO_F', 'Ações de movimentação de estoque - Formulário', '/ESTOQUE_ACOES_MOVIMENTACAO_F/'),
+('ESTOQUE_ACOES_MOVIMENTACAO_G', 'Ações de movimentação de estoque - Grid', '/ESTOQUE_ACOES_MOVIMENTACAO_G/'),
+('ESTOQUE_MOVIMENTACOES_F', 'Movimentações de estoque - Formulário', '/ESTOQUE_MOVIMENTACOES_F/'),
+('ESTOQUE_MOVIMENTACOES_G', 'Movimentações de estoque - Grid', '/ESTOQUE_MOVIMENTACOES_G/'),
+('ESTOQUE_ORIGENS_MOVIMENTACAO_F', 'Origens de movimentação de estoque - Formulário', '/ESTOQUE_ORIGENS_MOVIMENTACAO_F/'),
+('ESTOQUE_ORIGENS_MOVIMENTACAO_G', 'Origens de movimentação de estoque - Grid', '/ESTOQUE_ORIGENS_MOVIMENTACAO_G/'),
+('FORMAS_PAGAMENTO_F', 'Formas de pagamento - Formulário', '/FORMAS_PAGAMENTO_F/'),
+('FORMAS_PAGAMENTO_G', 'Formas de pagamento - Grid', '/FORMAS_PAGAMENTO_G/'),
+('FORNECEDORES_F', 'Cadastro de fornecedores - Formulário', '/FORNECEDORES_F/'),
+('FORNECEDORES_G', 'Cadastro de fornecedores - Grid', '/FORNECEDORES_G/'),
+('FORNECEDORES_CATEGORIAS_F', 'Categorias de fornecedores - Formulário', '/FORNECEDORES_CATEGORIAS_F/'),
+('FORNECEDORES_CATEGORIAS_G', 'Categorias de fornecedores - Grid', '/FORNECEDORES_CATEGORIAS_G/'),
+('GRUPOS_FINANCEIROS_F', 'Grupos financeiros - Formulário', '/GRUPOS_FINANCEIROS_F/'),
+('GRUPOS_FINANCEIROS_G', 'Grupos financeiros - Grid', '/GRUPOS_FINANCEIROS_G/'),
+('LOGS_F', 'Logs do sistema - Formulário', '/LOGS_F/'),
+('LOGS_G', 'Logs do sistema - Grid', '/LOGS_G/'),
+('LOGIN', 'Tela de login do sistema', '/LOGIN/'),
+('LOGOUT', 'Encerramento de sessão', '/LOGOUT/'),
+('MENU', 'Menu principal do sistema', '/MENU/'),
+('MODULOS_F', 'Módulos do sistema - Formulário', '/MODULOS_F/'),
+('MODULOS_G', 'Módulos do sistema - Grid', '/MODULOS_G/'),
+('NATUREZAS_FINANCEIRAS_F', 'Naturezas financeiras - Formulário', '/NATUREZAS_FINANCEIRAS_F/'),
+('NATUREZAS_FINANCEIRAS_G', 'Naturezas financeiras - Grid', '/NATUREZAS_FINANCEIRAS_G/'),
+('OBRIGACOES_FINANCEIRAS_F', 'Obrigações financeiras - Formulário', '/OBRIGACOES_FINANCEIRAS_F/'),
+('OBRIGACOES_FINANCEIRAS_G', 'Obrigações financeiras - Grid', '/OBRIGACOES_FINANCEIRAS_G/'),
+('PAGAMENTOS_F', 'Pagamentos - Formulário', '/PAGAMENTOS_F/'),
+('PAGAMENTOS_G', 'Pagamentos - Grid', '/PAGAMENTOS_G/'),
+('PERFIS_F', 'Perfis de usuário - Formulário', '/PERFIS_F/'),
+('PERFIS_G', 'Perfis de usuário - Grid', '/PERFIS_G/'),
+('PERMISSOES_F', 'Permissões de acesso - Formulário', '/PERMISSOES_F/'),
+('PERMISSOES_G', 'Permissões de acesso - Grid', '/PERMISSOES_G/'),
+('PRE_VENDAS_F', 'Pré-vendas - Formulário', '/PRE_VENDAS_F/'),
+('PRE_VENDAS_G', 'Pré-vendas - Grid', '/PRE_VENDAS_G/'),
+('PRE_VENDA_ITENS_F', 'Itens da pré-venda - Formulário', '/PRE_VENDA_ITENS_F/'),
+('PRE_VENDA_ITENS_G', 'Itens da pré-venda - Grid', '/PRE_VENDA_ITENS_G/'),
+('PRE_VENDA_SITUACOES_F', 'Situações da pré-venda - Formulário', '/PRE_VENDA_SITUACOES_F/'),
+('PRE_VENDA_SITUACOES_G', 'Situações da pré-venda - Grid', '/PRE_VENDA_SITUACOES_G/'),
+('PRODUTOS_F', 'Cadastro de produtos - Formulário', '/PRODUTOS_F/'),
+('PRODUTOS_G', 'Cadastro de produtos - Grid', '/PRODUTOS_G/'),
+('PRODUTO_CATEGORIAS_F', 'Categorias de produtos - Formulário', '/PRODUTO_CATEGORIAS_F/'),
+('PRODUTO_CATEGORIAS_G', 'Categorias de produtos - Grid', '/PRODUTO_CATEGORIAS_G/'),
+('RECEBIMENTOS_F', 'Recebimentos - Formulário', '/RECEBIMENTOS_F/'),
+('RECEBIMENTOS_G', 'Recebimentos - Grid', '/RECEBIMENTOS_G/'),
+('RECUPERACAO_SENHA_F', 'Recuperação de senha - Formulário', '/RECUPERACAO_SENHA_F/'),
+('RECUPERACAO_SENHA_G', 'Recuperação de senha - Grid', '/RECUPERACAO_SENHA_G/'),
+('SITUACOES_FINANCEIRAS_F', 'Situações financeiras - Formulário', '/SITUACOES_FINANCEIRAS_F/'),
+('SITUACOES_FINANCEIRAS_G', 'Situações financeiras - Grid', '/SITUACOES_FINANCEIRAS_G/'),
+('USUARIOS_BLOQUEIOS_F', 'Bloqueios de usuários - Formulário', '/USUARIOS_BLOQUEIOS_F/'),
+('USUARIOS_BLOQUEIOS_G', 'Bloqueios de usuários - Grid', '/USUARIOS_BLOQUEIOS_G/'),
+('USUARIOS_F', 'Cadastro de usuários - Formulário', '/USUARIOS_F/'),
+('USUARIOS_G', 'Cadastro de usuários - Grid', '/USUARIOS_G/'),
+('USUARIOS_PERFIS_F', 'Perfis de usuários vinculados - Formulário', '/USUARIOS_PERFIS_F/'),
+('USUARIOS_PERFIS_G', 'Perfis de usuários vinculados - Grid', '/USUARIOS_PERFIS_G/'),
+('USUARIOS_SESSOES_F', 'Sessões de usuários - Formulário', '/USUARIOS_SESSOES_F/'),
+('USUARIOS_SESSOES_G', 'Sessões de usuários - Grid', '/USUARIOS_SESSOES_G/'),
+('USUARIOS_TENTATIVAS_LOGIN_F', 'Tentativas de login - Formulário', '/USUARIOS_TENTATIVAS_LOGIN_F/'),
+('USUARIOS_TENTATIVAS_LOGIN_G', 'Tentativas de login - Grid', '/USUARIOS_TENTATIVAS_LOGIN_G/'),
+('VENDAS_F', 'Vendas - Formulário', '/VENDAS_F/'),
+('VENDAS_G', 'Vendas - Grid', '/VENDAS_G/'),
+('VENDA_ITENS_F', 'Itens da venda - Formulário', '/VENDA_ITENS_F/'),
+('VENDA_ITENS_G', 'Itens da venda - Grid', '/VENDA_ITENS_G/'),
+('VENDA_ORIGENS_F', 'Origens da venda - Formulário', '/VENDA_ORIGENS_F/'),
+('VENDA_ORIGENS_G', 'Origens da venda - Grid', '/VENDA_ORIGENS_G/'),
+('VENDA_SITUACOES_F', 'Situações da venda - Formulário', '/VENDA_SITUACOES_F/'),
+('VENDA_SITUACOES_G', 'Situações da venda - Grid', '/VENDA_SITUACOES_G/'),
+('VENDEDORES_F', 'Cadastro de vendedores - Formulário', '/VENDEDORES_F/'),
+('VENDEDORES_G', 'Cadastro de vendedores - Grid', '/VENDEDORES_G/');
 
 -- ====================================================
 -- ===================== TESTES =======================
