@@ -258,9 +258,8 @@ CREATE TABLE PRE_VENDAS (
     FK_CLIENTE INT NOT NULL,
     FK_VENDEDOR INT NOT NULL,
     FK_SITUACAO INT NOT NULL,
-    DATA_RESERVA DATETIME NULL, /* redundante ??????????????????????????????????????????????????????????????????????????????????????*/
-    DATA_EXPIRACAO DATE NOT NULL CHECK(DATA_EXPIRACAO >= DATA_CRIACAO),
-    DATA_CRIACAO DATETIME DEFAULT CURRENT_TIMESTAMP,
+    DATA_EXPIRACAO DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    DATA_CRIACAO DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     OBSERVACOES VARCHAR(4000) NULL/*,
     FOREIGN KEY (FK_CLIENTE) REFERENCES CLIENTES (ID),
     FOREIGN KEY (FK_VENDEDOR) REFERENCES VENDEDORES (ID),
@@ -275,7 +274,8 @@ CREATE TABLE PRE_VENDA_ITENS (
     RESERVADO CHAR(1) NOT NULL DEFAULT 'S' COMMENT 'S = Sim, N = Não',
     DATA_RESERVA DATETIME NULL,
     DATA_DEVOLUCAO DATETIME NULL CHECK(DATA_DEVOLUCAO >= DATA_RESERVA),
-    MOTIVO_LIBERACAO VARCHAR(255) NULL COMMENT 'Justificativa da liberação da reserva de um item. Preenchido somente quando RESERVADO = N'/*,
+    MOTIVO_LIBERACAO VARCHAR(255) NULL COMMENT 'Justificativa da liberação da reserva de um item. Preenchido somente quando RESERVADO = N',
+    DATA_CRIACAO DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP/*,
     FOREIGN KEY (FK_PRE_VENDA) REFERENCES PRE_VENDAS (ID),
     FOREIGN KEY (FK_PRODUTO) REFERENCES PRODUTOS (ID)*/
 );
@@ -954,7 +954,7 @@ BEGIN
 
     -- 2) Se a nova situação for CANCELADA ou DEVOLVIDA PARCIALMENTE, DATA_EXPIRACAO é obrigatória
     IF NEW.FK_SITUACAO IN (V_CANCELADA, V_DEVOLVIDA_PARCIALMENTE) AND NEW.DATA_EXPIRACAO IS NULL THEN
-        NEW.DATA_EXPIRACAO = NOW();
+        NEW.DATA_EXPIRACAO = CURDATE();
     END IF;
 END;
 
@@ -1238,26 +1238,26 @@ ADD INDEX IDX_TENTATIVA_DATA (DATA_TENTATIVA),
 ADD INDEX IDX_TENTATIVA_SUCESSO (SUCESSO);
 
 -- SEEDs (parâmetros)
-INSERT INTO ESTOQUE_ACOES_MOVIMENTACAO (ACAO) VALUES
-('ENTRADA'),
-('SAÍDA'),
-('DEVOLUÇÃO'),
-('AJUSTE');
+INSERT INTO ESTOQUE_ACOES_MOVIMENTACAO (ID, ACAO) VALUES
+('1', 'ENTRADA'),
+('2', 'SAÍDA'),
+('3', 'DEVOLUÇÃO'),
+('4', 'AJUSTE');
 
-INSERT INTO ESTOQUE_ORIGENS_MOVIMENTACAO (ORIGEM) VALUES
-('VENDA'),
-('COMPRA'),
-('PRÉ-VENDA'),
-('DEVOLUÇÃO'),
-('CORRECAO');
+INSERT INTO ESTOQUE_ORIGENS_MOVIMENTACAO (ID, ORIGEM) VALUES
+('1', 'VENDA'),
+('2', 'COMPRA'),
+('3', 'PRÉ-VENDA'),
+('4', 'DEVOLUÇÃO'),
+('5', 'CORRECAO');
   
-INSERT INTO VENDA_ORIGENS (DESCRICAO) VALUES
-('VENDA DIRETA (BALCÃO)'),
-('PRÉ-VENDA CONVERTIDA'),
-('VENDA ONLINE'),
-('VENDA POR TELEFONE'),
-('VENDA EXTERNA (REPRESENTANTE)'),
-('VENDA MANUAL/LIVRE');
+INSERT INTO VENDA_ORIGENS (ID, DESCRICAO) VALUES
+('1', 'VENDA DIRETA (BALCÃO)'),
+('2', 'PRÉ-VENDA CONVERTIDA'),
+('3', 'VENDA ONLINE'),
+('4', 'VENDA POR TELEFONE'),
+('5', 'VENDA EXTERNA (REPRESENTANTE)'),
+('6', 'VENDA MANUAL/LIVRE');
 
 INSERT INTO VENDA_SITUACOES (ID, DESCRICAO, ATIVO, EXPLICACAO) VALUES
 ('1', 'Em aberto','S','Venda iniciada, mas ainda sem movimentação de estoque e sem efeitos financeiros.'),
@@ -1269,13 +1269,13 @@ INSERT INTO VENDA_SITUACOES (ID, DESCRICAO, ATIVO, EXPLICACAO) VALUES
 ('7', 'Faturada','N','Nota fiscal emitida para a venda.'),
 ('8', 'Entregue','N','Produto entregue ao cliente.');
 
-INSERT INTO PRE_VENDA_SITUACOES (DESCRICAO) VALUES
-('RESERVADA'),
-('FINALIZADA'),
-('CANCELADA'),
-('DEVOLVIDA PARCIALMENTE');
+INSERT INTO PRE_VENDA_SITUACOES (ID, DESCRICAO) VALUES
+('1', 'RESERVADA'),
+('2', 'FINALIZADA'),
+('3', 'CANCELADA'),
+('4', 'DEVOLVIDA PARCIALMENTE');
 
-INSERT INTO FORMAS_PAGAMENTO (NOME, ORDEM, ATIVO, NATUREZA) VALUES
+INSERT INTO FORMAS_PAGAMENTO (ID, NOME, ORDEM, ATIVO, NATUREZA) VALUES
 ('1', 'DINHEIRO', 1, 'S', 'V'),
 ('2', 'PIX', 2, 'S', 'V'),
 ('3', 'CARTÃO DÉBITO', 3, 'S', 'V'),
@@ -1284,46 +1284,46 @@ INSERT INTO FORMAS_PAGAMENTO (NOME, ORDEM, ATIVO, NATUREZA) VALUES
 ('6', 'BOLETO', 6, 'S', 'P'),
 ('7', 'DOAÇÃO', 7, 'S', 'V');
 
-INSERT INTO SITUACOES_FINANCEIRAS (NOME,DESCRICAO,ORDEM,COR,ATIVO) VALUES
-('ABERTA','Conta aberta aguardando pagamento',1,'#CCCCCC','S'),
-('PAGA','Conta quitada',2,'#00CC00','S'),
-('CANCELADA','Conta cancelada por erro ou devolução',6,'#999999','S'),
-('ATRASADA','Pagamento em atraso',3,'#FF0000','S'),
-('PARCIALMENTE_PAGA','Conta parcialmente quitada',4,'#FF9900','N'),
-('NEGOCIADA','Conta renegociada com novo vencimento',5,'#0066CC','N'),
-('ISENTA','Conta isenta de cobrança',7,'#0099CC','N'),
-('EM_DISPUTA','Conta em análise ou contestação',8,'#CC0066','N'),
-('ANTECIPADA','Conta paga antes do vencimento',9,'#006600','N');
+INSERT INTO SITUACOES_FINANCEIRAS (ID, NOME,DESCRICAO,ORDEM,COR,ATIVO) VALUES
+('1', 'ABERTA','Conta aberta aguardando pagamento',1,'#CCCCCC','S'),
+('2', 'PAGA','Conta quitada',2,'#00CC00','S'),
+('3', 'CANCELADA','Conta cancelada por erro ou devolução',6,'#999999','S'),
+('4', 'ATRASADA','Pagamento em atraso',3,'#FF0000','S'),
+('5', 'PARCIALMENTE_PAGA','Conta parcialmente quitada',4,'#FF9900','N'),
+('6', 'NEGOCIADA','Conta renegociada com novo vencimento',5,'#0066CC','N'),
+('7', 'ISENTA','Conta isenta de cobrança',7,'#0099CC','N'),
+('8', 'EM_DISPUTA','Conta em análise ou contestação',8,'#CC0066','N'),
+('9', 'ANTECIPADA','Conta paga antes do vencimento',9,'#006600','N');
 
-INSERT INTO NATUREZAS_FINANCEIRAS (NOME, DESCRICAO) VALUES
-('RECEITA', 'Entrada de valores'),
-('DESPESA', 'Saída de valores'),
-('TRANSFERENCIA','Transferência entre contas ou caixas'),
-('ESTORNO', 'Reversão de receita ou despesa'),
-('INVESTIMENTO','Aplicações financeiras ou aquisição de ativos'),
-('EMPRESTIMO', 'Valores recebidos de terceiros'),
-('PAGAMENTO','Quitação de obrigação financeira'),
-('DEVOLUCAO','Estorno por devolução de produto ou serviço'),
-('AJUSTE','Correções ou ajustes contábeis manuais');
+INSERT INTO NATUREZAS_FINANCEIRAS (ID, NOME, DESCRICAO) VALUES
+('1', 'RECEITA', 'Entrada de valores'),
+('2', 'DESPESA', 'Saída de valores'),
+('3', 'TRANSFERENCIA','Transferência entre contas ou caixas'),
+('4', 'ESTORNO', 'Reversão de receita ou despesa'),
+('5', 'INVESTIMENTO','Aplicações financeiras ou aquisição de ativos'),
+('6', 'EMPRESTIMO', 'Valores recebidos de terceiros'),
+('7', 'PAGAMENTO','Quitação de obrigação financeira'),
+('8', 'DEVOLUCAO','Estorno por devolução de produto ou serviço'),
+('9', 'AJUSTE','Correções ou ajustes contábeis manuais');
 
-INSERT INTO CATEGORIAS_FINANCEIRAS (NOME, DESCRICAO, FK_NATUREZA_FINANCEIRA) VALUES
-('CREDIÁRIO LOJA FÍSICA','Venda parcelada no crediário interno',1),
-('CARTÃO DE CRÉDITO','Venda parcelada via operadora',1),
-('PIX IMEDIATO', 'Recebimento à vista via PIX', 1),
-('BOLETO BANCÁRIO','Recebimento programado via boleto',1),
-('VENDA ONLINE','Receita gerada por e-commerce',1),
-('DISTRIBUIDOR',  'Vendas para distribuidores',1),
-('REPRESENTANTE','Vendas via representante comercial',1),
-('SERVICOS',     'Receita de serviços prestados',1);
-('FORNECEDOR ESTOQUE','Compra de produtos para revenda',2),
-('DESPESA FIXA - ALUGUEL','Pagamento mensal do ponto físico',2),
-('CAMPANHA MARKETING','Investimento em divulgação',5);
+INSERT INTO CATEGORIAS_FINANCEIRAS (ID, NOME, DESCRICAO, FK_NATUREZA_FINANCEIRA) VALUES
+('1', 'CREDIÁRIO LOJA FÍSICA','Venda parcelada no crediário interno',1),
+('2', 'CARTÃO DE CRÉDITO','Venda parcelada via operadora',1),
+('3', 'PIX IMEDIATO', 'Recebimento à vista via PIX', 1),
+('4', 'BOLETO BANCÁRIO','Recebimento programado via boleto',1),
+('5', 'VENDA ONLINE','Receita gerada por e-commerce',1),
+('6', 'DISTRIBUIDOR',  'Vendas para distribuidores',1),
+('7', 'REPRESENTANTE','Vendas via representante comercial',1),
+('8', 'SERVICOS',     'Receita de serviços prestados',1);
+('9', 'FORNECEDOR ESTOQUE','Compra de produtos para revenda',2),
+('10', 'DESPESA FIXA - ALUGUEL','Pagamento mensal do ponto físico',2),
+('11', 'CAMPANHA MARKETING','Investimento em divulgação',5);
 
-INSERT INTO PERFIS (NOME, DESCRICAO, NIVEL_ACESSO) VALUES
-('Administrador',        'Acesso total ao sistema',          99),
-('Operador Financeiro',  'Acesso restrito ao financeiro',    50),
-('Caixa',                'Operações de venda e caixa',       20),
-('Vendedor',             'Registro de vendas e consultas',   10);
+INSERT INTO PERFIS (ID, NOME, DESCRICAO, NIVEL_ACESSO) VALUES
+('1', 'Administrador',        'Acesso total ao sistema',          99),
+('2', 'Operador Financeiro',  'Acesso restrito ao financeiro',    50),
+('3', 'Caixa',                'Operações de venda e caixa',       20),
+('4', 'Vendedor',             'Registro de vendas e consultas',   10);
 
 -- Configurações Gerais
 INSERT INTO CONFIGURACOES (CHAVE, VALOR, DESCRICAO, TIPO, AGRUPAMENTO) VALUES
