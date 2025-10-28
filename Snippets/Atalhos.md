@@ -3,37 +3,38 @@
 ##Navegador
 * **hard refresh (limpar cache)**: `control + shift + R`
 * **togle favorite bar**: `control + shift + B`
+* **show code of the page**: `control + U`
 
 ## VSCode
 ### Abrir
 * **paleta de comandos**: `control + shift + P`
-* **diretório do arquivo**: `control + o`
+* **diretï¿½rio do arquivo**: `control + o`
 * **markdown**: `control + shift + V`
 * **Regex Previewer**: `Ctrl + Alt + M`
 ### Fechar
 * **aba atual**: `control + W`
 ### Reabrir
-* **última aba**: `control + shift + T`
-### Formatação
-* **indentação automática**: `alt + shift + F`
+* **ï¿½ltima aba**: `control + shift + T`
+### Formataï¿½ï¿½o
+* **indentaï¿½ï¿½o automï¿½tica**: `alt + shift + F`
 * **comentar linha**: `control + ;`
 * **comentar em bloco**: `alt + shift + A`
 * **apaga a linha**: `control + shift + K` ou `shift + del`
-* **recortar toda a linha**: `Ctrl + X (não tendo nada selecionado)`
+* **recortar toda a linha**: `Ctrl + X (nï¿½o tendo nada selecionado)`
 * **Mover linha para cima/baixo**: `Alt + Seta para Cima ou Baixo`
 * **Clonar linha para cima/baixo**: `Alt + Shift + Seta para Cima ou Baixo`
 * **Adicionar cursor na linha acima ou abaixo**: `Ctrl + Alt + Seta Cima/Baixo`
-### Seleção
+### Seleï¿½ï¿½o
 * **multicursor**: `alt + click`
-* **Seleciona até o Início ou fim da linha**: `Shift + Home` ou `Shift + End`
-* **seleciona a palavra ou a próxima ocorrência**: `control + D`
-* **seleciona todas as ocorrências**: `control + F2` ou `control + shift L`
-* **multicursores no final da linha**: `selecione várias linhas e depois aperte alt + shift + i`
+* **Seleciona atï¿½ o Inï¿½cio ou fim da linha**: `Shift + Home` ou `Shift + End`
+* **seleciona a palavra ou a prï¿½xima ocorrï¿½ncia**: `control + D`
+* **seleciona todas as ocorrï¿½ncias**: `control + F2` ou `control + shift L`
+* **multicursores no final da linha**: `selecione vï¿½rias linhas e depois aperte alt + shift + i`
 ### Leitura
 * **fecha escopo**: `control + shift + crase`
 * **abre escopo**: `control + shift + [`
 * **localiza inicio e fim do escopo**: `control + shift + ]`
-### Extensões
+### Extensï¿½es
 * **PHP Intelephense**
 * **Live Server (Ritwick Dey)**
 * **Regex Previewer**
@@ -51,8 +52,8 @@
 * **sob** - `select with order by`
 * **scgb** - `select count with group by`
 * **scount** - `select row count`
-### Formatação
-* **indentação automática**: `control + shift + F`
+### Formataï¿½ï¿½o
+* **indentaï¿½ï¿½o automï¿½tica**: `control + shift + F`
 * **apaga a linha**: `control + D`
 * **uppercase**: `control + shift + X`
 * **lowercase**: `control + shift + Y`
@@ -64,11 +65,11 @@
 
 
 ## Scriptcase
-* **documentação**: `F1`
+* **documentaï¿½ï¿½o**: `F1`
 * **comentar linha**: `control + ;`
 * **apaga a linha**: `control + shift + K` ou `shift + del`
 * **multicursor**: `control + click`
-* **indentação automática**: `control + alt + i`
+* **indentaï¿½ï¿½o automï¿½tica**: `control + alt + i`
 * **seleciona escopo**: `control + shift + space`
 ### Leitura
 * **fecha escopo**: `control + shift + crase`
