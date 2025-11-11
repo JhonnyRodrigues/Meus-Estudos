@@ -1,4 +1,4 @@
--- O objetivo desse script era encontrar o departamento responsável pela lotação do funcionário
+-- O objetivo desse script era encontrar o departamento responsï¿½vel pela lotaï¿½ï¿½o do funcionï¿½rio
 DECLARE
 	contador_seguranca NUMBER := 0;
 	lotacao NUMBER := 9;
