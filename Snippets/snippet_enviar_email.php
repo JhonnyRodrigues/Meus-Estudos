@@ -14,44 +14,8 @@ class EmailHandler
 {
     private $emailsConfig = array(
         'NO-REPLY' => array(
-            'host' => '200.144.6.60',
-            'Username' => 'no-reply@semaepiracicaba.sp.gov.br',
-            'Password' => '',
-            'SMTPAuth' => false,
-            'Port' => 25,
-            'IsHTML' => true,
-            'From' => "no-reply@semaepiracicaba.sp.gov.br"
-        ),
-        'ENVIAEMAIL' => array(
-            'host' => 'smtp.office365.com',
-            'Username' => 'enviaemail@semaepiracicaba.sp.gov.br',
-            'Password' => '-3n+v1@2022#',
-            'SMTPAuth' => true,
-            'Port' => 587,
-            'IsHTML' => true,
-            'From' => "enviaemail@semaepiracicaba.sp.gov.br"
-        ),
-        'SEMAE' => array(
-            'host' => 'smtp.office365.com',
-            'Username' => 'semae@semaepiracicaba.sp.gov.br',
-            'Password' => 'Pira@2022',
-            'SMTPAuth' => true,
-            'Port' => 587,
-            'IsHTML' => true,
-            'From' => "semae@semaepiracicaba.sp.gov.br"
-        ),
-        'AMERICANOPOLIS' => array(
-            'host' => 'americanopolis.prodesp.sp.gov.br',
-            'Username' => 'no-reply@semaepiracicaba.sp.gov.br',
-            'Password' => '',
-            'SMTPAuth' => false,
-            'Port' => 25,
-            'IsHTML' => true,
-            'From' => "no-reply@semaepiracicaba.sp.gov.br"
-        ),
-        'INVALIDADO' => array(
-            'host' => 'itaitinga.prodesp.sp.gov.br',
-            'Username' => 'no-reply@semaepiracicaba.sp.gov.br',
+            'host' => '192.168.1.1',
+            'Username' => 'no-reply@autarquia.sp.gov.br',
             'Password' => '',
             'SMTPAuth' => false,
             'Port' => 25,
@@ -59,7 +23,7 @@ class EmailHandler
             'From' => "no-reply@semaepiracicaba.sp.gov.br"
         ),
         'TESTINHO' => array(
-            'host' => '200.144.6.14',
+            'host' => '192.168.1.1',
             'Username' => 'testinho@semaepiracicaba.sp.gov.br',
             'Password' => '',
             'SMTPAuth' => false,
@@ -112,11 +76,11 @@ class EmailHandler
             $this->mailer->IsSMTP();
             $this->mailer->Host = $this->emailsConfig[$configName]['host'];
             $this->mailer->SMTPAuth = $this->emailsConfig[$configName]['SMTPAuth'];
-            $this->mailer->SMTPAutoTLS = ($this->mailer->SMTPAuth) ? true : false; /*habilitar quando houver autenticação*/
+            $this->mailer->SMTPAutoTLS = ($this->mailer->SMTPAuth) ? true : false; /*habilitar quando houver autenticaï¿½ï¿½o*/
             $this->mailer->Username = $this->emailsConfig[$configName]['Username'];
             $this->mailer->Password = $this->emailsConfig[$configName]['Password'];
             $this->mailer->Port = $this->emailsConfig[$configName]['Port'];
-            $this->mailer->SMTPSecure = false; /*outras opções: SSL ou TLS*/
+            $this->mailer->SMTPSecure = false; /*outras opï¿½ï¿½es: SSL ou TLS*/
             $this->mailer->SMTPKeepAlive = true;
             $this->mailer->SMTPOptions = array(
                 'ssl' => array(
@@ -164,7 +128,7 @@ class EmailHandler
 	}
 }
 
-# enviarEmail.php - cria uma instância da classe de EmailHandler e registra automaticamente logs dos e-mails enviados.
+# enviarEmail.php - cria uma instï¿½ncia da classe de EmailHandler e registra automaticamente logs dos e-mails enviados.
 sc_include_library("sys", "semae", "sendMails/emailHandler.class.php", true, true);
 function enviarEmail($destinatariosEnviaEmail, $assuntoEnviaEmail, $mensagemEnviaEmail, $aliasEnviaEmail) {
     $logDestinatarios = implode(', ', $destinatariosEnviaEmail);
@@ -203,7 +167,7 @@ function enviarEmail($destinatariosEnviaEmail, $assuntoEnviaEmail, $mensagemEnvi
                 '$logAplicacao',
                 'N',
                 '$logServidor',
-                '" . $e->getMessage() . ", código: " . $e->getCode() . "'
+                '" . $e->getMessage() . ", cï¿½digo: " . $e->getCode() . "'
             )
         ";
         sc_exec_sql($stmtInsertLogEmail);
