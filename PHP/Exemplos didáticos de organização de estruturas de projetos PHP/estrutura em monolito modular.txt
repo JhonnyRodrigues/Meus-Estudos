@@ -1,0 +1,95 @@
+Monólito não é uma arquitetura concorrente de MVC, Clean Architecture ou Hexagonal. É, principalmente, uma forma de empacotar e implantar o sistema.
+
+Em um monólito, os módulos da aplicação são executados e distribuídos como uma única unidade.
+
+Mesmo que o sistema tenha vários módulos internos, normalmente existe:
+- um único repositório ou projeto principal;
+- um único processo de build;
+- uma única aplicação implantada;
+- uma única versão em produção;
+- frequentemente, um banco de dados compartilhado.
+
+Toda a aplicação é implantada junta, mas internamente as responsabilidades permanecem separadas.
+
+project/
+├── public/
+│   └── index.php
+│
+├── src/
+│   ├── Clientes/
+│   │   ├── Domain/
+│   │   ├── Application/
+│   │   ├── InterfaceAdapter/
+│   │   └── Infrastructure/
+│   │
+│   ├── Pedidos/
+│   │   ├── Domain/
+│   │   ├── Application/
+│   │   ├── InterfaceAdapter/
+│   │   └── Infrastructure/
+│   │
+│   ├── Estoque/
+│   │   ├── Domain/
+│   │   ├── Application/
+│   │   ├── InterfaceAdapter/
+│   │   └── Infrastructure/
+│   │
+│   └── Shared/
+│       ├── Domain/
+│       └── Infrastructure/
+│
+├── config/
+├── tests/
+└── composer.json
+
+No monólito modular, a primeira divisão costuma ser pelo negócio, e não pela natureza técnica da classe. Exemplo:
+src/
+├── Clientes/
+├── Vendas/
+├── Estoque/
+├── Financeiro/
+└── Relatorios/
+
+Vantagens do monólito:
+- desenvolvimento inicial mais simples;
+- deploy mais fácil;
+- depuração centralizada;
+- transações de banco mais simples;
+- menor custo de infraestrutura;
+- menor complexidade de observabilidade;
+- testes de integração mais diretos;
+- comunicação interna por chamadas de método;
+- facilidade para equipes pequenas.
+Para muitos sistemas corporativos e SaaS em fase inicial, isso é uma vantagem relevante.
+
+Desvantagens:
+- aumento do tempo de build e deploy;
+- dificuldade para compreender o projeto;
+- alto acoplamento entre módulos;
+- risco de alterações afetarem áreas não relacionadas;
+- escalabilidade apenas da aplicação inteira;
+- conflitos entre equipes;
+- dependência de uma única tecnologia;
+- dificuldade para substituir partes do sistema.
+Esses problemas, porém, geralmente estão mais relacionados a um monólito mal modularizado do que ao monólito em si.
+
+
+
+Microsserviços exigem lidar com:
+- autenticação entre serviços;
+- filas e mensagens;
+- tolerância a falhas;
+- tracing distribuído;
+- retries;
+- idempotência;
+- versionamento de APIs;
+- consistência eventual;
+- observabilidade distribuída;
+- implantação independente;
+- gerenciamento de múltiplos ambientes.
+Por isso, microsserviços não são automaticamente uma evolução natural ou superior ao monólito.
+
+
+
+Para uma aplicação nova, especialmente com equipe pequena ou média, uma escolha muito segura é: Monólito modular + Clean Architecture ou Hexagonal + limites claros entre módulos
+A principal regra seria: Um módulo não deve acessar diretamente as tabelas, classes internas ou implementações de infraestrutura de outro módulo. A comunicação deve acontecer por contratos ou serviços públicos do módulo
