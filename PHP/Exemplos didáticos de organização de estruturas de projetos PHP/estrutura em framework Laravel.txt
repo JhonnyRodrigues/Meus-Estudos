@@ -1,0 +1,88 @@
+A estrutura abaixo representa uma aplicação Laravel relativamente próxima da instalação padrão.
+O Laravel atual concentra:
+- o código PHP em app/,
+- as views em resources/views,
+- as rotas em routes/, 
+- os arquivos gerados em storage/.
+
+project/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Controller.php             # Controller-base da aplicação
+│   │   │   └── PedidoController.php       # Trata requisições relacionadas a pedidos
+│   │   │
+│   │   ├── Middleware/
+│   │   │   └── VerificarPermissao.php     # Filtra requisições HTTP
+│   │   │
+│   │   └── Requests/
+│   │       └── CriarPedidoRequest.php      # Validação e autorização do formulário
+│   │
+│   ├── Models/
+│   │   ├── User.php                       # Modelo Eloquent de usuário
+│   │   └── Pedido.php                     # Modelo Eloquent de pedido
+│   │
+│   ├── Providers/
+│   │   └── AppServiceProvider.php         # Registra e inicializa serviços
+│   │
+│   ├── Services/                          # Pasta opcional criada pela equipe
+│   │   └── PedidoService.php              # Serviço reutilizável da aplicação
+│   │
+│   ├── Policies/
+│   │   └── PedidoPolicy.php               # Regras de autorização
+│   │
+│   ├── Jobs/
+│   │   └── ProcessarPedido.php            # Processamento síncrono ou em fila
+│   │
+│   └── Exceptions/
+│       └── PedidoInvalidoException.php     # Exceção personalizada
+│
+├── bootstrap/
+│   ├── app.php                            # Inicialização do framework
+│   └── cache/                             # Cache de rotas e serviços
+│
+├── config/
+│   ├── app.php                            # Configurações gerais
+│   ├── database.php                       # Configurações dos bancos
+│   └── mail.php                           # Configurações de e-mail
+│
+├── database/
+│   ├── migrations/                        # Versionamento da estrutura do banco
+│   ├── factories/                         # Fábricas para testes
+│   └── seeders/                           # Carga inicial de dados
+│
+├── public/
+│   └── index.php                          # Front Controller da aplicação
+│
+├── resources/
+│   ├── views/
+│   │   ├── pedidos/
+│   │   │   └── index.blade.php            # Template Blade
+│   │   └── layouts/
+│   │       └── app.blade.php              # Layout principal
+│   ├── css/                               # CSS-fonte
+│   └── js/                                # JavaScript-fonte
+│
+├── routes/
+│   ├── web.php                            # Rotas web com sessão e CSRF
+│   ├── console.php                        # Comandos e tarefas de console
+│   └── api.php                            # Rotas de API, quando instaladas
+│
+├── storage/
+│   ├── app/                               # Arquivos gerados pela aplicação
+│   ├── framework/                         # Cache, sessões e views compiladas
+│   └── logs/                              # Logs da aplicação
+│
+├── tests/
+│   ├── Feature/                           # Testes funcionais
+│   └── Unit/                              # Testes unitários
+│
+├── vendor/                                # Dependências do Composer
+├── artisan                                # Executável de linha de comando
+├── .env                                   # Configurações do ambiente
+└── composer.json                          # Dependências e autoload
+
+# Observação importante
+
+- app/Services é uma convenção comum, mas não é uma pasta obrigatória ou originalmente criada em toda instalação Laravel.
+- Também não é correto colocar views em app/Views/	No Laravel, elas pertencem normalmente a resources/views/

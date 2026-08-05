@@ -1,0 +1,84 @@
+O Symfony recomenda uma estrutura relativamente plana, utilizando:
+-  src/ para classes PHP,
+- templates/ para Twig,
+- config/ para configuração
+- var/ para logs e cache.
+
+project/
+├── assets/
+│   ├── app.js                             # Entrada dos recursos JavaScript
+│   └── styles/
+│       └── app.css                        # Estilos da aplicação
+│
+├── bin/
+│   └── console                            # Console do Symfony
+│
+├── config/
+│   ├── packages/                          # Configurações dos componentes e bundles
+│   ├── routes/                            # Configurações adicionais de rotas
+│   ├── routes.yaml                        # Configuração global de rotas
+│   ├── services.yaml                      # Serviços e injeção de dependências
+│   └── bundles.php                        # Bundles habilitados
+│
+├── migrations/
+│   └── Version20260805000000.php          # Migração do Doctrine
+│
+├── public/
+│   ├── build/                             # Arquivos frontend processados
+│   └── index.php                          # Front Controller
+│
+├── src/
+│   ├── Kernel.php                         # Inicialização do Symfony
+│   │
+│   ├── Controller/
+│   │   └── PedidoController.php           # Entrada e saída HTTP
+│   │
+│   ├── Entity/
+│   │   ├── Cliente.php                    # Entidade gerenciada pelo Doctrine
+│   │   └── Pedido.php                     # Entidade persistente
+│   │
+│   ├── Repository/
+│   │   └── PedidoRepository.php           # Consultas relacionadas a Pedido
+│   │
+│   ├── Service/
+│   │   └── PedidoService.php              # Serviço da aplicação
+│   │
+│   ├── Command/
+│   │   └── ProcessarPedidosCommand.php    # Comando executado pelo console
+│   │
+│   ├── Form/
+│   │   └── PedidoType.php                 # Definição de formulário
+│   │
+│   ├── Security/
+│   │   └── PedidoVoter.php                # Decisões de autorização
+│   │
+│   ├── EventSubscriber/
+│   │   └── ExceptionSubscriber.php        # Reage a eventos do Symfony
+│   │
+│   └── Twig/
+│       └── AppExtension.php               # Extensão personalizada do Twig
+│
+├── templates/
+│   ├── base.html.twig                     # Layout principal
+│   └── pedido/
+│       └── index.html.twig                # Template da listagem de pedidos
+│
+├── tests/
+│   ├── Controller/                        # Testes de controllers
+│   ├── Service/                           # Testes de serviços
+│   └── Repository/                        # Testes de persistência
+│
+├── translations/
+│   └── messages.pt_BR.xlf                 # Traduções
+│
+├── var/
+│   ├── cache/                             # Cache gerado pelo framework
+│   └── log/                               # Logs da aplicação
+│
+├── vendor/                                # Dependências do Composer
+├── .env                                   # Variáveis de ambiente
+├── composer.json                          # Dependências e autoload
+└── symfony.lock                           # Receitas instaladas pelo Symfony Flex
+
+No Symfony, os controllers devem funcionar principalmente como uma camada de ligação: requisição → serviço/caso de uso → resposta
+A própria documentação recomenda que controllers contenham apenas poucas linhas de código de integração, sem concentrar a lógica de negócio.

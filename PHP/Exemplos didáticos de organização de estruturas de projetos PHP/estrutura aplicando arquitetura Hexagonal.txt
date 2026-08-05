@@ -1,0 +1,317 @@
+Na Arquitetura Hexagonal, o elemento principal é o núcleo da aplicação, protegido por portas.
+Adaptador de entrada
+        ↓
+    Porta de entrada
+        ↓
+ Núcleo da aplicação
+        ↓
+    Porta de saída
+        ↓
+ Adaptador de saída
+
+Também é comum usar os termos: Adaptadores primários = adaptadores de entrada, Adaptadores secundários = adaptadores de saída
+
+Uma estrutura comum e completa seria:
+project/
+├── public/
+│   └── index.php                                      # Entrada HTTP da aplicação
+│
+├── src/
+│   ├── Domain/
+│   │   ├── Model/
+│   │   │   ├── Cliente/
+│   │   │   │   ├── Cliente.php                       # Agregado ou entidade Cliente
+│   │   │   │   ├── ClienteId.php                     # Identificador do Cliente
+│   │   │   │   ├── Cpf.php                           # Value Object CPF
+│   │   │   │   └── Email.php                         # Value Object Email
+│   │   │   │
+│   │   │   └── Pedido/
+│   │   │       ├── Pedido.php                        # Agregado principal Pedido
+│   │   │       ├── PedidoId.php                      # Identificador do Pedido
+│   │   │       ├── ItemPedido.php                    # Entidade interna do agregado
+│   │   │       ├── Dinheiro.php                      # Value Object monetário
+│   │   │       └── SituacaoPedido.php                # Enum de situação
+│   │   │
+│   │   ├── Service/
+│   │   │   ├── CalculadoraDesconto.php               # Serviço puro de domínio
+│   │   │   └── PoliticaCancelamento.php              # Regra entre objetos do domínio
+│   │   │
+│   │   ├── Event/
+│   │   │   ├── DomainEvent.php                       # Contrato de evento de domínio
+│   │   │   ├── PedidoCriado.php                      # Evento de criação
+│   │   │   └── PedidoCancelado.php                   # Evento de cancelamento
+│   │   │
+│   │   └── Exception/
+│   │       ├── DomainException.php                   # Exceção-base do domínio
+│   │       ├── PedidoInvalidoException.php
+│   │       └── CancelamentoNaoPermitidoException.php
+│   │
+│   ├── Application/
+│   │   ├── Port/
+│   │   │   ├── In/
+│   │   │   │   ├── Pedido/
+│   │   │   │   │   ├── CriarPedidoUseCase.php       # Porta para criar pedido
+│   │   │   │   │   ├── ConsultarPedidoUseCase.php   # Porta para consultar pedido
+│   │   │   │   │   └── CancelarPedidoUseCase.php    # Porta para cancelar pedido
+│   │   │   │   │
+│   │   │   │   └── Cliente/
+│   │   │   │       └── CadastrarClienteUseCase.php  # Porta para cadastrar cliente
+│   │   │   │
+│   │   │   └── Out/
+│   │   │       ├── Persistence/
+│   │   │       │   ├── PedidoRepositoryPort.php     # Porta de persistência de Pedido
+│   │   │       │   └── ClienteRepositoryPort.php    # Porta de persistência de Cliente
+│   │   │       │
+│   │   │       ├── Payment/
+│   │   │       │   └── ProcessarPagamentoPort.php   # Porta para serviço de pagamento
+│   │   │       │
+│   │   │       ├── Notification/
+│   │   │       │   └── EnviarEmailPort.php          # Porta para envio de e-mail
+│   │   │       │
+│   │   │       ├── Transaction/
+│   │   │       │   └── TransactionPort.php          # Porta para commit e rollback
+│   │   │       │
+│   │   │       ├── Event/
+│   │   │       │   └── PublishEventPort.php         # Porta para publicar eventos
+│   │   │       │
+│   │   │       └── Clock/
+│   │   │           └── ClockPort.php                # Porta para data e hora
+│   │   │
+│   │   ├── Service/
+│   │   │   ├── Pedido/
+│   │   │   │   ├── CriarPedidoService.php           # Implementa CriarPedidoUseCase
+│   │   │   │   ├── ConsultarPedidoService.php       # Implementa ConsultarPedidoUseCase
+│   │   │   │   └── CancelarPedidoService.php        # Implementa CancelarPedidoUseCase
+│   │   │   │
+│   │   │   └── Cliente/
+│   │   │       └── CadastrarClienteService.php      # Implementa porta de entrada
+│   │   │
+│   │   ├── Command/
+│   │   │   ├── CriarPedidoCommand.php               # Dados de entrada para criar pedido
+│   │   │   ├── CancelarPedidoCommand.php            # Dados de entrada para cancelar
+│   │   │   └── CadastrarClienteCommand.php          # Dados para cadastrar cliente
+│   │   │
+│   │   ├── Query/
+│   │   │   ├── ConsultarPedidoQuery.php             # Critérios de uma consulta
+│   │   │   └── ListarPedidosQuery.php               # Critérios para listagem
+│   │   │
+│   │   ├── Result/
+│   │   │   ├── PedidoResult.php                     # Resultado de um caso de uso
+│   │   │   └── ClienteResult.php                    # Resultado relacionado a cliente
+│   │   │
+│   │   ├── Mapper/
+│   │   │   ├── PedidoApplicationMapper.php          # Converte domínio em resultado
+│   │   │   └── ClienteApplicationMapper.php
+│   │   │
+│   │   └── Exception/
+│   │       ├── ApplicationException.php
+│   │       ├── PedidoNaoEncontradoException.php
+│   │       └── ClienteJaCadastradoException.php
+│   │
+│   ├── Adapter/
+│   │   ├── In/
+│   │   │   ├── Http/
+│   │   │   │   ├── Controller/
+│   │   │   │   │   ├── CriarPedidoController.php   # Adaptador HTTP de entrada
+│   │   │   │   │   ├── ConsultarPedidoController.php
+│   │   │   │   │   ├── CancelarPedidoController.php
+│   │   │   │   │   └── CadastrarClienteController.php
+│   │   │   │   │
+│   │   │   │   ├── Request/
+│   │   │   │   │   ├── CriarPedidoHttpRequest.php  # Converte HTTP em Command
+│   │   │   │   │   └── CadastrarClienteHttpRequest.php
+│   │   │   │   │
+│   │   │   │   ├── Response/
+│   │   │   │   │   ├── PedidoHttpResponse.php      # Converte Result em HTTP
+│   │   │   │   │   └── ErrorHttpResponse.php
+│   │   │   │   │
+│   │   │   │   ├── Presenter/
+│   │   │   │   │   ├── PedidoJsonPresenter.php     # Apresenta resultado em JSON
+│   │   │   │   │   └── PedidoHtmlPresenter.php     # Apresenta resultado em HTML
+│   │   │   │   │
+│   │   │   │   └── Middleware/
+│   │   │   │       ├── AuthenticationMiddleware.php
+│   │   │   │       ├── AuthorizationMiddleware.php
+│   │   │   │       └── ExceptionMiddleware.php
+│   │   │   │
+│   │   │   ├── Console/
+│   │   │   │   ├── ProcessarPedidosCommand.php     # Adaptador CLI de entrada
+│   │   │   │   └── CancelarPedidosExpiradosCommand.php
+│   │   │   │
+│   │   │   ├── Messaging/
+│   │   │   │   ├── PedidoCriadoConsumer.php        # Recebe mensagem externa
+│   │   │   │   └── PagamentoConfirmadoConsumer.php
+│   │   │   │
+│   │   │   └── Scheduler/
+│   │   │       └── CancelarPedidosExpiradosJob.php # Entrada executada por agendador
+│   │   │
+│   │   └── Out/
+│   │       ├── Persistence/
+│   │       │   └── Oracle/
+│   │       │       ├── Repository/
+│   │       │       │   ├── OraclePedidoRepositoryAdapter.php
+│   │       │       │   │                               # Implementa PedidoRepositoryPort
+│   │       │       │   └── OracleClienteRepositoryAdapter.php
+│   │       │       │
+│   │       │       ├── Mapper/
+│   │       │       │   ├── PedidoDatabaseMapper.php # Converte domínio em registros
+│   │       │       │   └── ClienteDatabaseMapper.php
+│   │       │       │
+│   │       │       ├── Record/
+│   │       │       │   ├── PedidoRecord.php         # Representação de uma linha do banco
+│   │       │       │   └── ClienteRecord.php
+│   │       │       │
+│   │       │       └── Query/
+│   │       │           ├── PedidoQuery.php           # SQL de pedidos
+│   │       │           └── ClienteQuery.php          # SQL de clientes
+│   │       │
+│   │       ├── Payment/
+│   │       │   └── PagamentoApiAdapter.php          # Implementa porta de pagamento
+│   │       │
+│   │       ├── Notification/
+│   │       │   ├── SmtpEmailAdapter.php             # Implementa porta de e-mail
+│   │       │   └── SmsNotificationAdapter.php       # Adaptador alternativo de saída
+│   │       │
+│   │       ├── Messaging/
+│   │       │   └── RabbitMqEventPublisherAdapter.php
+│   │       │                                           # Publica eventos em mensageria
+│   │       │
+│   │       ├── FileStorage/
+│   │       │   └── LocalFileStorageAdapter.php      # Grava arquivos em disco
+│   │       │
+│   │       ├── Clock/
+│   │       │   └── SystemClockAdapter.php           # Implementa ClockPort
+│   │       │
+│   │       └── Transaction/
+│   │           └── OracleTransactionAdapter.php     # Implementa TransactionPort
+│   │
+│   └── Infrastructure/
+│       ├── Database/
+│       │   ├── OracleConnectionFactory.php          # Criação da conexão Oracle
+│       │   └── OracleSessionFactory.php             # Configuração de sessão Oracle
+│       │
+│       ├── Http/
+│       │   ├── Router.php                           # Registro e resolução de rotas
+│       │   └── ServerRequestFactory.php             # Criação da requisição PSR-7
+│       │
+│       ├── DependencyInjection/
+│       │   ├── Container.php                        # Container de dependências
+│       │   ├── ApplicationBindings.php              # Liga portas de entrada a serviços
+│       │   └── AdapterBindings.php                  # Liga portas de saída a adaptadores
+│       │
+│       ├── Logging/
+│       │   └── LoggerFactory.php                    # Configuração dos logs
+│       │
+│       ├── Messaging/
+│       │   └── RabbitMqConnectionFactory.php        # Conexão com mensageria
+│       │
+│       ├── Framework/
+│       │   └── Application.php                      # Inicialização do framework HTTP
+│       │
+│       └── Config/
+│           └── Environment.php                      # Carrega variáveis do ambiente
+│
+├── bootstrap/
+│   └── app.php                                      # Realiza a composição da aplicação
+│
+├── config/
+│   ├── app.php                                      # Configuração geral
+│   ├── database.php                                 # Configuração do Oracle
+│   ├── services.php                                 # APIs e serviços externos
+│   ├── messaging.php                                # Configuração da mensageria
+│   └── logging.php                                  # Configuração dos logs
+│
+├── routes/
+│   ├── web.php                                      # Rotas para páginas HTML
+│   └── api.php                                      # Rotas para API
+│
+├── resources/
+│   └── views/
+│       ├── pedidos/
+│       │   ├── index.php                            # Listagem de pedidos
+│       │   └── detalhes.php                         # Detalhes de um pedido
+│       └── clientes/
+│           └── formulario.php                       # Formulário de cliente
+│
+├── database/
+│   ├── migrations/                                  # Evolução do banco de dados
+│   ├── seeds/                                       # Dados iniciais
+│   └── fixtures/                                    # Dados para testes
+│
+├── storage/
+│   ├── cache/                                       # Cache da aplicação
+│   ├── logs/                                        # Arquivos de log
+│   └── uploads/                                     # Arquivos enviados
+│
+├── tests/
+│   ├── Unit/
+│   │   ├── Domain/
+│   │   │   ├── Model/
+│   │   │   └── Service/
+│   │   │
+│   │   └── Application/
+│   │       ├── Service/
+│   │       └── Port/
+│   │
+│   ├── Integration/
+│   │   └── Adapter/
+│   │       └── Out/
+│   │           ├── Persistence/
+│   │           └── Payment/
+│   │
+│   ├── Functional/
+│   │   └── Adapter/
+│   │       └── In/
+│   │           └── Http/
+│   │
+│   └── Support/
+│       ├── Builder/
+│       ├── Factory/
+│       ├── Fake/
+│       └── Stub/
+│
+├── vendor/                                          # Dependências do Composer
+├── .env                                             # Variáveis do ambiente local
+├── .env.example                                     # Exemplo de configuração
+├── composer.json                                    # Dependências e autoload PSR-4
+├── phpunit.xml                                      # Configuração do PHPUnit
+└── README.md                                        # Instruções e documentação inicial
+
+
+# Fluxo de entrada
+HTTP Controller
+       ↓
+Porta de entrada
+       ↓
+Application Service
+       ↓
+Domínio
+
+Exemplo:
+CriarPedidoController
+        ↓
+CriarPedidoUseCase
+        ↓
+CriarPedidoService
+        ↓
+Pedido
+
+
+# Fluxo de saída
+Application Service
+        ↓
+Porta de saída
+        ↓
+Adaptador de saída
+        ↓
+Recurso externo
+
+Exemplo:
+CriarPedidoService
+        ↓
+PedidoRepositoryPort
+        ↓
+OraclePedidoRepositoryAdapter
+        ↓
+Oracle
+

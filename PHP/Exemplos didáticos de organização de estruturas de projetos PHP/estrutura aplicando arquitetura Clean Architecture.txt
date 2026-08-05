@@ -1,0 +1,284 @@
+Na Clean Architecture, o projeto é organizado em camadas. As dependências devem apontar das camadas externas para as internas:
+Infrastructure
+      ↓
+Interface Adapters
+      ↓
+Application
+      ↓
+Domain
+
+
+# Direção das dependências:
+HTTP / Banco / Framework
+          ↓
+       Adapters
+          ↓
+      Application
+          ↓
+        Domain
+
+
+Uma estrutura comum seria:
+project/
+├── public/
+│   └── index.php                                  # Front Controller da aplicação
+│
+├── src/
+│   ├── Domain/
+│   │   ├── Entity/
+│   │   │   ├── Cliente.php                        # Entidade de domínio Cliente
+│   │   │   ├── Pedido.php                         # Entidade de domínio Pedido
+│   │   │   └── ItemPedido.php                     # Entidade pertencente ao Pedido
+│   │   │
+│   │   ├── ValueObject/
+│   │   │   ├── Cpf.php                            # Valor imutável e validado
+│   │   │   ├── Dinheiro.php                       # Representação segura de valor monetário
+│   │   │   ├── Email.php                          # Endereço de e-mail validado
+│   │   │   └── PedidoId.php                       # Identificador tipado de Pedido
+│   │   │
+│   │   ├── Enum/
+│   │   │   ├── SituacaoPedido.php                 # Estados possíveis de um pedido
+│   │   │   └── FormaPagamento.php                 # Formas de pagamento permitidas
+│   │   │
+│   │   ├── Contract/
+│   │   │   ├── Policy/
+│   │   │   │   ├── PoliticaDesconto.php           # Contrato de política de desconto
+│   │   │   │   └── PoliticaCancelamento.php       # Contrato de política de cancelamento
+│   │   │   │
+│   │   │   ├── Specification/
+│   │   │   │   ├── ClienteElegivel.php            # Contrato para critérios de elegibilidade
+│   │   │   │   └── PedidoCancelavel.php           # Contrato para verificar cancelamento
+│   │   │   │
+│   │   │   └── Service/
+│   │   │       └── CalculadoraFrete.php            # Contrato de serviço do domínio
+│   │   │
+│   │   ├── Service/
+│   │   │   ├── CalculadoraDescontoPadrao.php       # Implementa a política de desconto
+│   │   │   ├── PoliticaCancelamentoPadrao.php      # Implementa a política de cancelamento
+│   │   │   └── CalculadoraFretePadrao.php          # Implementa o cálculo de frete
+│   │   │
+│   │   ├── Event/
+│   │   │   ├── DomainEvent.php                    # Contrato básico de evento de domínio
+│   │   │   ├── PedidoCriado.php                   # Evento gerado ao criar um pedido
+│   │   │   └── PedidoCancelado.php                # Evento gerado ao cancelar um pedido
+│   │   │
+│   │   └── Exception/
+│   │       ├── DomainException.php                # Exceção-base do domínio
+│   │       ├── PedidoInvalidoException.php        # Violação de regra do Pedido
+│   │       └── CancelamentoNaoPermitidoException.php
+│   │                                               # Cancelamento bloqueado pelo domínio
+│   │
+│   ├── Application/
+│   │   ├── UseCase/
+│   │   │   ├── Pedido/
+│   │   │   │   ├── CriarPedido/
+│   │   │   │   │   ├── CriarPedidoUseCase.php    # Executa o caso de uso
+│   │   │   │   │   ├── CriarPedidoInput.php      # Dados necessários para execução
+│   │   │   │   │   └── CriarPedidoOutput.php     # Resultado independente de HTTP
+│   │   │   │   │
+│   │   │   │   ├── ConsultarPedido/
+│   │   │   │   │   ├── ConsultarPedidoUseCase.php
+│   │   │   │   │   ├── ConsultarPedidoInput.php
+│   │   │   │   │   └── ConsultarPedidoOutput.php
+│   │   │   │   │
+│   │   │   │   └── CancelarPedido/
+│   │   │   │       ├── CancelarPedidoUseCase.php
+│   │   │   │       ├── CancelarPedidoInput.php
+│   │   │   │       └── CancelarPedidoOutput.php
+│   │   │   │
+│   │   │   └── Cliente/
+│   │   │       └── CadastrarCliente/
+│   │   │           ├── CadastrarClienteUseCase.php
+│   │   │           ├── CadastrarClienteInput.php
+│   │   │           └── CadastrarClienteOutput.php
+│   │   │
+│   │   ├── Contract/
+│   │   │   ├── Repository/
+│   │   │   │   ├── PedidoRepository.php          # Contrato de persistência de pedidos
+│   │   │   │   └── ClienteRepository.php         # Contrato de persistência de clientes
+│   │   │   │
+│   │   │   ├── Gateway/
+│   │   │   │   ├── PagamentoGateway.php          # Contrato para sistema de pagamento
+│   │   │   │   └── EmailGateway.php              # Contrato para envio de e-mail
+│   │   │   │
+│   │   │   ├── Transaction/
+│   │   │   │   └── TransactionManager.php        # Contrato de controle transacional
+│   │   │   │
+│   │   │   ├── Event/
+│   │   │   │   └── EventDispatcher.php           # Contrato para publicação de eventos
+│   │   │   │
+│   │   │   └── Clock/
+│   │   │       └── Clock.php                     # Contrato para obtenção de data e hora
+│   │   │
+│   │   ├── DTO/
+│   │   │   ├── PedidoDTO.php                     # Transferência de dados de Pedido
+│   │   │   └── ClienteDTO.php                    # Transferência de dados de Cliente
+│   │   │
+│   │   ├── Mapper/
+│   │   │   ├── PedidoMapper.php                  # Converte objetos da aplicação
+│   │   │   └── ClienteMapper.php                 # Converte objetos da aplicação
+│   │   │
+│   │   └── Exception/
+│   │       ├── ApplicationException.php          # Exceção-base da aplicação
+│   │       ├── PedidoNaoEncontradoException.php
+│   │       └── ClienteJaCadastradoException.php
+│   │
+│   ├── InterfaceAdapter/
+│   │   ├── Http/
+│   │   │   ├── Controller/
+│   │   │   │   ├── PedidoController.php          # Converte HTTP em chamada de caso de uso
+│   │   │   │   └── ClienteController.php         # Entrada HTTP relacionada a clientes
+│   │   │   │
+│   │   │   ├── Request/
+│   │   │   │   ├── CriarPedidoRequest.php        # Extrai e valida dados HTTP
+│   │   │   │   └── CadastrarClienteRequest.php   # Extrai e valida dados HTTP
+│   │   │   │
+│   │   │   ├── Presenter/
+│   │   │   │   ├── PedidoJsonPresenter.php       # Converte saída em JSON
+│   │   │   │   └── PedidoHtmlPresenter.php       # Converte saída em HTML
+│   │   │   │
+│   │   │   ├── Response/
+│   │   │   │   ├── JsonResponse.php              # Representa resposta JSON
+│   │   │   │   └── ErrorResponse.php             # Padroniza respostas de erro
+│   │   │   │
+│   │   │   └── Middleware/
+│   │   │       ├── AuthenticationMiddleware.php  # Verifica autenticação
+│   │   │       └── ExceptionMiddleware.php       # Converte exceções em respostas HTTP
+│   │   │
+│   │   ├── Console/
+│   │   │   └── ProcessarPedidosCommand.php       # Entrada por linha de comando
+│   │   │
+│   │   └── Persistence/
+│   │       ├── Mapper/
+│   │       │   ├── PedidoPersistenceMapper.php   # Converte domínio para persistência
+│   │       │   └── ClientePersistenceMapper.php
+│   │       │
+│   │       └── DataModel/
+│   │           ├── PedidoDataModel.php            # Estrutura utilizada pelo ORM ou banco
+│   │           └── ClienteDataModel.php
+│   │
+│   └── Infrastructure/
+│       ├── Persistence/
+│       │   └── Oracle/
+│       │       ├── Connection/
+│       │       │   ├── OracleConnection.php       # Cria e fornece conexão Oracle
+│       │       │   └── OracleTransactionManager.php
+│       │       │                                   # Controla commit e rollback
+│       │       │
+│       │       ├── Repository/
+│       │       │   ├── OraclePedidoRepository.php # Implementa PedidoRepository
+│       │       │   └── OracleClienteRepository.php
+│       │       │
+│       │       └── Query/
+│       │           ├── PedidoQuery.php             # Consultas SQL especializadas
+│       │           └── ClienteQuery.php
+│       │
+│       ├── ExternalService/
+│       │   ├── Payment/
+│       │   │   └── PagamentoApiGateway.php        # Implementa PagamentoGateway
+│       │   │
+│       │   └── Email/
+│       │       └── SmtpEmailGateway.php           # Implementa EmailGateway
+│       │
+│       ├── Event/
+│       │   └── InMemoryEventDispatcher.php        # Implementação do publicador de eventos
+│       │
+│       ├── Clock/
+│       │   └── SystemClock.php                    # Implementa o relógio do sistema
+│       │
+│       ├── Logging/
+│       │   └── MonologLoggerFactory.php           # Configura a biblioteca de logs
+│       │
+│       ├── DependencyInjection/
+│       │   ├── Container.php                      # Container de dependências
+│       │   └── ServiceProvider.php                # Registra interfaces e implementações
+│       │
+│       └── Framework/
+│           ├── Router.php                         # Configuração do roteador HTTP
+│           └── Application.php                    # Inicialização do framework
+│
+├── bootstrap/
+│   └── app.php                                    # Monta o container e inicia a aplicação
+│
+├── config/
+│   ├── app.php                                    # Configurações gerais
+│   ├── database.php                               # Configurações de banco
+│   ├── services.php                               # Configurações de serviços externos
+│   └── logging.php                                # Configurações de log
+│
+├── routes/
+│   ├── web.php                                    # Rotas de páginas HTML
+│   └── api.php                                    # Rotas da API
+│
+├── resources/
+│   └── views/
+│       ├── pedidos/
+│       │   ├── index.php                          # Listagem de pedidos
+│       │   └── detalhes.php                       # Visualização de um pedido
+│       └── clientes/
+│           └── formulario.php                     # Formulário de cliente
+│
+├── database/
+│   ├── migrations/                                # Scripts de alteração do banco
+│   ├── seeds/                                     # Dados iniciais
+│   └── fixtures/                                  # Dados utilizados em testes
+│
+├── storage/
+│   ├── cache/                                     # Arquivos de cache
+│   ├── logs/                                      # Arquivos de log
+│   └── uploads/                                   # Arquivos enviados pelos usuários
+│
+├── tests/
+│   ├── Unit/
+│   │   ├── Domain/
+│   │   │   ├── Entity/
+│   │   │   ├── ValueObject/
+│   │   │   ├── Contract/
+│   │   │   │   ├── Policy/
+│   │   │   │   ├── Specification/
+│   │   │   │   └── Service/
+│   │   │   └── Service/
+│   │   │
+│   │   └── Application/
+│   │       └── UseCase/
+│   │
+│   ├── Integration/
+│   │   ├── Persistence/
+│   │   └── ExternalService/
+│   │
+│   ├── Functional/
+│   │   └── Http/
+│   │
+│   └── Support/
+│       ├── Builder/                                # Builders para objetos de teste
+│       ├── Factory/                                # Fábricas de teste
+│       └── Fake/                                   # Implementações falsas de contratos
+│
+├── vendor/                                        # Dependências instaladas pelo Composer
+├── .env                                           # Variáveis do ambiente local
+├── .env.example                                   # Exemplo das variáveis necessárias
+├── composer.json                                  # Dependências e autoload PSR-4
+├── phpunit.xml                                    # Configuração do PHPUnit
+└── README.md                                      # Documentação inicial do projeto
+
+
+Fluxo de uma requisição:
+HTTP Request
+     ↓
+Router / Middleware
+     ↓
+Controller
+     ↓
+Request Model / Input DTO
+     ↓
+Use Case
+     ↓
+Contract
+     ↓
+Infrastructure
+     ↓
+Use Case
+     ↓
+Presenter
+     ↓
+HTTP Response

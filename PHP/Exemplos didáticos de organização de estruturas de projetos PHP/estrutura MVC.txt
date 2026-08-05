@@ -1,0 +1,76 @@
+# MVC é um padrão arquitetural.
+
+Estrutura MVC genérico: Esta é uma organização didática independente de framework. MVC não determina nomes de pastas, mas esta estrutura representa adequadamente a separação entre Model, View e Controller.
+
+project/
+├── public/
+│   ├── index.php                  # Front Controller: entrada de todas as requisições
+│   ├── css/                       # Arquivos CSS públicos
+│   ├── js/                        # Arquivos JavaScript públicos
+│   └── images/                    # Imagens públicas
+│
+├── src/
+│   ├── Controller/
+│   │   ├── ClienteController.php  # Recebe requisições relacionadas a clientes
+│   │   └── PedidoController.php   # Coordena ações relacionadas a pedidos
+│   │
+│   ├── Model/
+│   │   ├── Entity/
+│   │   │   ├── Cliente.php        # Representa uma entidade do negócio
+│   │   │   └── Pedido.php         # Dados e comportamentos de um pedido
+│   │   │
+│   │   ├── Repository/
+│   │   │   ├── ClienteRepository.php # Consulta e persiste clientes
+│   │   │   └── PedidoRepository.php  # Consulta e persiste pedidos
+│   │   │
+│   │   └── Service/
+│   │       └── PedidoService.php  # Regras de negócio que envolvem pedidos
+│   │
+│   ├── View/						# Não deve ser entendido apenas como uma classe que representa uma tabela. No MVC, a camada Model representa dados, comportamentos e regras da aplicação.
+│   │   ├── clientes/
+│   │   │   ├── index.php          # Tela de listagem de clientes
+│   │   │   └── formulario.php     # Formulário de cliente
+│   │   └── pedidos/
+│   │       └── index.php          # Tela de listagem de pedidos
+│   │
+│   └── Core/
+│       ├── Router.php             # Localiza a rota solicitada
+│       ├── Request.php            # Representa a requisição HTTP
+│       └── Response.php           # Representa a resposta HTTP
+│
+├── routes/
+│   └── web.php                    # Mapeamento de URLs para controllers
+│
+├── config/
+│   ├── app.php                    # Configurações gerais da aplicação
+│   └── database.php               # Configurações do banco de dados
+│
+├── tests/
+│   ├── Unit/                      # Testes unitários
+│   └── Integration/               # Testes de integração
+│
+├── storage/
+│   ├── logs/                      # Arquivos de log
+│   └── cache/                     # Arquivos temporários e cache
+│
+├── vendor/                        # Dependências instaladas pelo Composer
+├── .env                           # Variáveis específicas do ambiente
+└── composer.json                  # Dependências e autoload PSR-4
+
+
+
+# Fluxo principal:
+
+Requisição
+    ↓
+Router
+    ↓
+Controller
+    ↓
+Model / Service / Repository
+    ↓
+Controller
+    ↓
+View
+    ↓
+Resposta HTML

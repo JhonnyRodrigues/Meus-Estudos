@@ -1,0 +1,87 @@
+O Slim é um microframework e não obriga uma estrutura de diretórios. Também não possui uma camada View tradicional embutida: cada rota deve produzir uma resposta PSR-7, podendo usar Twig ou PHP-View opcionalmente.
+
+A estrutura abaixo é baseada didaticamente no Slim-Skeleton oficial, que utiliza app/, public/, src/, tests/, logs/ e var/cache/.
+
+project/
+├── app/
+│   ├── dependencies.php                   # Configura a injeção de dependências
+│   ├── middleware.php                     # Registra os middlewares
+│   ├── repositories.php                   # Liga interfaces aos repositórios
+│   ├── routes.php                         # Registra as rotas da aplicação
+│   └── settings.php                       # Configurações gerais
+│
+├── public/
+│   ├── index.php                          # Front Controller e inicialização do Slim
+│   └── .htaccess                          # Redirecionamento para index.php no Apache
+│
+├── src/
+│   ├── Application/
+│   │   ├── Actions/
+│   │   │   └── Pedido/
+│   │   │       ├── ListarPedidosAction.php
+│   │   │       │                           # Action chamada por uma rota
+│   │   │       └── CriarPedidoAction.php   # Processa a criação de pedido
+│   │   │
+│   │   ├── Handlers/
+│   │   │   ├── HttpErrorHandler.php        # Tratamento central de erros HTTP
+│   │   │   └── ShutdownHandler.php         # Tratamento de falhas fatais
+│   │   │
+│   │   ├── Middleware/
+│   │   │   └── AuthenticationMiddleware.php
+│   │   │                               # Autenticação das requisições
+│   │   │
+│   │   └── ResponseEmitter/
+│   │       └── ResponseEmitter.php         # Envia a resposta PSR-7 ao cliente
+│   │
+│   ├── Domain/
+│   │   └── Pedido/
+│   │       ├── Pedido.php                  # Entidade ou modelo de domínio
+│   │       ├── PedidoRepository.php        # Interface do repositório
+│   │       └── PedidoNaoEncontrado.php     # Exceção do domínio
+│   │
+│   └── Infrastructure/
+│       └── Persistence/
+│           └── Pedido/
+│               └── OraclePedidoRepository.php # Implementação Oracle do repositório
+│
+├── templates/                              # Opcional: templates Twig ou PHP
+│   └── pedidos/
+│       └── index.html.twig                 # Template, caso a aplicação gere HTML
+│
+├── tests/
+│   ├── Application/                        # Testes de actions e handlers
+│   ├── Domain/                             # Testes do domínio
+│   └── Infrastructure/                     # Testes das integrações
+│
+├── logs/
+│   └── app.log                             # Logs da aplicação
+│
+├── var/
+│   └── cache/                              # Cache e container compilado
+│
+├── vendor/                                 # Dependências do Composer
+├── .env                                    # Configurações do ambiente
+└── composer.json                           # Dependências e autoload PSR-4
+
+
+
+No Slim, esta estrutura seria igualmente válida:
+src/
+├── Controller/
+├── Service/
+└── Repository/
+
+Assim como esta:
+src/
+├── Domain/
+├── Application/
+├── Infrastructure/
+└── Presentation/
+
+A escolha é da equipe porque o Slim fornece principalmente:
+- roteamento;
+- requisições e respostas PSR-7;
+- pipeline de middlewares;
+- tratamento HTTP;
+- integração com containers PSR-11.
+Ele não impõe MVC, ORM, mecanismo de templates ou arquitetura de domínio.

@@ -1,0 +1,46 @@
+Clean Architecture
+
+Organiza principalmente por camadas:
+
+src/
+├── Domain/
+├── Application/
+├── InterfaceAdapter/
+└── Infrastructure/
+
+A leitura é:
+
+Qual camada contém esta responsabilidade?
+Arquitetura Hexagonal
+
+Organiza principalmente por portas e adaptadores:
+
+src/
+├── Domain/
+├── Application/
+│   └── Port/
+│       ├── In/
+│       └── Out/
+├── Adapter/
+│   ├── In/
+│   └── Out/
+└── Infrastructure/
+
+A leitura é:
+
+Este componente conduz a aplicação ou é conduzido por ela?
+Regra prática
+
+Na Hexagonal:
+
+HTTP, CLI, filas e agendadores são adaptadores de entrada;
+banco, APIs, e-mail e arquivos são adaptadores de saída;
+portas são interfaces pertencentes ao núcleo;
+adaptadores implementam ou utilizam essas portas.
+
+Na Clean Architecture:
+
+entidades ficam no centro;
+casos de uso orquestram a aplicação;
+controllers, presenters e gateways adaptam formatos;
+banco e frameworks ficam na camada externa.
